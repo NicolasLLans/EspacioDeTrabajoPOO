@@ -46,7 +46,7 @@
             // 
             // menuStrip1
             // 
-            menuStrip1.BackColor = Color.WhiteSmoke;
+            menuStrip1.BackColor = Color.Linen;
             menuStrip1.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point);
             menuStrip1.ImageScalingSize = new Size(50, 50);
             menuStrip1.Items.AddRange(new ToolStripItem[] { dFGDFToolStripMenuItem, pAGOCUOTASToolStripMenuItem, lISTARCUOTASToolStripMenuItem, vENCIMIENTOSToolStripMenuItem });
@@ -162,7 +162,9 @@
             Controls.Add(label1);
             Controls.Add(pictureBox1);
             Controls.Add(menuStrip1);
-            FormBorderStyle = FormBorderStyle.Fixed3D;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "FormInicio";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "INICIO";
