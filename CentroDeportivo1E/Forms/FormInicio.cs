@@ -21,11 +21,6 @@ namespace CentroDeportivo1E.Forms
             this.apellido = apellido;
         }
 
-        private void dFGDFToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void FormInicio_Load(object sender, EventArgs e)
         {
             txtBienvenida.Multiline = true;

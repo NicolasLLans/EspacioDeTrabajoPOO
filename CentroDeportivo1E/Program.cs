@@ -1,5 +1,6 @@
 using CentroDeportivo1E.Forms;
 using CentroDeportivo1E.Models;
+using CentroDeportivo1E.Services;
 
 
 namespace CentroDeportivo1E
@@ -21,12 +22,14 @@ namespace CentroDeportivo1E
 
             if (modDebug ==false) { 
             FormLogin login = new FormLogin();
+            EmpleadoService empleadoService = new EmpleadoService();
 
-            if (login.ShowDialog() == DialogResult.OK)
+
+                if (login.ShowDialog() == DialogResult.OK)
             {
-                Empleado empleado = login.IngresoPersonal();
+                    Empleado empleado = empleadoService.CrearEmpleado();
 
-                Application.Run(new FormInicio(empleado.Nombre, empleado.Apellido));
+                    Application.Run(new FormInicio(empleado.Nombre, empleado.Apellido));
                 }
                 else
                 {

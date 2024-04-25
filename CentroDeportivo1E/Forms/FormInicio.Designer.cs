@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            menuStrip1 = new MenuStrip();
+            msOpciones = new MenuStrip();
             dFGDFToolStripMenuItem = new ToolStripMenuItem();
             sOCIOSToolStripMenuItem = new ToolStripMenuItem();
             nOSOCIOSToolStripMenuItem = new ToolStripMenuItem();
@@ -40,22 +40,22 @@
             pictureBox1 = new PictureBox();
             label1 = new Label();
             txtBienvenida = new TextBox();
-            menuStrip1.SuspendLayout();
+            msOpciones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
-            // menuStrip1
+            // msOpciones
             // 
-            menuStrip1.BackColor = Color.Linen;
-            menuStrip1.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            menuStrip1.ImageScalingSize = new Size(50, 50);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { dFGDFToolStripMenuItem, pAGOCUOTASToolStripMenuItem, lISTARCUOTASToolStripMenuItem, vENCIMIENTOSToolStripMenuItem });
-            menuStrip1.Location = new Point(0, 0);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.RenderMode = ToolStripRenderMode.System;
-            menuStrip1.Size = new Size(995, 58);
-            menuStrip1.TabIndex = 0;
-            menuStrip1.Text = "menuStrip1";
+            msOpciones.BackColor = Color.FromArgb(205, 210, 188);
+            msOpciones.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            msOpciones.ImageScalingSize = new Size(50, 50);
+            msOpciones.Items.AddRange(new ToolStripItem[] { dFGDFToolStripMenuItem, pAGOCUOTASToolStripMenuItem, lISTARCUOTASToolStripMenuItem, vENCIMIENTOSToolStripMenuItem });
+            msOpciones.Location = new Point(0, 0);
+            msOpciones.Name = "msOpciones";
+            msOpciones.RenderMode = ToolStripRenderMode.System;
+            msOpciones.Size = new Size(995, 58);
+            msOpciones.TabIndex = 0;
+            msOpciones.Text = "menuStrip1";
             // 
             // dFGDFToolStripMenuItem
             // 
@@ -65,7 +65,6 @@
             dFGDFToolStripMenuItem.Name = "dFGDFToolStripMenuItem";
             dFGDFToolStripMenuItem.Size = new Size(130, 54);
             dFGDFToolStripMenuItem.Text = "ALTA";
-            dFGDFToolStripMenuItem.Click += dFGDFToolStripMenuItem_Click;
             // 
             // sOCIOSToolStripMenuItem
             // 
@@ -161,7 +160,7 @@
             Controls.Add(txtBienvenida);
             Controls.Add(label1);
             Controls.Add(pictureBox1);
-            Controls.Add(menuStrip1);
+            Controls.Add(msOpciones);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             MinimizeBox = false;
@@ -169,8 +168,8 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "INICIO";
             Load += FormInicio_Load;
-            menuStrip1.ResumeLayout(false);
-            menuStrip1.PerformLayout();
+            msOpciones.ResumeLayout(false);
+            msOpciones.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -178,7 +177,7 @@
 
         #endregion
 
-        private MenuStrip menuStrip1;
+        private MenuStrip msOpciones;
         private ToolStripMenuItem dFGDFToolStripMenuItem;
         private ToolStripMenuItem pAGOCUOTASToolStripMenuItem;
         private ToolStripMenuItem lISTARCUOTASToolStripMenuItem;
