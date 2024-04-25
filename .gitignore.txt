@@ -1,0 +1,3 @@
+/.vs
+/CentroDeportivo1E/bin
+/CentroDeportivo1E/obj
