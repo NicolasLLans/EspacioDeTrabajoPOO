@@ -8,17 +8,17 @@ namespace CentroDeportivo1E.Models
 {
     internal class Empleado:Persona
     {
-        public new int Id { get; set; } // Oculta la propiedad Id de la clase base Persona
+        public new int Id { get; set; } 
         public string Usuario { get; set; }
         public string Contrasena { get; set; }
         public DateTime FechaAlta { get; set; }
         public DateTime FechaBaja { get; set; }
         public bool baja { get; set; } // Cambiado a minúscula
 
-        // Constructor
+        // Constructor Vacio
         public Empleado()
         {
-            // Inicializar propiedades si es necesario
+           
         }
 
         // Método ToString para representar la información del empleado como una cadena

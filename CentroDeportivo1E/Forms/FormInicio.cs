@@ -12,9 +12,25 @@ namespace CentroDeportivo1E.Forms
 {
     public partial class FormInicio : Form
     {
-        public FormInicio()
+        private string nombre;
+        private string apellido;
+        public FormInicio(string nombre, string apellido)
         {
             InitializeComponent();
+            this.nombre = nombre;
+            this.apellido = apellido;
         }
+
+        private void dFGDFToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FormInicio_Load(object sender, EventArgs e)
+        {
+            txtBienvenida.Multiline = true;
+            txtBienvenida.Text = nombre + Environment.NewLine + apellido;
+        }
+
     }
 }
