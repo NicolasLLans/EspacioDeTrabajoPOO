@@ -1,4 +1,0 @@
-/CentroDeportivo1E/.vs
-/CentroDeportivo1E/CentroDeportivo1E/bin
-/CentroDeportivo1E/CentroDeportivo1E/obj
-/CentroDeportivo1E/CentroDeportivo1E/
