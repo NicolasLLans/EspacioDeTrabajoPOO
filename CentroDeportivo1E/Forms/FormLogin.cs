@@ -16,6 +16,7 @@ namespace CentroDeportivo1E.Forms
         public FormLogin()
         {
             InitializeComponent();
+            this.AcceptButton = btnIngresar;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
