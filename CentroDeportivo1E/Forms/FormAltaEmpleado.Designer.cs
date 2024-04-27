@@ -55,7 +55,7 @@
             btnCancelarAlta.TabIndex = 8;
             btnCancelarAlta.Text = "CANCELAR";
             btnCancelarAlta.UseVisualStyleBackColor = false;
-            btnCancelarAlta.Click += this.btnCancelarAlta_Click;
+            btnCancelarAlta.Click += btnCancelarAlta_Click;
             // 
             // btnIngresar
             // 
@@ -211,7 +211,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "FormAltaEmpleado";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "FormAltaPersonal";
+            Text = "ALTA PERSONAL";
             ResumeLayout(false);
             PerformLayout();
         }

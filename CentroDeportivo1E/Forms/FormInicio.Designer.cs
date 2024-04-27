@@ -83,7 +83,7 @@
             // 
             pERSONALToolStripMenuItem.Name = "pERSONALToolStripMenuItem";
             pERSONALToolStripMenuItem.Size = new Size(215, 36);
-            pERSONALToolStripMenuItem.Text = "PERSONAL";
+            pERSONALToolStripMenuItem.Text = "EMPLEADO";
             pERSONALToolStripMenuItem.Click += pERSONALToolStripMenuItem_Click;
             // 
             // pAGOCUOTASToolStripMenuItem
@@ -149,7 +149,7 @@
             txtBienvenida.BackColor = Color.FromArgb(6, 18, 30);
             txtBienvenida.BorderStyle = BorderStyle.None;
             txtBienvenida.Enabled = false;
-            txtBienvenida.Font = new Font("Palatino Linotype", 36F, FontStyle.Bold, GraphicsUnit.Point);
+            txtBienvenida.Font = new Font("Palatino Linotype", 27.75F, FontStyle.Bold, GraphicsUnit.Point);
             txtBienvenida.ForeColor = Color.White;
             txtBienvenida.Location = new Point(323, 219);
             txtBienvenida.Multiline = true;

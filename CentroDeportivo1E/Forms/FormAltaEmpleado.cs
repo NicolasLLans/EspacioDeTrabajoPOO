@@ -34,6 +34,17 @@ namespace CentroDeportivo1E.Forms
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
+
+            if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
+                string.IsNullOrWhiteSpace(txtApellido.Text) ||
+                string.IsNullOrWhiteSpace(cmbPuesto.Text) ||
+                string.IsNullOrWhiteSpace(txtTelefono.Text) ||
+                string.IsNullOrWhiteSpace(txtUsuario.Text) ||
+                string.IsNullOrWhiteSpace(txtContrasena.Text))
+            {
+                MessageBox.Show("Por favor, complete todos los campos.", "Campos Incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; 
+            }
             // Se crea Nuevo Empleado
             Empleado nuevoEmpleado = new Empleado
             {
@@ -48,8 +59,19 @@ namespace CentroDeportivo1E.Forms
             };
 
             empleadoService.GuardarEmpleado(nuevoEmpleado);
-          
-            LimpiarCampos();
+
+            DialogResult resultado = MessageBox.Show(" Empleado creado Correctamente ¿Desea dar de alta al nuevo empleado?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                       
+            if (resultado == DialogResult.Yes)
+            {
+                LimpiarCampos();
+            }
+            else
+            {
+                this.Close();
+            }
+
+            
         }
 
         private void LimpiarCampos()
