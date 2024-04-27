@@ -45,6 +45,7 @@ namespace CentroDeportivo1E.Forms
                 MessageBox.Show("Por favor, complete todos los campos.", "Campos Incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return; 
             }
+
             // Se crea Nuevo Empleado
             Empleado nuevoEmpleado = new Empleado
             {
