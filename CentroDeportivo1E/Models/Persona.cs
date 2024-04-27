@@ -8,6 +8,7 @@ namespace CentroDeportivo1E.Models
 {
     internal class Persona
     {
+        private static int ultimoId = 0;
         public int Id { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
@@ -15,7 +16,9 @@ namespace CentroDeportivo1E.Models
         public int NumeroSocio { get; set; }
         public bool EstadoPago { get; set;}
 
-        public Persona() { }
+        public Persona() { 
+            Id = ++ultimoId;
+        }
 
         public override string ToString()
         {

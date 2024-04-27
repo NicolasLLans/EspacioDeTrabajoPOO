@@ -11,6 +11,8 @@ namespace CentroDeportivo1E
         ///  The main entry point for the application.
         /// </summary>
         [STAThread]
+
+
         static void Main()
         {
             // To customize application configuration such as set high DPI settings or default font,
@@ -26,14 +28,19 @@ namespace CentroDeportivo1E
 
 
                 if (login.ShowDialog() == DialogResult.OK)
-            {
-                    Empleado empleado = empleadoService.CrearEmpleado();
-
-                    Application.Run(new FormInicio(empleado.Nombre, empleado.Apellido));
-                }
-                else
                 {
-                    Application.Exit();
+
+                    Empleado empleado = empleadoService.BuscarUsuarioInicioSesion(login.Usuario,login.Contrasena);
+
+                    if (empleado != null) 
+                    {
+                        Application.Run(new FormInicio(empleado.Nombre, empleado.Apellido));
+                    }
+                    else
+                    {
+                        MessageBox.Show("Usuario no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Application.Exit();
+                    }
                 }
             }
         }

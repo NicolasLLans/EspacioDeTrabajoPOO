@@ -32,6 +32,7 @@
             dFGDFToolStripMenuItem = new ToolStripMenuItem();
             sOCIOSToolStripMenuItem = new ToolStripMenuItem();
             nOSOCIOSToolStripMenuItem = new ToolStripMenuItem();
+            pERSONALToolStripMenuItem = new ToolStripMenuItem();
             pAGOCUOTASToolStripMenuItem = new ToolStripMenuItem();
             cUOTASToolStripMenuItem = new ToolStripMenuItem();
             aCTIVIDADESToolStripMenuItem = new ToolStripMenuItem();
@@ -53,13 +54,13 @@
             msOpciones.Location = new Point(0, 0);
             msOpciones.Name = "msOpciones";
             msOpciones.RenderMode = ToolStripRenderMode.System;
-            msOpciones.Size = new Size(995, 58);
+            msOpciones.Size = new Size(1422, 58);
             msOpciones.TabIndex = 0;
             msOpciones.Text = "menuStrip1";
             // 
             // dFGDFToolStripMenuItem
             // 
-            dFGDFToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { sOCIOSToolStripMenuItem, nOSOCIOSToolStripMenuItem });
+            dFGDFToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { sOCIOSToolStripMenuItem, nOSOCIOSToolStripMenuItem, pERSONALToolStripMenuItem });
             dFGDFToolStripMenuItem.ForeColor = Color.FromArgb(6, 18, 30);
             dFGDFToolStripMenuItem.Image = Properties.Resources.IconoAgregar;
             dFGDFToolStripMenuItem.Name = "dFGDFToolStripMenuItem";
@@ -77,6 +78,13 @@
             nOSOCIOSToolStripMenuItem.Name = "nOSOCIOSToolStripMenuItem";
             nOSOCIOSToolStripMenuItem.Size = new Size(215, 36);
             nOSOCIOSToolStripMenuItem.Text = "NO SOCIOS";
+            // 
+            // pERSONALToolStripMenuItem
+            // 
+            pERSONALToolStripMenuItem.Name = "pERSONALToolStripMenuItem";
+            pERSONALToolStripMenuItem.Size = new Size(215, 36);
+            pERSONALToolStripMenuItem.Text = "PERSONAL";
+            pERSONALToolStripMenuItem.Click += pERSONALToolStripMenuItem_Click;
             // 
             // pAGOCUOTASToolStripMenuItem
             // 
@@ -119,9 +127,9 @@
             // 
             pictureBox1.BackgroundImage = Properties.Resources.LogoClub;
             pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox1.Location = new Point(558, 143);
+            pictureBox1.Location = new Point(885, 117);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(342, 308);
+            pictureBox1.Size = new Size(451, 411);
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
             // 
@@ -130,7 +138,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe Fluent Icons", 36F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(177, 174);
+            label1.Location = new Point(427, 154);
             label1.Name = "label1";
             label1.Size = new Size(250, 48);
             label1.TabIndex = 2;
@@ -143,7 +151,7 @@
             txtBienvenida.Enabled = false;
             txtBienvenida.Font = new Font("Palatino Linotype", 36F, FontStyle.Bold, GraphicsUnit.Point);
             txtBienvenida.ForeColor = Color.White;
-            txtBienvenida.Location = new Point(73, 239);
+            txtBienvenida.Location = new Point(323, 219);
             txtBienvenida.Multiline = true;
             txtBienvenida.Name = "txtBienvenida";
             txtBienvenida.ReadOnly = true;
@@ -156,7 +164,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(6, 18, 30);
-            ClientSize = new Size(995, 540);
+            ClientSize = new Size(1422, 656);
             Controls.Add(txtBienvenida);
             Controls.Add(label1);
             Controls.Add(pictureBox1);
@@ -189,5 +197,6 @@
         private PictureBox pictureBox1;
         private Label label1;
         private TextBox txtBienvenida;
+        private ToolStripMenuItem pERSONALToolStripMenuItem;
     }
 }

@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace CentroDeportivo1E.Models
 {
-    internal class Empleado:Persona
+    internal class Empleado : Persona
     {
-        public new int Id { get; set; } 
+        private static int ultimoId = 0;
+        public  int Id { get; set; } 
         public string Usuario { get; set; }
         public string Contrasena { get; set; }
+        public string Puesto { get; set; }  
         public DateTime FechaAlta { get; set; }
         public DateTime FechaBaja { get; set; }
         public bool baja { get; set; } // Cambiado a minúscula
@@ -18,7 +20,7 @@ namespace CentroDeportivo1E.Models
         // Constructor Vacio
         public Empleado()
         {
-           
+            Id = ++ultimoId;
         }
 
         // Método ToString para representar la información del empleado como una cadena
