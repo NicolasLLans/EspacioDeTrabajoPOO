@@ -4,81 +4,47 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Markup;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace CentroDeportivo1E.Models
 {
     internal class Persona
     {
-        private static int ultimoId = 0;
-        private int id;
-        private string nombre;
-        private string apellido;
-        private long telefono;
-        private int numeroSocio;
-        private bool estadoPago;
-
-        public int Id
-        {
-            get { return id; }
-            private set { id = value; }
-        }
-
-
-        public string Nombre
-        {
-            get { return nombre; }
-            set { nombre = value; }
-        }
-
-        public string Apellido
-        {
-            get { return apellido; }
-            set { apellido = value; }
-        }
-
-        public long Telefono
-        {
-            get { return telefono; }
-            set { telefono = value; }
-        }
-
-        public int NumeroSocio
-        {
-            get { return numeroSocio; }
-            set { numeroSocio = value; }
-        }
-
-        public bool EstadoPago
-        {
-            get { return estadoPago; }
-            set { estadoPago = value; }
-        }
+        public static int UltimoId = 0;
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
+        public string Direccion { get; set; }
+        public long Telefono {  get; set; }
+        public string Email { get; set; }
+        public string Tipo { get; set; } 
 
         // constructores
-        public Persona(string nombre, string apellido, long telefono, int numeroSocio, bool estadoPago)
+        public Persona(string nombre, string apellido, string direccion, long telefono, string email, string tipo)
         {
-            Id = ++ultimoId;
+            Id = ++UltimoId;
             Nombre = nombre;
             Apellido = apellido;
             Telefono = telefono;
-            NumeroSocio = numeroSocio;
-            EstadoPago = estadoPago;
+            Direccion = direccion;
+            Email = email;
+            Tipo = tipo;
         }
 
         public Persona()
         {
-            Id = ++ultimoId;
+            Id = ++UltimoId;
             Nombre = "";
             Apellido = "";
             Telefono = 0;
-            NumeroSocio = 0;
-            EstadoPago = false;
+            Direccion = "";
+            Email = "";
+            Tipo = "";
         }
-
 
         public override string ToString()
         {
-            return $"ID: {Id}, Nombre: {Nombre}, Apellido: {Apellido}, Teléfono: {Telefono}, Número de Socio: {NumeroSocio}, Estado de Pago: {(EstadoPago ? "Pagado" : "Pendiente")}";
+            return $"ID: {Id}, Nombre: {Nombre}, Apellido: {Apellido}, Teléfono: {Telefono}, Direccion: {Direccion}, Email: {Email}";
         }
     }
 }
