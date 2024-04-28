@@ -37,4 +37,8 @@ namespace CentroDeportivo1E.Models
     }
 
     }
+
+    public inscribirActividad() {
+    
+    }
 }
