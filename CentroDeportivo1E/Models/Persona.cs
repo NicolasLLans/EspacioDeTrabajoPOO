@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Markup;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
-
-namespace CentroDeportivo1E.Models
+﻿namespace CentroDeportivo1E.Models
 {
     internal class Persona
     {
@@ -15,9 +7,9 @@ namespace CentroDeportivo1E.Models
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string Direccion { get; set; }
-        public long Telefono {  get; set; }
+        public long Telefono { get; set; }
         public string Email { get; set; }
-        public string Tipo { get; set; } 
+        public string Tipo { get; set; }
 
         // constructores
         public Persona(string nombre, string apellido, string direccion, long telefono, string email, string tipo)
@@ -45,6 +37,7 @@ namespace CentroDeportivo1E.Models
         public override string ToString()
         {
             return $"ID: {Id}, Nombre: {Nombre}, Apellido: {Apellido}, Teléfono: {Telefono}, Direccion: {Direccion}, Email: {Email}";
+
         }
     }
 }

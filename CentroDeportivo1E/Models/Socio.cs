@@ -1,6 +1,4 @@
-﻿using CentroDeportivo1E.Models;
-
-namespace CentroDeportivo1E.Models
+﻿namespace CentroDeportivo1E.Models
 {
     internal class Socio : Persona
     {
@@ -17,7 +15,7 @@ namespace CentroDeportivo1E.Models
 
         public override string ToString()
         {
-            return $"ID: {Id}, Nombre: {Nombre}, Apellido: {Apellido}, Teléfono: {Telefono}, NumeroSocio: {NumeroSocio}, Cuota mensual: {CuotaMensual}, Estado: {(Activo ? "Activo": "Impago")} ";
+            return $"ID: {Id}, Nombre: {Nombre}, Apellido: {Apellido}, Teléfono: {Telefono}, NumeroSocio: {NumeroSocio}, Cuota mensual: {CuotaMensual}, Estado: {(Activo ? "Activo" : "Impago")} ";
         }
     }
 }

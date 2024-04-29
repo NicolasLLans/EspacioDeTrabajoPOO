@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using CentroDeportivo1E.Services;
-using CentroDeportivo1E.Helpers;
+﻿using CentroDeportivo1E.Helpers;
 using CentroDeportivo1E.Models;
+using CentroDeportivo1E.Services;
 
 
 namespace CentroDeportivo1E.Forms
@@ -19,7 +10,7 @@ namespace CentroDeportivo1E.Forms
 
         EmpleadoHelper empleadoHelper = new EmpleadoHelper();
         EmpleadoService empleadoService = new EmpleadoService();
-        
+
         private string nombre, apellido, puesto, usuario, contrasena;
         private long telefono;
         private DateTime fechaAlta;
@@ -28,8 +19,6 @@ namespace CentroDeportivo1E.Forms
         public FormAltaEmpleado()
         {
             InitializeComponent();
-
-
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
@@ -43,7 +32,7 @@ namespace CentroDeportivo1E.Forms
                 string.IsNullOrWhiteSpace(txtContrasena.Text))
             {
                 MessageBox.Show("Por favor, complete todos los campos.", "Campos Incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return; 
+                return;
             }
 
             // Se crea Nuevo Empleado
@@ -51,18 +40,20 @@ namespace CentroDeportivo1E.Forms
             {
                 Nombre = txtNombre.Text,
                 Apellido = txtApellido.Text,
-                Puesto = cmbPuesto.Text,
+                Direccion = lblDireccion.Text,
                 Telefono = Convert.ToInt64(txtTelefono.Text),
+                Email = txtEmail.Text,
+                Tipo = "empleado",
                 Usuario = txtUsuario.Text,
                 Contrasena = empleadoHelper.encriptarContrasena(txtContrasena.Text),
+                Puesto = cmbPuesto.Text,
                 FechaAlta = DateTime.Now,
-                EstadoPago= true
             };
 
             empleadoService.GuardarEmpleado(nuevoEmpleado);
 
             DialogResult resultado = MessageBox.Show(" Empleado creado Correctamente ¿Desea dar de alta al nuevo empleado?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                       
+
             if (resultado == DialogResult.Yes)
             {
                 LimpiarCampos();
@@ -72,7 +63,7 @@ namespace CentroDeportivo1E.Forms
                 this.Close();
             }
 
-            
+
         }
 
         private void LimpiarCampos()
@@ -90,5 +81,19 @@ namespace CentroDeportivo1E.Forms
             this.Close();
         }
 
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FormAltaEmpleado_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
