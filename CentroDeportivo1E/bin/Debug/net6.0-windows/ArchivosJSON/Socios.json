@@ -1,0 +1,44 @@
+[
+    {
+        "NumeroSocio": 1,
+        "Activo": true,
+        "CuotaMensual": 10000,
+        "EstadoPago": false,
+        "FechaAlta": "0001-01-01T00:00:00",
+        "FechaBaja": "0001-01-01T00:00:00",
+        "Id": 1,
+        "Nombre": "OSCAR JULIAN",
+        "Apellido": "SOSA ORTIZ",
+        "Telefono": 3624511130,
+        "Direccion": "DIRECCION1",
+        "Email": "OKIJULIAN0791@GMAIL.COM"
+    },
+    {
+        "NumeroSocio": 2,
+        "Activo": true,
+        "CuotaMensual": 10,
+        "EstadoPago": false,
+        "FechaAlta": "0001-01-01T00:00:00",
+        "FechaBaja": "0001-01-01T00:00:00",
+        "Id": 2,
+        "Nombre": "JULIAN",
+        "Apellido": "SOSA",
+        "Telefono": 1233444444,
+        "Direccion": "DIRECCION2",
+        "Email": "EMAIL2"
+    },
+    {
+        "NumeroSocio": 3,
+        "Activo": true,
+        "CuotaMensual": 200,
+        "EstadoPago": true,
+        "FechaAlta": "2024-04-29T00:34:00.8061242-03:00",
+        "FechaBaja": "0001-01-01T00:00:00",
+        "Id": 38,
+        "Nombre": "SOCIO1",
+        "Apellido": "SOCIO1",
+        "Telefono": 12333,
+        "Direccion": "SOCIO1",
+        "Email": "SOCIO1"
+    }
+]

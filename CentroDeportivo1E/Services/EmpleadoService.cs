@@ -20,9 +20,9 @@ namespace CentroDeportivo1E.Services
             // Verificar si el archivo existe
             if (File.Exists(rutaArchivo))
             {
-              
+
                 string json = File.ReadAllText(rutaArchivo);
-                List<Empleado> empleados = JsonSerializer.Deserialize <List<Empleado>>(json);
+                List<Empleado> empleados = JsonSerializer.Deserialize<List<Empleado>>(json);
 
                 Empleado empleado = empleados.FirstOrDefault(e => e.Usuario == usuario && e.Contrasena == contrasena);
 
@@ -34,7 +34,7 @@ namespace CentroDeportivo1E.Services
                 return null;
             }
         }
-    
+
 
 
         public void GuardarEmpleado(Empleado empleado)
@@ -57,11 +57,39 @@ namespace CentroDeportivo1E.Services
             }
 
             empleados.Add(empleado);
-          
+
             string jsonString = JsonSerializer.Serialize(empleados);
 
             // guarda el JSON en el archivo
             File.WriteAllText(rutaArchivo, jsonString);
+        }
+
+        public int ObtenerUltimoId()
+        {
+            string rutaArchivo = empleadoHelpler.ObtenerRutaArchivoJson();
+
+            // Verificar si el archivo existe
+            if (File.Exists(rutaArchivo))
+            {
+                string json = File.ReadAllText(rutaArchivo);
+                List<Empleado> empleados = JsonSerializer.Deserialize<List<Empleado>>(json);
+
+                if (empleados != null && empleados.Any())
+                {
+                    int ultimoId = empleados.Max(empleado => empleado.Id);
+                    return ultimoId;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            else
+            {
+                return 0;
+            }
+
+
         }
 
 

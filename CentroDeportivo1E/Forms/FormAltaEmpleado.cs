@@ -19,7 +19,7 @@ namespace CentroDeportivo1E.Forms
 
         EmpleadoHelper empleadoHelper = new EmpleadoHelper();
         EmpleadoService empleadoService = new EmpleadoService();
-        
+
         private string nombre, apellido, puesto, usuario, contrasena;
         private long telefono;
         private DateTime fechaAlta;
@@ -43,26 +43,29 @@ namespace CentroDeportivo1E.Forms
                 string.IsNullOrWhiteSpace(txtContrasena.Text))
             {
                 MessageBox.Show("Por favor, complete todos los campos.", "Campos Incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return; 
+                return;
             }
-
+            int ultimoId= empleadoService.ObtenerUltimoId();
             // Se crea Nuevo Empleado
             Empleado nuevoEmpleado = new Empleado
             {
-                Nombre = txtNombre.Text,
-                Apellido = txtApellido.Text,
+                Id= ultimoId+1,
+                Nombre = txtNombre.Text.ToUpper().Trim(),
+                Apellido = txtApellido.Text.ToUpper().Trim(),
                 Puesto = cmbPuesto.Text,
-                Telefono = Convert.ToInt64(txtTelefono.Text),
-                Usuario = txtUsuario.Text,
-                Contrasena = empleadoHelper.encriptarContrasena(txtContrasena.Text),
+                Telefono = Convert.ToInt64(txtTelefono.Text.Trim()),
+                Usuario = txtUsuario.Text.Trim(),
+                Contrasena = empleadoHelper.encriptarContrasena(txtContrasena.Text.Trim()),
                 FechaAlta = DateTime.Now,
-                EstadoPago= true
+                Direccion = txtDireccion.Text.Trim(),
+                Email = txtEmail.Text.Trim(),
+
             };
 
             empleadoService.GuardarEmpleado(nuevoEmpleado);
 
             DialogResult resultado = MessageBox.Show(" Empleado creado Correctamente ¿Desea dar de alta al nuevo empleado?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                       
+
             if (resultado == DialogResult.Yes)
             {
                 LimpiarCampos();
@@ -72,7 +75,7 @@ namespace CentroDeportivo1E.Forms
                 this.Close();
             }
 
-            
+
         }
 
         private void LimpiarCampos()
@@ -90,5 +93,12 @@ namespace CentroDeportivo1E.Forms
             this.Close();
         }
 
+        private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

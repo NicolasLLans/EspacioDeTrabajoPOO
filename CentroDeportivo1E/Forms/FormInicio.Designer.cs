@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormInicio));
             msOpciones = new MenuStrip();
             dFGDFToolStripMenuItem = new ToolStripMenuItem();
             sOCIOSToolStripMenuItem = new ToolStripMenuItem();
@@ -72,6 +73,7 @@
             sOCIOSToolStripMenuItem.Name = "sOCIOSToolStripMenuItem";
             sOCIOSToolStripMenuItem.Size = new Size(215, 36);
             sOCIOSToolStripMenuItem.Text = "SOCIOS";
+            sOCIOSToolStripMenuItem.Click += sOCIOSToolStripMenuItem_Click;
             // 
             // nOSOCIOSToolStripMenuItem
             // 
@@ -170,6 +172,7 @@
             Controls.Add(pictureBox1);
             Controls.Add(msOpciones);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "FormInicio";

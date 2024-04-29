@@ -10,6 +10,7 @@
         public DateTime FechaAlta { get; set; }
         public DateTime FechaBaja { get; set; }
         public bool Baja { get; set; }
+        
 
         private static int ultimoId = 0;
 
@@ -18,9 +19,9 @@
         {
             Id = ++ultimoId;
         }
-        public Empleado(string nombre, string apellido, string direccion, long telefono, string email, string tipo,
+        public Empleado(string nombre, string apellido, string direccion, long telefono, string email,
                 string usuario, string contrasena, string puesto, DateTime fechaAlta, DateTime fechaBaja, bool baja)
-                : base(nombre, apellido, direccion, telefono, email, tipo)
+                : base(nombre, apellido, telefono,direccion, email)
         {
             Usuario = usuario;
             Contrasena = contrasena;
