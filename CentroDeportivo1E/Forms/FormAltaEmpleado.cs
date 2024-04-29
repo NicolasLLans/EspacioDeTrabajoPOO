@@ -34,7 +34,7 @@ namespace CentroDeportivo1E.Forms
                 MessageBox.Show("Por favor, complete todos los campos.", "Campos Incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            int ultimoId= empleadoService.ObtenerUltimoId();
+            int ultimoId = empleadoService.ObtenerUltimoId();
             // Se crea Nuevo Empleado
             Empleado nuevoEmpleado = new Empleado
             {
@@ -45,7 +45,7 @@ namespace CentroDeportivo1E.Forms
                 Usuario = txtUsuario.Text,
                 Contrasena = empleadoHelper.encriptarContrasena(txtContrasena.Text),
                 FechaAlta = DateTime.Now,
-                EstadoPago= true
+
             };
 
             empleadoService.GuardarEmpleado(nuevoEmpleado);
@@ -79,5 +79,12 @@ namespace CentroDeportivo1E.Forms
             this.Close();
         }
 
+        private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

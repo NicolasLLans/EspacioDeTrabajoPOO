@@ -43,12 +43,10 @@
             txtContrasena = new TextBox();
             label6 = new Label();
             cmbPuesto = new ComboBox();
-
             label7 = new Label();
             txtEmail = new TextBox();
             label8 = new Label();
             txtDireccion = new TextBox();
-
             SuspendLayout();
             // 
             // btnCancelarAlta
@@ -56,9 +54,7 @@
             btnCancelarAlta.BackColor = Color.FromArgb(168, 105, 53);
             btnCancelarAlta.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnCancelarAlta.ForeColor = Color.White;
-
             btnCancelarAlta.Location = new Point(57, 454);
-
             btnCancelarAlta.Name = "btnCancelarAlta";
             btnCancelarAlta.Size = new Size(125, 37);
             btnCancelarAlta.TabIndex = 8;
@@ -71,9 +67,7 @@
             btnIngresar.BackColor = Color.FromArgb(58, 152, 146);
             btnIngresar.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnIngresar.ForeColor = Color.White;
-
             btnIngresar.Location = new Point(338, 454);
-
             btnIngresar.Name = "btnIngresar";
             btnIngresar.Size = new Size(125, 37);
             btnIngresar.TabIndex = 7;
@@ -145,9 +139,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label4.ForeColor = Color.FromArgb(6, 18, 30);
-
             label4.Location = new Point(35, 348);
-
             label4.Name = "label4";
             label4.Size = new Size(81, 18);
             label4.TabIndex = 20;
@@ -156,9 +148,7 @@
             // txtUsuario
             // 
             txtUsuario.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
-
             txtUsuario.Location = new Point(163, 339);
-
             txtUsuario.Name = "txtUsuario";
             txtUsuario.Size = new Size(300, 27);
             txtUsuario.TabIndex = 19;
@@ -168,9 +158,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label5.ForeColor = Color.FromArgb(6, 18, 30);
-
             label5.Location = new Point(35, 396);
-
             label5.Name = "label5";
             label5.Size = new Size(116, 18);
             label5.TabIndex = 22;
@@ -179,9 +167,7 @@
             // txtContrasena
             // 
             txtContrasena.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
-
             txtContrasena.Location = new Point(163, 387);
-
             txtContrasena.Name = "txtContrasena";
             txtContrasena.PasswordChar = '*';
             txtContrasena.Size = new Size(300, 27);
@@ -192,9 +178,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label6.ForeColor = Color.FromArgb(6, 18, 30);
-
             label6.Location = new Point(39, 280);
-
             label6.Name = "label6";
             label6.Size = new Size(75, 18);
             label6.TabIndex = 24;
@@ -205,14 +189,11 @@
             cmbPuesto.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             cmbPuesto.FormattingEnabled = true;
             cmbPuesto.Items.AddRange(new object[] { "ADMINISTRADOR", "INSTRUCTOR", "NUTRICIONISTA", "SECRETARIA" });
-
             cmbPuesto.Location = new Point(163, 276);
-
             cmbPuesto.Name = "cmbPuesto";
             cmbPuesto.Size = new Size(304, 26);
             cmbPuesto.TabIndex = 25;
             // 
-
             // label7
             // 
             label7.AutoSize = true;
@@ -247,24 +228,20 @@
             // txtDireccion
             // 
             txtDireccion.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
-
-            txtDireccion.Location = new Point(163, 161);
+            txtDireccion.Location = new Point(165, 170);
             txtDireccion.Name = "txtDireccion";
             txtDireccion.Size = new Size(300, 27);
             txtDireccion.TabIndex = 38;
-
             // 
             // FormAltaEmpleado
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-
             BackColor = SystemColors.InactiveBorder;
             ClientSize = new Size(504, 517);
             Controls.Add(label7);
             Controls.Add(txtEmail);
             Controls.Add(label8);
-
             Controls.Add(txtDireccion);
             Controls.Add(cmbPuesto);
             Controls.Add(label6);
@@ -285,7 +262,6 @@
             Name = "FormAltaEmpleado";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ALTA PERSONAL";
-            Load += FormAltaEmpleado_Load;
             ResumeLayout(false);
             PerformLayout();
         }
