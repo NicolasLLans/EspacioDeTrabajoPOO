@@ -41,6 +41,25 @@ namespace CentroDeportivo1E.Services
                 return null;
             }
         }
+
+
+        public List<Socio> ObtenerTodosLosSocios()
+        {
+            string rutaArchivo = socioHelper.ObtenerRutaArchivoJson();
+
+            // Verificar si el archivo existe
+            if (File.Exists(rutaArchivo))
+            {
+                string json = File.ReadAllText(rutaArchivo);
+                List<Socio> socios = JsonSerializer.Deserialize<List<Socio>>(json);
+                return socios;
+            }
+            else
+            {
+                return new List<Socio>();
+            }
+        }
+
         public void AltaSocio(Socio socio)
 
         {

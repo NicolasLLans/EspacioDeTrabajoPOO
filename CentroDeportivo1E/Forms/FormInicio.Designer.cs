@@ -38,6 +38,9 @@
             cUOTASToolStripMenuItem = new ToolStripMenuItem();
             aCTIVIDADESToolStripMenuItem = new ToolStripMenuItem();
             lISTARCUOTASToolStripMenuItem = new ToolStripMenuItem();
+            lISTASOCIOSToolStripMenuItem = new ToolStripMenuItem();
+            lISTANOSOCIOSToolStripMenuItem = new ToolStripMenuItem();
+            lISTAPERSONALToolStripMenuItem = new ToolStripMenuItem();
             vENCIMIENTOSToolStripMenuItem = new ToolStripMenuItem();
             pictureBox1 = new PictureBox();
             label1 = new Label();
@@ -111,11 +114,31 @@
             // 
             // lISTARCUOTASToolStripMenuItem
             // 
+            lISTARCUOTASToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { lISTASOCIOSToolStripMenuItem, lISTANOSOCIOSToolStripMenuItem, lISTAPERSONALToolStripMenuItem });
             lISTARCUOTASToolStripMenuItem.ForeColor = Color.FromArgb(6, 18, 30);
             lISTARCUOTASToolStripMenuItem.Image = Properties.Resources.iconoListar;
             lISTARCUOTASToolStripMenuItem.Name = "lISTARCUOTASToolStripMenuItem";
-            lISTARCUOTASToolStripMenuItem.Size = new Size(246, 54);
-            lISTARCUOTASToolStripMenuItem.Text = "LISTAR CUOTAS";
+            lISTARCUOTASToolStripMenuItem.Size = new Size(118, 54);
+            lISTARCUOTASToolStripMenuItem.Text = "VER";
+            // 
+            // lISTASOCIOSToolStripMenuItem
+            // 
+            lISTASOCIOSToolStripMenuItem.Name = "lISTASOCIOSToolStripMenuItem";
+            lISTASOCIOSToolStripMenuItem.Size = new Size(281, 36);
+            lISTASOCIOSToolStripMenuItem.Text = "LISTA SOCIOS";
+            lISTASOCIOSToolStripMenuItem.Click += lISTASOCIOSToolStripMenuItem_Click;
+            // 
+            // lISTANOSOCIOSToolStripMenuItem
+            // 
+            lISTANOSOCIOSToolStripMenuItem.Name = "lISTANOSOCIOSToolStripMenuItem";
+            lISTANOSOCIOSToolStripMenuItem.Size = new Size(281, 36);
+            lISTANOSOCIOSToolStripMenuItem.Text = "LISTA NO SOCIOS";
+            // 
+            // lISTAPERSONALToolStripMenuItem
+            // 
+            lISTAPERSONALToolStripMenuItem.Name = "lISTAPERSONALToolStripMenuItem";
+            lISTAPERSONALToolStripMenuItem.Size = new Size(281, 36);
+            lISTAPERSONALToolStripMenuItem.Text = "LISTA PERSONAL";
             // 
             // vENCIMIENTOSToolStripMenuItem
             // 
@@ -201,5 +224,8 @@
         private Label label1;
         private TextBox txtBienvenida;
         private ToolStripMenuItem pERSONALToolStripMenuItem;
+        private ToolStripMenuItem lISTASOCIOSToolStripMenuItem;
+        private ToolStripMenuItem lISTANOSOCIOSToolStripMenuItem;
+        private ToolStripMenuItem lISTAPERSONALToolStripMenuItem;
     }
 }

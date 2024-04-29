@@ -39,8 +39,14 @@ namespace CentroDeportivo1E.Forms
 
         private void sOCIOSToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormAltaSocio formAltaSocio = new FormAltaSocio();  
+            FormAltaSocio formAltaSocio = new FormAltaSocio();
             formAltaSocio.ShowDialog();
+        }
+
+        private void lISTASOCIOSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormListaSocios formListaSocios= new FormListaSocios();
+            formListaSocios.ShowDialog();
         }
     }
 }
