@@ -60,6 +60,76 @@ namespace CentroDeportivo1E.Services
             }
         }
 
+        public List<Socio> ObtenerSociosPorNombre(string nombre)
+        {
+            string rutaArchivo = socioHelper.ObtenerRutaArchivoJson();
+            List<Socio> sociosEncontrados = new List<Socio>();
+           
+            if (File.Exists(rutaArchivo))
+            {
+                string json = File.ReadAllText(rutaArchivo);
+                List<Socio> todosLosSocios = JsonSerializer.Deserialize<List<Socio>>(json);
+
+                foreach (Socio socio in todosLosSocios)
+                {
+                   
+                    if (socio.Nombre.ToLower().Contains(nombre.ToLower()))
+                    {
+                        sociosEncontrados.Add(socio);
+                    }
+                }
+            }
+
+            return sociosEncontrados;
+        }
+
+        public List<Socio> ObtenerSociosPorApellido(string apellido)
+        {
+            string rutaArchivo = socioHelper.ObtenerRutaArchivoJson();
+            List<Socio> sociosEncontrados = new List<Socio>();
+
+            if (File.Exists(rutaArchivo))
+            {
+                string json = File.ReadAllText(rutaArchivo);
+                List<Socio> todosLosSocios = JsonSerializer.Deserialize<List<Socio>>(json);
+
+                foreach (Socio socio in todosLosSocios)
+                {
+
+                    if (socio.Apellido.ToLower().Contains(apellido.ToLower()))
+                    {
+                        sociosEncontrados.Add(socio);
+                    }
+                }
+            }
+
+            return sociosEncontrados;
+        }
+
+        public List<Socio> ObtenerSociosPorNombreApellido(string nombre,string apellido)
+        {
+            string rutaArchivo = socioHelper.ObtenerRutaArchivoJson();
+            List<Socio> sociosEncontrados = new List<Socio>();
+
+            if (File.Exists(rutaArchivo))
+            {
+                string json = File.ReadAllText(rutaArchivo);
+                List<Socio> todosLosSocios = JsonSerializer.Deserialize<List<Socio>>(json);
+
+                foreach (Socio socio in todosLosSocios)
+                {
+
+                    if (socio.Nombre.ToLower().Contains(nombre.ToLower())&& socio.Apellido.ToLower().Contains(apellido.ToLower()))
+                    {
+                        sociosEncontrados.Add(socio);
+                    }
+                }
+            }
+
+            return sociosEncontrados;
+        }
+
+
         public void AltaSocio(Socio socio)
 
         {
