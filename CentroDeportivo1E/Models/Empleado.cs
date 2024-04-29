@@ -27,8 +27,6 @@
             Contrasena = contrasena;
             Puesto = puesto;
             FechaAlta = fechaAlta;
-            FechaBaja = fechaBaja;
-            Baja = baja;
         }
 
         public override string ToString()
@@ -36,8 +34,5 @@
 
             return $"ID: {Id}, Nombre: {Nombre}, Apellido: {Apellido}, Teléfono: {Telefono}, Direccion: {Direccion}, Email: {Email}, Usuario: {Usuario}, Puesto: {Puesto}, Fecha de Alta: {FechaAlta}, Fecha de Baja: {FechaBaja}" + $"Baja: {(Baja ? "Sí" : "No")}";
         }
-
-
-
     }
 }

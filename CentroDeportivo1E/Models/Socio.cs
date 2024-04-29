@@ -1,3 +1,4 @@
+
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,5 +55,6 @@ namespace CentroDeportivo1E.Models
 
     }
 }
+
 
 

@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using CentroDeportivo1E.Services;
-using CentroDeportivo1E.Helpers;
+﻿using CentroDeportivo1E.Helpers;
 using CentroDeportivo1E.Models;
+using CentroDeportivo1E.Services;
 
 
 namespace CentroDeportivo1E.Forms
@@ -28,8 +19,6 @@ namespace CentroDeportivo1E.Forms
         public FormAltaEmpleado()
         {
             InitializeComponent();
-
-
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
@@ -49,17 +38,14 @@ namespace CentroDeportivo1E.Forms
             // Se crea Nuevo Empleado
             Empleado nuevoEmpleado = new Empleado
             {
-                Id= ultimoId+1,
-                Nombre = txtNombre.Text.ToUpper().Trim(),
-                Apellido = txtApellido.Text.ToUpper().Trim(),
+                Nombre = txtNombre.Text,
+                Apellido = txtApellido.Text,
                 Puesto = cmbPuesto.Text,
-                Telefono = Convert.ToInt64(txtTelefono.Text.Trim()),
-                Usuario = txtUsuario.Text.Trim(),
-                Contrasena = empleadoHelper.encriptarContrasena(txtContrasena.Text.Trim()),
+                Telefono = Convert.ToInt64(txtTelefono.Text),
+                Usuario = txtUsuario.Text,
+                Contrasena = empleadoHelper.encriptarContrasena(txtContrasena.Text),
                 FechaAlta = DateTime.Now,
-                Direccion = txtDireccion.Text.Trim(),
-                Email = txtEmail.Text.Trim(),
-
+                EstadoPago= true
             };
 
             empleadoService.GuardarEmpleado(nuevoEmpleado);
@@ -93,12 +79,5 @@ namespace CentroDeportivo1E.Forms
             this.Close();
         }
 
-        private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
     }
 }
