@@ -2,8 +2,8 @@
 {
     internal class Persona
     {
-        private static int ultimoId = 0;
-        public int Id { get; set; }
+       
+        
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public long Telefono { get; set; }
@@ -15,7 +15,7 @@
         // constructores
         public Persona(string nombre, string apellido, long telefono, string direccion, string email)
         {
-            Id = ++ultimoId;
+           
             Nombre = nombre;
             Apellido = apellido;
             Telefono = telefono;
@@ -25,7 +25,7 @@
 
         public Persona()
         {
-            Id = ++ultimoId;
+            
             Nombre = "";
             Apellido = "";
             Telefono = 0;
@@ -37,7 +37,7 @@
         public override string ToString()
         {
 
-            return $"ID: {Id}, Nombre: {Nombre}, Apellido: {Apellido}, Teléfono: {Telefono}, Número de Socio: {NumeroSocio}";
+            return $" Nombre: {Nombre}, Apellido: {Apellido}, Teléfono: {Telefono}, Número de Socio: {NumeroSocio}";
 
         }
     }

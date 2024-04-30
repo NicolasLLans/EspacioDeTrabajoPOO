@@ -92,6 +92,26 @@ namespace CentroDeportivo1E.Services
 
         }
 
+        public Empleado BuscarUsuario( string usuario)
+        {
+            string rutaArchivo = empleadoHelpler.ObtenerRutaArchivoJson();
+
+            // Verificar si el archivo existe
+            if (File.Exists(rutaArchivo))
+            {
+                string json = File.ReadAllText(rutaArchivo);
+                List<Empleado> empleados = JsonSerializer.Deserialize<List<Empleado>>(json);
+
+                Empleado empleado = empleados.FirstOrDefault(e => (e.Usuario == usuario));
+
+                return empleado;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
 
     }
 }

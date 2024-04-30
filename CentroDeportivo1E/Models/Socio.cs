@@ -18,9 +18,8 @@ namespace CentroDeportivo1E.Models
         public bool EstadoPago { get; set; }
         public DateTime FechaAlta { get; set; }
         public DateTime FechaBaja { get; set; }
-        
+        public List<Actividad> Actividades { get; set; }
 
-        //CONTRUCTORES
         public Socio(long numeroSocio, string nombre, string apellido, bool activo, decimal cuotaMensual, long telefono, bool estadoPago, string direccion, string email,
                        DateTime fechaAlta, DateTime fechaBaja)
                     : base(nombre, apellido, telefono, direccion, email)
@@ -31,7 +30,7 @@ namespace CentroDeportivo1E.Models
             EstadoPago = estadoPago;
             FechaAlta = fechaAlta;
             FechaBaja = fechaBaja;
-            
+            Actividades = new List<Actividad>(); 
         }
 
         public Socio()

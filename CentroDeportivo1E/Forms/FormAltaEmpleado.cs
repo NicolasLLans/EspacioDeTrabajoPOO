@@ -23,6 +23,14 @@ namespace CentroDeportivo1E.Forms
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
+            Empleado UsuarioExistente = empleadoService.BuscarUsuario(txtUsuario.Text.Trim().ToUpper());
+
+            if (UsuarioExistente != null)
+            {
+                MessageBox.Show("usuario ya existe ", "Usuario Existente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            else { 
 
             if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
                 string.IsNullOrWhiteSpace(txtApellido.Text) ||
@@ -38,11 +46,12 @@ namespace CentroDeportivo1E.Forms
             // Se crea Nuevo Empleado
             Empleado nuevoEmpleado = new Empleado
             {
-                Nombre = txtNombre.Text,
-                Apellido = txtApellido.Text,
-                Puesto = cmbPuesto.Text,
-                Telefono = Convert.ToInt64(txtTelefono.Text),
-                Usuario = txtUsuario.Text,
+                Id= ultimoId+1,
+                Nombre = txtNombre.Text.ToUpper().Trim(),
+                Apellido = txtApellido.Text.ToUpper().Trim(),
+                Puesto = cmbPuesto.Text.ToUpper().Trim(),
+                Telefono = Convert.ToInt64(txtTelefono.Text.ToUpper().Trim()),
+                Usuario = txtUsuario.Text.ToUpper().Trim(),
                 Contrasena = empleadoHelper.encriptarContrasena(txtContrasena.Text),
                 FechaAlta = DateTime.Now,
 
@@ -50,30 +59,15 @@ namespace CentroDeportivo1E.Forms
 
             empleadoService.GuardarEmpleado(nuevoEmpleado);
 
-            DialogResult resultado = MessageBox.Show(" Empleado creado Correctamente ¿Desea dar de alta al nuevo empleado?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            MessageBox.Show("Usuario Creado Correctamente");
+           
+            this.Close();
+             
 
-            if (resultado == DialogResult.Yes)
-            {
-                LimpiarCampos();
+
             }
-            else
-            {
-                this.Close();
-            }
-
-
         }
-
-        private void LimpiarCampos()
-        {
-            txtNombre.Text = "";
-            txtApellido.Text = "";
-            cmbPuesto.SelectedIndex = -1;
-            txtTelefono.Text = "";
-            txtUsuario.Text = "";
-            txtContrasena.Text = "";
-        }
-
+       
         private void btnCancelarAlta_Click(object sender, EventArgs e)
         {
             this.Close();

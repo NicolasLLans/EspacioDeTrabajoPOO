@@ -147,6 +147,7 @@
             // 
             // txtUsuario
             // 
+            txtUsuario.CharacterCasing = CharacterCasing.Upper;
             txtUsuario.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             txtUsuario.Location = new Point(163, 339);
             txtUsuario.Name = "txtUsuario";
@@ -210,7 +211,6 @@
             txtEmail.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             txtEmail.Location = new Point(163, 212);
             txtEmail.Name = "txtEmail";
-            txtEmail.PasswordChar = '*';
             txtEmail.Size = new Size(300, 27);
             txtEmail.TabIndex = 40;
             // 

@@ -73,6 +73,7 @@
             // 
             // txtUsuario
             // 
+            txtUsuario.CharacterCasing = CharacterCasing.Upper;
             txtUsuario.Font = new Font("Verdana", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             txtUsuario.Location = new Point(294, 96);
             txtUsuario.Name = "txtUsuario";
