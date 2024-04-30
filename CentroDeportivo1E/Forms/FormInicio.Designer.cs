@@ -28,16 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormInicio));
             msOpciones = new MenuStrip();
-            dFGDFToolStripMenuItem = new ToolStripMenuItem();
-            sOCIOSToolStripMenuItem = new ToolStripMenuItem();
-            nOSOCIOSToolStripMenuItem = new ToolStripMenuItem();
-            pERSONALToolStripMenuItem = new ToolStripMenuItem();
-            pAGOCUOTASToolStripMenuItem = new ToolStripMenuItem();
-            cUOTASToolStripMenuItem = new ToolStripMenuItem();
-            aCTIVIDADESToolStripMenuItem = new ToolStripMenuItem();
-            lISTARCUOTASToolStripMenuItem = new ToolStripMenuItem();
-            vENCIMIENTOSToolStripMenuItem = new ToolStripMenuItem();
+            AltaToolStripMenuItem = new ToolStripMenuItem();
+            SociosToolStripMenuItem = new ToolStripMenuItem();
+            NoSociosToolStripMenuItem = new ToolStripMenuItem();
+            PersonalToolStripMenuItem = new ToolStripMenuItem();
+            PagoToolStripMenuItem = new ToolStripMenuItem();
+            CuotasToolStripMenuItem = new ToolStripMenuItem();
+            ActividadesToolStripMenuItem = new ToolStripMenuItem();
+            VerToolStripMenuItem = new ToolStripMenuItem();
+            ListaSociosToolStripMenuItem = new ToolStripMenuItem();
+            ListaNoSociosToolStripMenuItem = new ToolStripMenuItem();
+            ListaPersonalToolStripMenuItem = new ToolStripMenuItem();
+            VencimientosToolStripMenuItem = new ToolStripMenuItem();
             pictureBox1 = new PictureBox();
             label1 = new Label();
             txtBienvenida = new TextBox();
@@ -50,7 +54,7 @@
             msOpciones.BackColor = Color.FromArgb(205, 210, 188);
             msOpciones.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point);
             msOpciones.ImageScalingSize = new Size(50, 50);
-            msOpciones.Items.AddRange(new ToolStripItem[] { dFGDFToolStripMenuItem, pAGOCUOTASToolStripMenuItem, lISTARCUOTASToolStripMenuItem, vENCIMIENTOSToolStripMenuItem });
+            msOpciones.Items.AddRange(new ToolStripItem[] { AltaToolStripMenuItem, PagoToolStripMenuItem, VerToolStripMenuItem, VencimientosToolStripMenuItem });
             msOpciones.Location = new Point(0, 0);
             msOpciones.Name = "msOpciones";
             msOpciones.RenderMode = ToolStripRenderMode.System;
@@ -58,70 +62,91 @@
             msOpciones.TabIndex = 0;
             msOpciones.Text = "menuStrip1";
             // 
-            // dFGDFToolStripMenuItem
+            // AltaToolStripMenuItem
             // 
-            dFGDFToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { sOCIOSToolStripMenuItem, nOSOCIOSToolStripMenuItem, pERSONALToolStripMenuItem });
-            dFGDFToolStripMenuItem.ForeColor = Color.FromArgb(6, 18, 30);
-            dFGDFToolStripMenuItem.Image = Properties.Resources.IconoAgregar;
-            dFGDFToolStripMenuItem.Name = "dFGDFToolStripMenuItem";
-            dFGDFToolStripMenuItem.Size = new Size(130, 54);
-            dFGDFToolStripMenuItem.Text = "ALTA";
+            AltaToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { SociosToolStripMenuItem, NoSociosToolStripMenuItem, PersonalToolStripMenuItem });
+            AltaToolStripMenuItem.ForeColor = Color.FromArgb(6, 18, 30);
+            AltaToolStripMenuItem.Image = Properties.Resources.IconoAgregar;
+            AltaToolStripMenuItem.Name = "AltaToolStripMenuItem";
+            AltaToolStripMenuItem.Size = new Size(130, 54);
+            AltaToolStripMenuItem.Text = "ALTA";
             // 
-            // sOCIOSToolStripMenuItem
+            // SociosToolStripMenuItem
             // 
-            sOCIOSToolStripMenuItem.Name = "sOCIOSToolStripMenuItem";
-            sOCIOSToolStripMenuItem.Size = new Size(215, 36);
-            sOCIOSToolStripMenuItem.Text = "SOCIOS";
+            SociosToolStripMenuItem.Name = "SociosToolStripMenuItem";
+            SociosToolStripMenuItem.Size = new Size(215, 36);
+            SociosToolStripMenuItem.Text = "SOCIOS";
+            SociosToolStripMenuItem.Click += SociosToolStripMenuItem_Click;
             // 
-            // nOSOCIOSToolStripMenuItem
+            // NoSociosToolStripMenuItem
             // 
-            nOSOCIOSToolStripMenuItem.Name = "nOSOCIOSToolStripMenuItem";
-            nOSOCIOSToolStripMenuItem.Size = new Size(215, 36);
-            nOSOCIOSToolStripMenuItem.Text = "NO SOCIOS";
+            NoSociosToolStripMenuItem.Name = "NoSociosToolStripMenuItem";
+            NoSociosToolStripMenuItem.Size = new Size(215, 36);
+            NoSociosToolStripMenuItem.Text = "NO SOCIOS";
             // 
-            // pERSONALToolStripMenuItem
+            // PersonalToolStripMenuItem
             // 
-            pERSONALToolStripMenuItem.Name = "pERSONALToolStripMenuItem";
-            pERSONALToolStripMenuItem.Size = new Size(215, 36);
-            pERSONALToolStripMenuItem.Text = "EMPLEADO";
-            pERSONALToolStripMenuItem.Click += pERSONALToolStripMenuItem_Click;
+            PersonalToolStripMenuItem.Name = "PersonalToolStripMenuItem";
+            PersonalToolStripMenuItem.Size = new Size(215, 36);
+            PersonalToolStripMenuItem.Text = "EMPLEADO";
+            PersonalToolStripMenuItem.Click += PersonalToolStripMenuItem_Click;
             // 
-            // pAGOCUOTASToolStripMenuItem
+            // PagoToolStripMenuItem
             // 
-            pAGOCUOTASToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { cUOTASToolStripMenuItem, aCTIVIDADESToolStripMenuItem });
-            pAGOCUOTASToolStripMenuItem.ForeColor = Color.FromArgb(6, 18, 30);
-            pAGOCUOTASToolStripMenuItem.Image = Properties.Resources.iconoDinero;
-            pAGOCUOTASToolStripMenuItem.Name = "pAGOCUOTASToolStripMenuItem";
-            pAGOCUOTASToolStripMenuItem.Size = new Size(139, 54);
-            pAGOCUOTASToolStripMenuItem.Text = "PAGO";
+            PagoToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { CuotasToolStripMenuItem, ActividadesToolStripMenuItem });
+            PagoToolStripMenuItem.ForeColor = Color.FromArgb(6, 18, 30);
+            PagoToolStripMenuItem.Image = Properties.Resources.iconoDinero;
+            PagoToolStripMenuItem.Name = "PagoToolStripMenuItem";
+            PagoToolStripMenuItem.Size = new Size(139, 54);
+            PagoToolStripMenuItem.Text = "PAGO";
             // 
-            // cUOTASToolStripMenuItem
+            // CuotasToolStripMenuItem
             // 
-            cUOTASToolStripMenuItem.Name = "cUOTASToolStripMenuItem";
-            cUOTASToolStripMenuItem.Size = new Size(236, 36);
-            cUOTASToolStripMenuItem.Text = "CUOTAS";
+            CuotasToolStripMenuItem.Name = "CuotasToolStripMenuItem";
+            CuotasToolStripMenuItem.Size = new Size(236, 36);
+            CuotasToolStripMenuItem.Text = "CUOTAS";
             // 
-            // aCTIVIDADESToolStripMenuItem
+            // ActividadesToolStripMenuItem
             // 
-            aCTIVIDADESToolStripMenuItem.Name = "aCTIVIDADESToolStripMenuItem";
-            aCTIVIDADESToolStripMenuItem.Size = new Size(236, 36);
-            aCTIVIDADESToolStripMenuItem.Text = "ACTIVIDADES";
+            ActividadesToolStripMenuItem.Name = "ActividadesToolStripMenuItem";
+            ActividadesToolStripMenuItem.Size = new Size(236, 36);
+            ActividadesToolStripMenuItem.Text = "ACTIVIDADES";
             // 
-            // lISTARCUOTASToolStripMenuItem
+            // VerToolStripMenuItem
             // 
-            lISTARCUOTASToolStripMenuItem.ForeColor = Color.FromArgb(6, 18, 30);
-            lISTARCUOTASToolStripMenuItem.Image = Properties.Resources.iconoListar;
-            lISTARCUOTASToolStripMenuItem.Name = "lISTARCUOTASToolStripMenuItem";
-            lISTARCUOTASToolStripMenuItem.Size = new Size(246, 54);
-            lISTARCUOTASToolStripMenuItem.Text = "LISTAR CUOTAS";
+            VerToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ListaSociosToolStripMenuItem, ListaNoSociosToolStripMenuItem, ListaPersonalToolStripMenuItem });
+            VerToolStripMenuItem.ForeColor = Color.FromArgb(6, 18, 30);
+            VerToolStripMenuItem.Image = Properties.Resources.iconoListar;
+            VerToolStripMenuItem.Name = "VerToolStripMenuItem";
+            VerToolStripMenuItem.Size = new Size(118, 54);
+            VerToolStripMenuItem.Text = "VER";
             // 
-            // vENCIMIENTOSToolStripMenuItem
+            // ListaSociosToolStripMenuItem
             // 
-            vENCIMIENTOSToolStripMenuItem.ForeColor = Color.FromArgb(6, 18, 30);
-            vENCIMIENTOSToolStripMenuItem.Image = Properties.Resources.iconoVencimiento;
-            vENCIMIENTOSToolStripMenuItem.Name = "vENCIMIENTOSToolStripMenuItem";
-            vENCIMIENTOSToolStripMenuItem.Size = new Size(245, 54);
-            vENCIMIENTOSToolStripMenuItem.Text = "VENCIMIENTOS";
+            ListaSociosToolStripMenuItem.Name = "ListaSociosToolStripMenuItem";
+            ListaSociosToolStripMenuItem.Size = new Size(281, 36);
+            ListaSociosToolStripMenuItem.Text = "LISTA SOCIOS";
+            ListaSociosToolStripMenuItem.Click += ListaSociosToolStripMenuItem_Click;
+            // 
+            // ListaNoSociosToolStripMenuItem
+            // 
+            ListaNoSociosToolStripMenuItem.Name = "ListaNoSociosToolStripMenuItem";
+            ListaNoSociosToolStripMenuItem.Size = new Size(281, 36);
+            ListaNoSociosToolStripMenuItem.Text = "LISTA NO SOCIOS";
+            // 
+            // ListaPersonalToolStripMenuItem
+            // 
+            ListaPersonalToolStripMenuItem.Name = "ListaPersonalToolStripMenuItem";
+            ListaPersonalToolStripMenuItem.Size = new Size(281, 36);
+            ListaPersonalToolStripMenuItem.Text = "LISTA PERSONAL";
+            // 
+            // VencimientosToolStripMenuItem
+            // 
+            VencimientosToolStripMenuItem.ForeColor = Color.FromArgb(6, 18, 30);
+            VencimientosToolStripMenuItem.Image = Properties.Resources.iconoVencimiento;
+            VencimientosToolStripMenuItem.Name = "VencimientosToolStripMenuItem";
+            VencimientosToolStripMenuItem.Size = new Size(245, 54);
+            VencimientosToolStripMenuItem.Text = "VENCIMIENTOS";
             // 
             // pictureBox1
             // 
@@ -170,6 +195,7 @@
             Controls.Add(pictureBox1);
             Controls.Add(msOpciones);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "FormInicio";
@@ -186,17 +212,20 @@
         #endregion
 
         private MenuStrip msOpciones;
-        private ToolStripMenuItem dFGDFToolStripMenuItem;
-        private ToolStripMenuItem pAGOCUOTASToolStripMenuItem;
-        private ToolStripMenuItem lISTARCUOTASToolStripMenuItem;
-        private ToolStripMenuItem vENCIMIENTOSToolStripMenuItem;
-        private ToolStripMenuItem sOCIOSToolStripMenuItem;
-        private ToolStripMenuItem nOSOCIOSToolStripMenuItem;
-        private ToolStripMenuItem cUOTASToolStripMenuItem;
-        private ToolStripMenuItem aCTIVIDADESToolStripMenuItem;
+        private ToolStripMenuItem AltaToolStripMenuItem;
+        private ToolStripMenuItem PagoToolStripMenuItem;
+        private ToolStripMenuItem VerToolStripMenuItem;
+        private ToolStripMenuItem VencimientosToolStripMenuItem;
+        private ToolStripMenuItem SociosToolStripMenuItem;
+        private ToolStripMenuItem NoSociosToolStripMenuItem;
+        private ToolStripMenuItem CuotasToolStripMenuItem;
+        private ToolStripMenuItem ActividadesToolStripMenuItem;
         private PictureBox pictureBox1;
         private Label label1;
         private TextBox txtBienvenida;
-        private ToolStripMenuItem pERSONALToolStripMenuItem;
+        private ToolStripMenuItem PersonalToolStripMenuItem;
+        private ToolStripMenuItem ListaSociosToolStripMenuItem;
+        private ToolStripMenuItem ListaNoSociosToolStripMenuItem;
+        private ToolStripMenuItem ListaPersonalToolStripMenuItem;
     }
 }

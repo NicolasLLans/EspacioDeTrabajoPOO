@@ -30,11 +30,23 @@ namespace CentroDeportivo1E.Forms
             txtBienvenida.Text = nombre + Environment.NewLine + apellido;
         }
 
-        private void pERSONALToolStripMenuItem_Click(object sender, EventArgs e)
+        private void PersonalToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormAltaEmpleado formAltaPersonal = new FormAltaEmpleado();
             formAltaPersonal.ShowDialog();
 
+        }
+
+        private void SociosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormAltaSocio formAltaSocio = new FormAltaSocio();
+            formAltaSocio.ShowDialog();
+        }
+
+        private void ListaSociosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormListaSocios formListaSocios= new FormListaSocios();
+            formListaSocios.ShowDialog();
         }
     }
 }

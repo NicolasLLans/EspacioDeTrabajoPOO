@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using CentroDeportivo1E.Services;
-using CentroDeportivo1E.Helpers;
+﻿using CentroDeportivo1E.Helpers;
 using CentroDeportivo1E.Models;
+using CentroDeportivo1E.Services;
 
 
 namespace CentroDeportivo1E.Forms
@@ -19,7 +10,7 @@ namespace CentroDeportivo1E.Forms
 
         EmpleadoHelper empleadoHelper = new EmpleadoHelper();
         EmpleadoService empleadoService = new EmpleadoService();
-        
+
         private string nombre, apellido, puesto, usuario, contrasena;
         private long telefono;
         private DateTime fechaAlta;
@@ -28,12 +19,18 @@ namespace CentroDeportivo1E.Forms
         public FormAltaEmpleado()
         {
             InitializeComponent();
-
-
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
+            Empleado UsuarioExistente = empleadoService.BuscarUsuario(txtUsuario.Text.Trim().ToUpper());
+
+            if (UsuarioExistente != null)
+            {
+                MessageBox.Show("usuario ya existe ", "Usuario Existente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            else { 
 
             if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
                 string.IsNullOrWhiteSpace(txtApellido.Text) ||
@@ -43,52 +40,45 @@ namespace CentroDeportivo1E.Forms
                 string.IsNullOrWhiteSpace(txtContrasena.Text))
             {
                 MessageBox.Show("Por favor, complete todos los campos.", "Campos Incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return; 
+                return;
             }
-
+            int ultimoId = empleadoService.ObtenerUltimoId();
             // Se crea Nuevo Empleado
             Empleado nuevoEmpleado = new Empleado
             {
-                Nombre = txtNombre.Text,
-                Apellido = txtApellido.Text,
-                Puesto = cmbPuesto.Text,
-                Telefono = Convert.ToInt64(txtTelefono.Text),
-                Usuario = txtUsuario.Text,
+                Id= ultimoId+1,
+                Nombre = txtNombre.Text.ToUpper().Trim(),
+                Apellido = txtApellido.Text.ToUpper().Trim(),
+                Puesto = cmbPuesto.Text.ToUpper().Trim(),
+                Telefono = Convert.ToInt64(txtTelefono.Text.ToUpper().Trim()),
+                Usuario = txtUsuario.Text.ToUpper().Trim(),
                 Contrasena = empleadoHelper.encriptarContrasena(txtContrasena.Text),
                 FechaAlta = DateTime.Now,
-                EstadoPago= true
+
             };
 
             empleadoService.GuardarEmpleado(nuevoEmpleado);
 
-            DialogResult resultado = MessageBox.Show(" Empleado creado Correctamente ¿Desea dar de alta al nuevo empleado?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                       
-            if (resultado == DialogResult.Yes)
-            {
-                LimpiarCampos();
+            MessageBox.Show("Usuario Creado Correctamente");
+           
+            this.Close();
+             
+
+
             }
-            else
-            {
-                this.Close();
-            }
-
-            
         }
-
-        private void LimpiarCampos()
-        {
-            txtNombre.Text = "";
-            txtApellido.Text = "";
-            cmbPuesto.SelectedIndex = -1;
-            txtTelefono.Text = "";
-            txtUsuario.Text = "";
-            txtContrasena.Text = "";
-        }
-
+       
         private void btnCancelarAlta_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }
