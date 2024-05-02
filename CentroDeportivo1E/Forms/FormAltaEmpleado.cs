@@ -30,44 +30,45 @@ namespace CentroDeportivo1E.Forms
                 MessageBox.Show("usuario ya existe ", "Usuario Existente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            else { 
-
-            if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
-                string.IsNullOrWhiteSpace(txtApellido.Text) ||
-                string.IsNullOrWhiteSpace(cmbPuesto.Text) ||
-                string.IsNullOrWhiteSpace(txtTelefono.Text) ||
-                string.IsNullOrWhiteSpace(txtUsuario.Text) ||
-                string.IsNullOrWhiteSpace(txtContrasena.Text))
+            else
             {
-                MessageBox.Show("Por favor, complete todos los campos.", "Campos Incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            int ultimoId = empleadoService.ObtenerUltimoId();
-            // Se crea Nuevo Empleado
-            Empleado nuevoEmpleado = new Empleado
-            {
-                Id= ultimoId+1,
-                Nombre = txtNombre.Text.ToUpper().Trim(),
-                Apellido = txtApellido.Text.ToUpper().Trim(),
-                Puesto = cmbPuesto.Text.ToUpper().Trim(),
-                Telefono = Convert.ToInt64(txtTelefono.Text.ToUpper().Trim()),
-                Usuario = txtUsuario.Text.ToUpper().Trim(),
-                Contrasena = empleadoHelper.encriptarContrasena(txtContrasena.Text),
-                FechaAlta = DateTime.Now,
 
-            };
+                if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
+                    string.IsNullOrWhiteSpace(txtApellido.Text) ||
+                    string.IsNullOrWhiteSpace(cmbPuesto.Text) ||
+                    string.IsNullOrWhiteSpace(txtTelefono.Text) ||
+                    string.IsNullOrWhiteSpace(txtUsuario.Text) ||
+                    string.IsNullOrWhiteSpace(txtContrasena.Text))
+                {
+                    MessageBox.Show("Por favor, complete todos los campos.", "Campos Incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                int ultimoId = empleadoService.ObtenerUltimoId();
+                // Se crea Nuevo Empleado
+                Empleado nuevoEmpleado = new Empleado
+                {
+                    Id = ultimoId + 1,
+                    Nombre = txtNombre.Text.ToUpper().Trim(),
+                    Apellido = txtApellido.Text.ToUpper().Trim(),
+                    Puesto = cmbPuesto.Text.ToUpper().Trim(),
+                    Telefono = Convert.ToInt64(txtTelefono.Text.ToUpper().Trim()),
+                    Usuario = txtUsuario.Text.ToUpper().Trim(),
+                    Contrasena = empleadoHelper.encriptarContrasena(txtContrasena.Text),
+                    FechaAlta = DateTime.Now,
 
-            empleadoService.GuardarEmpleado(nuevoEmpleado);
+                };
 
-            MessageBox.Show("Usuario Creado Correctamente");
-           
-            this.Close();
-             
+                empleadoService.GuardarEmpleado(nuevoEmpleado);
+
+                MessageBox.Show("Usuario Creado Correctamente");
+
+                this.Close();
+
 
 
             }
         }
-       
+
         private void btnCancelarAlta_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -79,6 +80,16 @@ namespace CentroDeportivo1E.Forms
             {
                 e.Handled = true;
             }
+        }
+
+        private void txtNombre_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FormAltaEmpleado_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

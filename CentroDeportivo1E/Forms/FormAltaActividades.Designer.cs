@@ -32,9 +32,9 @@
             label1 = new Label();
             label2 = new Label();
             descripcionActividad = new TextBox();
-            textBox1 = new TextBox();
-            button1 = new Button();
-            button2 = new Button();
+            textBoxPrecio = new TextBox();
+            buttonCancelar = new Button();
+            buttonAceptar = new Button();
             SuspendLayout();
             // 
             // label1
@@ -68,37 +68,38 @@
             descripcionActividad.TabIndex = 2;
             descripcionActividad.TextChanged += descripcionActividad_TextChanged;
             // 
-            // textBox1
+            // textBoxPrecio
             // 
-            textBox1.Location = new Point(515, 208);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(183, 34);
-            textBox1.TabIndex = 3;
+            textBoxPrecio.Location = new Point(515, 208);
+            textBoxPrecio.Multiline = true;
+            textBoxPrecio.Name = "textBoxPrecio";
+            textBoxPrecio.Size = new Size(183, 34);
+            textBoxPrecio.TabIndex = 3;
+            textBoxPrecio.TextChanged += textBox1_TextChanged_1;
             // 
-            // button1
+            // buttonCancelar
             // 
-            button1.BackColor = Color.FromArgb(168, 105, 53);
-            button1.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(170, 331);
-            button1.Name = "button1";
-            button1.Size = new Size(143, 49);
-            button1.TabIndex = 4;
-            button1.Text = "CANCELAR";
-            button1.UseVisualStyleBackColor = false;
+            buttonCancelar.BackColor = Color.FromArgb(168, 105, 53);
+            buttonCancelar.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonCancelar.ForeColor = Color.White;
+            buttonCancelar.Location = new Point(170, 331);
+            buttonCancelar.Name = "buttonCancelar";
+            buttonCancelar.Size = new Size(143, 49);
+            buttonCancelar.TabIndex = 4;
+            buttonCancelar.Text = "CANCELAR";
+            buttonCancelar.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // buttonAceptar
             // 
-            button2.BackColor = Color.FromArgb(58, 152, 146);
-            button2.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(629, 331);
-            button2.Name = "button2";
-            button2.Size = new Size(143, 49);
-            button2.TabIndex = 5;
-            button2.Text = "ACEPTAR";
-            button2.UseVisualStyleBackColor = false;
+            buttonAceptar.BackColor = Color.FromArgb(58, 152, 146);
+            buttonAceptar.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonAceptar.ForeColor = Color.White;
+            buttonAceptar.Location = new Point(629, 331);
+            buttonAceptar.Name = "buttonAceptar";
+            buttonAceptar.Size = new Size(143, 49);
+            buttonAceptar.TabIndex = 5;
+            buttonAceptar.Text = "ACEPTAR";
+            buttonAceptar.UseVisualStyleBackColor = false;
             // 
             // FormAltaActividades
             // 
@@ -106,9 +107,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.InactiveBorder;
             ClientSize = new Size(982, 450);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(textBox1);
+            Controls.Add(buttonAceptar);
+            Controls.Add(buttonCancelar);
+            Controls.Add(textBoxPrecio);
             Controls.Add(descripcionActividad);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -125,8 +126,8 @@
         private Label label1;
         private Label label2;
         private TextBox descripcionActividad;
-        private TextBox textBox1;
-        private Button button1;
-        private Button button2;
+        private TextBox textBoxPrecio;
+        private Button buttonCancelar;
+        private Button buttonAceptar;
     }
 }
