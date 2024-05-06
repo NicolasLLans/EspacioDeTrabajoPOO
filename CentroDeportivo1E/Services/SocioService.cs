@@ -129,6 +129,61 @@ namespace CentroDeportivo1E.Services
             return sociosEncontrados;
         }
 
+        public Socio ObtenerSociosPorId(long numeroSocio)
+        {
+            string rutaArchivo = socioHelper.ObtenerRutaArchivoJson();
+
+            if (File.Exists(rutaArchivo))
+            {
+                string json = File.ReadAllText(rutaArchivo);
+                List<Socio> socios = JsonSerializer.Deserialize<List<Socio>>(json);
+
+                Socio socio = socios.FirstOrDefault(e => e.NumeroSocio == numeroSocio);
+
+                return socio; // Devolver directamente el socio encontrado
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public Socio GetSocioByNumeroDeSocio(List<Socio> sociosList, int targetNumeroDeSocio)
+        {
+            foreach (Socio socio in sociosList)
+            {
+                if (socio.NumeroSocio == targetNumeroDeSocio)
+                {
+                    return socio;
+                }
+            }
+            return null;
+        }
+
+        public int ContarActividadesDelSocio(Socio socio)
+        {
+            if (socio != null && socio.Actividades != null)
+            {
+                return socio.Actividades.Count;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        public int ContarActividadesDelSocioPorNumero(long numeroSocio)
+        {
+            Socio socio = ObtenerSociosPorId(numeroSocio);
+            if (socio != null)
+            {
+                return ContarActividadesDelSocio(socio);
+            }
+            else
+            {
+                return -1;
+            }
+        }
 
         public void AltaSocio(Socio socio)
 
@@ -181,9 +236,42 @@ namespace CentroDeportivo1E.Services
             {
                 return 0;
             }
-
+        
 
         }
+        
+        internal void ActualizarSocioEnArchivo(Socio socio)
+        {
+            string rutaArchivo = socioHelper.ObtenerRutaArchivoJson();
 
+            if (File.Exists(rutaArchivo))
+            {
+                string json = File.ReadAllText(rutaArchivo);
+                List<Socio> socios = JsonSerializer.Deserialize<List<Socio>>(json);
+
+                // Buscar y actualizar el socio en la lista
+                Socio socioExistente = socios.FirstOrDefault(e => e.NumeroSocio == socio.NumeroSocio);
+                if (socioExistente != null)
+                {
+                    // Reemplazar el socio existente con el socio actualizado
+                    socios.Remove(socioExistente);
+                    socios.Add(socio);
+
+                    // Convertir la lista actualizada a JSON y escribirla en el archivo
+                    string jsonString = JsonSerializer.Serialize(socios);
+                    File.WriteAllText(rutaArchivo, jsonString);
+
+                    Console.WriteLine("Actividad agregada al socio correctamente");
+                }
+                else
+                {
+                    Console.WriteLine("Error al actualizar el socio");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Archivo no encontrado");
+            }
+        }
     }
 }

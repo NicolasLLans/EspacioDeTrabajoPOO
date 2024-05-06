@@ -29,24 +29,23 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAltaActividades));
-            label1 = new Label();
+            labelIngreseDescripcionActividad = new Label();
             label2 = new Label();
-            descripcionActividad = new TextBox();
-            textBox1 = new TextBox();
-            button1 = new Button();
-            button2 = new Button();
+            txtDescripcionActividad = new TextBox();
+            txtIngresoValor = new TextBox();
+            btnCancelar = new Button();
+            btnAceptar = new Button();
             SuspendLayout();
             // 
-            // label1
+            // labelIngreseDescripcionActividad
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(69, 83);
-            label1.Name = "label1";
-            label1.Size = new Size(395, 25);
-            label1.TabIndex = 0;
-            label1.Text = "Ingrese el Nombre de la Actividad";
-            label1.Click += label1_Click_1;
+            labelIngreseDescripcionActividad.AutoSize = true;
+            labelIngreseDescripcionActividad.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            labelIngreseDescripcionActividad.Location = new Point(69, 83);
+            labelIngreseDescripcionActividad.Name = "labelIngreseDescripcionActividad";
+            labelIngreseDescripcionActividad.Size = new Size(395, 25);
+            labelIngreseDescripcionActividad.TabIndex = 0;
+            labelIngreseDescripcionActividad.Text = "Ingrese el Nombre de la Actividad";
             // 
             // label2
             // 
@@ -57,48 +56,47 @@
             label2.Size = new Size(365, 25);
             label2.TabIndex = 1;
             label2.Text = "Ingrese el Valor de la Actividad";
-            label2.Click += label2_Click;
             // 
-            // descripcionActividad
+            // txtDescripcionActividad
             // 
-            descripcionActividad.Location = new Point(515, 83);
-            descripcionActividad.Multiline = true;
-            descripcionActividad.Name = "descripcionActividad";
-            descripcionActividad.Size = new Size(386, 35);
-            descripcionActividad.TabIndex = 2;
-            descripcionActividad.TextChanged += descripcionActividad_TextChanged;
+            txtDescripcionActividad.Location = new Point(515, 83);
+            txtDescripcionActividad.Multiline = true;
+            txtDescripcionActividad.Name = "txtDescripcionActividad";
+            txtDescripcionActividad.Size = new Size(386, 35);
+            txtDescripcionActividad.TabIndex = 2;
             // 
-            // textBox1
+            // txtIngresoValor
             // 
-            textBox1.Location = new Point(515, 208);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(183, 34);
-            textBox1.TabIndex = 3;
+            txtIngresoValor.Location = new Point(515, 208);
+            txtIngresoValor.Multiline = true;
+            txtIngresoValor.Name = "txtIngresoValor";
+            txtIngresoValor.Size = new Size(183, 34);
+            txtIngresoValor.TabIndex = 3;
             // 
-            // button1
+            // btnCancelar
             // 
-            button1.BackColor = Color.FromArgb(168, 105, 53);
-            button1.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(170, 331);
-            button1.Name = "button1";
-            button1.Size = new Size(143, 49);
-            button1.TabIndex = 4;
-            button1.Text = "CANCELAR";
-            button1.UseVisualStyleBackColor = false;
+            btnCancelar.BackColor = Color.FromArgb(168, 105, 53);
+            btnCancelar.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnCancelar.ForeColor = Color.White;
+            btnCancelar.Location = new Point(170, 331);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(143, 49);
+            btnCancelar.TabIndex = 4;
+            btnCancelar.Text = "CANCELAR";
+            btnCancelar.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // btnAceptar
             // 
-            button2.BackColor = Color.FromArgb(58, 152, 146);
-            button2.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(629, 331);
-            button2.Name = "button2";
-            button2.Size = new Size(143, 49);
-            button2.TabIndex = 5;
-            button2.Text = "ACEPTAR";
-            button2.UseVisualStyleBackColor = false;
+            btnAceptar.BackColor = Color.FromArgb(58, 152, 146);
+            btnAceptar.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnAceptar.ForeColor = Color.White;
+            btnAceptar.Location = new Point(629, 331);
+            btnAceptar.Name = "btnAceptar";
+            btnAceptar.Size = new Size(143, 49);
+            btnAceptar.TabIndex = 5;
+            btnAceptar.Text = "ACEPTAR";
+            btnAceptar.UseVisualStyleBackColor = false;
+            btnAceptar.Click += btnAceptar_Click;
             // 
             // FormAltaActividades
             // 
@@ -106,27 +104,28 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.InactiveBorder;
             ClientSize = new Size(982, 450);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(textBox1);
-            Controls.Add(descripcionActividad);
+            Controls.Add(btnAceptar);
+            Controls.Add(btnCancelar);
+            Controls.Add(txtIngresoValor);
+            Controls.Add(txtDescripcionActividad);
             Controls.Add(label2);
-            Controls.Add(label1);
+            Controls.Add(labelIngreseDescripcionActividad);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FormAltaActividades";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "ALTA DE ACTIVIDADES";
-            Load += FormAltaActividades_Load;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Label label1;
+        private Label labelIngreseDescripcionActividad;
         private Label label2;
-        private TextBox descripcionActividad;
-        private TextBox textBox1;
-        private Button button1;
-        private Button button2;
+        private TextBox txtDescripcionActividad;
+        private TextBox txtIngresoValor;
+        private Button btnCancelar;
+        private Button btnAceptar;
     }
 }

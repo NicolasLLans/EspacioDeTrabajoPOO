@@ -18,21 +18,22 @@ namespace CentroDeportivo1E
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-           
-            
-            bool modDebug= false;
 
-            if (modDebug ==false) { 
-            FormLogin login = new FormLogin();
-            EmpleadoService empleadoService = new EmpleadoService();
+
+            bool modDebug = false;
+
+            if (modDebug == false)
+            {
+                FormLogin login = new FormLogin();
+                EmpleadoService empleadoService = new EmpleadoService();
 
 
                 if (login.ShowDialog() == DialogResult.OK)
                 {
 
-                    Empleado empleado = empleadoService.BuscarUsuarioInicioSesion(login.Usuario,login.Contrasena);
+                    Empleado empleado = empleadoService.BuscarUsuarioInicioSesion(login.Usuario, login.Contrasena);
 
-                    if (empleado != null) 
+                    if (empleado != null)
                     {
                         Application.Run(new FormInicio(empleado.Nombre, empleado.Apellido));
                     }

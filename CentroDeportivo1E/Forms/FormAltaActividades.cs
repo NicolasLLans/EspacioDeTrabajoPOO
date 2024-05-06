@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CentroDeportivo1E.Models;
+using CentroDeportivo1E.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,44 +9,63 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CentroDeportivo1E.Services;
+using CentroDeportivo1E.Forms;
+using CentroDeportivo1E.Helpers;
+using CentroDeportivo1E.Models;
 
 namespace CentroDeportivo1E.Forms
 {
     public partial class FormAltaActividades : Form
     {
+        ActividadService actividadService = new ActividadService();
         public FormAltaActividades()
         {
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void btnAceptar_Click(object sender, EventArgs e)
         {
+            Actividad actividadExistente = actividadService.BuscarActividad(txtDescripcionActividad.Text.ToUpper().Trim());
 
-        }
+            // Verifica si se encontró un socio con el mismo nombre y apellido
+            if (actividadExistente != null)
+            {
+                MessageBox.Show("Ya existe una actividad con ese nombre: " + txtDescripcionActividad.Text.ToUpper().Trim(), "Actividad Existente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            else
+            {
+                if (string.IsNullOrWhiteSpace(txtDescripcionActividad.Text) ||
+                string.IsNullOrWhiteSpace(txtIngresoValor.Text))
+                
+                {
+                    MessageBox.Show("Por favor, complete todos los campos.", "Campos Incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
+                // obtengo el ultimo numero socio de mi Socio.json
+                int ultimoNumeroActividad = actividadService.ObtenerUltimoNumeroActividad();
 
-        }
+                Actividad nuevaActividad =  new Actividad
+                {
+                    Id = ultimoNumeroActividad + 1,
+                    Nombre = txtDescripcionActividad.Text.ToUpper().Trim(),
+                    Precio = Convert.ToInt32 (txtIngresoValor.Text.Trim())
 
-        private void FormAltaActividades_Load(object sender, EventArgs e)
-        {
+                };
 
-        }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
+                actividadService.AltaActividad(nuevaActividad);
 
-        }
+                DialogResult resultado = MessageBox.Show(" Actividad creada Correctamente", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-        private void label1_Click_1(object sender, EventArgs e)
-        {
+                if (resultado == DialogResult.Yes)
+                {
+                    this.Close();
+                }
 
-        }
-
-        private void descripcionActividad_TextChanged(object sender, EventArgs e)
-        {
-
+            }
         }
     }
 }

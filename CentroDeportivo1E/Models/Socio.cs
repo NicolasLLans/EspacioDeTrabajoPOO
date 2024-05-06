@@ -12,7 +12,7 @@ namespace CentroDeportivo1E.Models
     {
 
         
-        public new long NumeroSocio { get; set; }
+        public new int NumeroSocio { get; set; }
         public bool Activo { get; set; }
         public decimal CuotaMensual { get; set; }
         public bool EstadoPago { get; set; }
@@ -20,7 +20,7 @@ namespace CentroDeportivo1E.Models
         public DateTime FechaBaja { get; set; }
         public List<Actividad> Actividades { get; set; }
 
-        public Socio(long numeroSocio, string nombre, string apellido, bool activo, decimal cuotaMensual, long telefono, bool estadoPago, string direccion, string email,
+        public Socio(int numeroSocio, string nombre, string apellido, bool activo, decimal cuotaMensual, long telefono, bool estadoPago, string direccion, string email,
                        DateTime fechaAlta, DateTime fechaBaja)
                     : base(nombre, apellido, telefono, direccion, email)
         {

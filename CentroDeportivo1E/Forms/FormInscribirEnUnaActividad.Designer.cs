@@ -29,79 +29,77 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormInscribirEnUnaActividad));
-            buttonInscribir = new Button();
-            buttonCancelar = new Button();
-            labelSeleccionSocio = new Label();
-            textBoxNumeroSocio = new TextBox();
-            labelSeleccionActividad = new Label();
-            comboBox1 = new ComboBox();
+            btnInscribir = new Button();
+            btnCancelar = new Button();
+            lblSocio = new Label();
+            txtNumeroSocio = new TextBox();
+            lblActividad = new Label();
+            txtActividad = new TextBox();
             SuspendLayout();
             // 
-            // buttonInscribir
+            // btnInscribir
             // 
-            buttonInscribir.BackColor = Color.FromArgb(58, 152, 146);
-            buttonInscribir.Font = new Font("Verdana", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            buttonInscribir.ForeColor = Color.White;
-            buttonInscribir.Location = new Point(504, 325);
-            buttonInscribir.Name = "buttonInscribir";
-            buttonInscribir.Size = new Size(163, 49);
-            buttonInscribir.TabIndex = 0;
-            buttonInscribir.Text = "INSCRIBIR";
-            buttonInscribir.UseVisualStyleBackColor = false;
+            btnInscribir.BackColor = Color.FromArgb(58, 152, 146);
+            btnInscribir.Font = new Font("Verdana", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            btnInscribir.ForeColor = Color.White;
+            btnInscribir.Location = new Point(504, 325);
+            btnInscribir.Name = "btnInscribir";
+            btnInscribir.Size = new Size(163, 49);
+            btnInscribir.TabIndex = 0;
+            btnInscribir.Text = "INSCRIBIR";
+            btnInscribir.UseVisualStyleBackColor = false;
+            btnInscribir.Click += buttonInscribir_Click;
             // 
-            // buttonCancelar
+            // btnCancelar
             // 
-            buttonCancelar.BackColor = Color.FromArgb(168, 105, 53);
-            buttonCancelar.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            buttonCancelar.ForeColor = Color.White;
-            buttonCancelar.Location = new Point(169, 323);
-            buttonCancelar.Name = "buttonCancelar";
-            buttonCancelar.Size = new Size(143, 49);
-            buttonCancelar.TabIndex = 1;
-            buttonCancelar.Text = "CANCELAR";
-            buttonCancelar.UseVisualStyleBackColor = false;
+            btnCancelar.BackColor = Color.FromArgb(168, 105, 53);
+            btnCancelar.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnCancelar.ForeColor = Color.White;
+            btnCancelar.Location = new Point(169, 323);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(143, 49);
+            btnCancelar.TabIndex = 1;
+            btnCancelar.Text = "CANCELAR";
+            btnCancelar.UseVisualStyleBackColor = false;
             // 
-            // labelSeleccionSocio
+            // lblSocio
             // 
-            labelSeleccionSocio.AutoEllipsis = true;
-            labelSeleccionSocio.AutoSize = true;
-            labelSeleccionSocio.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            labelSeleccionSocio.Location = new Point(107, 43);
-            labelSeleccionSocio.Name = "labelSeleccionSocio";
-            labelSeleccionSocio.Size = new Size(329, 25);
-            labelSeleccionSocio.TabIndex = 2;
-            labelSeleccionSocio.Text = "Ingrese un número de Socio";
+            lblSocio.AutoEllipsis = true;
+            lblSocio.AutoSize = true;
+            lblSocio.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lblSocio.Location = new Point(107, 43);
+            lblSocio.Name = "lblSocio";
+            lblSocio.Size = new Size(329, 25);
+            lblSocio.TabIndex = 2;
+            lblSocio.Text = "Ingrese un número de Socio";
             // 
-            // textBoxNumeroSocio
+            // txtNumeroSocio
             // 
-            textBoxNumeroSocio.Location = new Point(516, 45);
-            textBoxNumeroSocio.Name = "textBoxNumeroSocio";
-            textBoxNumeroSocio.Size = new Size(125, 27);
-            textBoxNumeroSocio.TabIndex = 3;
-            textBoxNumeroSocio.TabStop = false;
-            textBoxNumeroSocio.TextChanged += textBox1_TextChanged;
+            txtNumeroSocio.Location = new Point(516, 45);
+            txtNumeroSocio.Name = "txtNumeroSocio";
+            txtNumeroSocio.Size = new Size(125, 27);
+            txtNumeroSocio.TabIndex = 3;
+            txtNumeroSocio.TabStop = false;
             // 
-            // labelSeleccionActividad
+            // lblActividad
             // 
-            labelSeleccionActividad.AutoEllipsis = true;
-            labelSeleccionActividad.AutoSize = true;
-            labelSeleccionActividad.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            labelSeleccionActividad.Location = new Point(107, 139);
-            labelSeleccionActividad.Name = "labelSeleccionActividad";
-            labelSeleccionActividad.Size = new Size(288, 25);
-            labelSeleccionActividad.TabIndex = 4;
-            labelSeleccionActividad.Text = "Seleccione una actividad";
+            lblActividad.AutoEllipsis = true;
+            lblActividad.AutoSize = true;
+            lblActividad.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lblActividad.Location = new Point(107, 139);
+            lblActividad.Name = "lblActividad";
+            lblActividad.Size = new Size(288, 25);
+            lblActividad.TabIndex = 4;
+            lblActividad.Text = "Seleccione una actividad";
             // 
-            // comboBox1
+            // txtActividad
             // 
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox1.Font = new Font("Verdana", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Yoya", "Pilates", "Musculacion", "Entrenamiento Funcional", "Spinning", "CrossFit" });
-            comboBox1.Location = new Point(516, 151);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(151, 28);
-            comboBox1.TabIndex = 5;
+            txtActividad.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            txtActividad.Location = new Point(507, 137);
+            txtActividad.Name = "txtActividad";
+            txtActividad.Size = new Size(142, 32);
+            txtActividad.TabIndex = 5;
+            txtActividad.TextChanged += txtActividad_TextChanged;
             // 
             // FormInscribirEnUnaActividad
             // 
@@ -109,12 +107,12 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.InactiveBorder;
             ClientSize = new Size(800, 450);
-            Controls.Add(comboBox1);
-            Controls.Add(labelSeleccionActividad);
-            Controls.Add(textBoxNumeroSocio);
-            Controls.Add(labelSeleccionSocio);
-            Controls.Add(buttonCancelar);
-            Controls.Add(buttonInscribir);
+            Controls.Add(txtActividad);
+            Controls.Add(lblActividad);
+            Controls.Add(txtNumeroSocio);
+            Controls.Add(lblSocio);
+            Controls.Add(btnCancelar);
+            Controls.Add(btnInscribir);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FormInscribirEnUnaActividad";
             Text = "FormInscribirEnUnaActividad";
@@ -124,11 +122,11 @@
 
         #endregion
 
-        private Button buttonInscribir;
-        private Button buttonCancelar;
-        private Label labelSeleccionSocio;
-        private TextBox textBoxNumeroSocio;
-        private Label labelSeleccionActividad;
-        private ComboBox comboBox1;
+        private Button btnInscribir;
+        private Button btnCancelar;
+        private Label lblSocio;
+        private TextBox txtNumeroSocio;
+        private Label lblActividad;
+        private TextBox txtActividad;
     }
 }

@@ -23,22 +23,22 @@ namespace CentroDeportivo1E.Forms
         private void MostrarTodosLosSocios()
         {
             List<Socio> socios = socioService.ObtenerTodosLosSocios();
-            
+
             dgvListaSocios.Rows.Clear();
 
             if (socios != null && socios.Count > 0)
             {
-             
+
                 if (dgvListaSocios.Columns.Count == 0)
                 {
                     ConfigurarDgv();
                 }
-               
+
                 foreach (Socio socio in socios)
                 {
-                    dgvListaSocios.Rows.Add(socio.NumeroSocio, socio.Nombre, socio.Apellido, 
-                                            socio.Telefono, socio.Direccion, socio.FechaAlta.ToString("dd/MM/yyyy"), 
-                                            socio.Activo? "SI": "NO", socio.CuotaMensual);
+                    dgvListaSocios.Rows.Add(socio.NumeroSocio, socio.Nombre, socio.Apellido,
+                                            socio.Telefono, socio.Direccion, socio.FechaAlta.ToString("dd/MM/yyyy"),
+                                            socio.Activo ? "SI" : "NO", socio.CuotaMensual);
                 }
             }
             else
@@ -103,7 +103,7 @@ namespace CentroDeportivo1E.Forms
 
         private void MostrarLosSociosPorNobreApellido()
         {
-            List<Socio> socios = socioService.ObtenerSociosPorNombreApellido(txtNombre.Text,txtApellido.Text);
+            List<Socio> socios = socioService.ObtenerSociosPorNombreApellido(txtNombre.Text, txtApellido.Text);
 
             dgvListaSocios.Rows.Clear();
 
@@ -128,7 +128,7 @@ namespace CentroDeportivo1E.Forms
             }
         }
 
-      
+
 
         //boton buscar para hacer la busqueda de acuerdo a que campos estan completos en el formulario
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -166,7 +166,7 @@ namespace CentroDeportivo1E.Forms
 
             //configuro el tamaño de las columnas
 
-            dgvListaSocios.Columns["NumeroSocio"].Width= 50;
+            dgvListaSocios.Columns["NumeroSocio"].Width = 50;
             dgvListaSocios.Columns["Activo"].Width = 50;
             dgvListaSocios.Columns["CuotaMensual"].Width = 100;
             dgvListaSocios.Columns["Nombre"].Width = 150;
@@ -188,5 +188,7 @@ namespace CentroDeportivo1E.Forms
 
             dgvListaSocios.RowHeadersVisible = false;
         }
+
+      
     }
 }
