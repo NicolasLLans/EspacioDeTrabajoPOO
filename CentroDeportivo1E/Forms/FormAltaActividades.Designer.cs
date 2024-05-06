@@ -41,9 +41,9 @@
             // 
             labelIngreseDescripcionActividad.AutoSize = true;
             labelIngreseDescripcionActividad.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            labelIngreseDescripcionActividad.Location = new Point(69, 83);
+            labelIngreseDescripcionActividad.Location = new Point(60, 62);
             labelIngreseDescripcionActividad.Name = "labelIngreseDescripcionActividad";
-            labelIngreseDescripcionActividad.Size = new Size(395, 25);
+            labelIngreseDescripcionActividad.Size = new Size(303, 18);
             labelIngreseDescripcionActividad.TabIndex = 0;
             labelIngreseDescripcionActividad.Text = "Ingrese el Nombre de la Actividad";
             // 
@@ -51,36 +51,40 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(78, 206);
+            label2.Location = new Point(68, 154);
             label2.Name = "label2";
-            label2.Size = new Size(365, 25);
+            label2.Size = new Size(279, 18);
             label2.TabIndex = 1;
             label2.Text = "Ingrese el Valor de la Actividad";
             // 
             // txtDescripcionActividad
             // 
-            txtDescripcionActividad.Location = new Point(515, 83);
+            txtDescripcionActividad.Location = new Point(451, 62);
+            txtDescripcionActividad.Margin = new Padding(3, 2, 3, 2);
             txtDescripcionActividad.Multiline = true;
             txtDescripcionActividad.Name = "txtDescripcionActividad";
-            txtDescripcionActividad.Size = new Size(386, 35);
+            txtDescripcionActividad.Size = new Size(309, 27);
             txtDescripcionActividad.TabIndex = 2;
             // 
             // txtIngresoValor
             // 
-            txtIngresoValor.Location = new Point(515, 208);
+            txtIngresoValor.Location = new Point(451, 154);
+            txtIngresoValor.Margin = new Padding(3, 2, 3, 2);
             txtIngresoValor.Multiline = true;
             txtIngresoValor.Name = "txtIngresoValor";
-            txtIngresoValor.Size = new Size(183, 34);
+            txtIngresoValor.Size = new Size(309, 26);
             txtIngresoValor.TabIndex = 3;
+            txtIngresoValor.TextAlign = HorizontalAlignment.Right;
             // 
             // btnCancelar
             // 
             btnCancelar.BackColor = Color.FromArgb(168, 105, 53);
             btnCancelar.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnCancelar.ForeColor = Color.White;
-            btnCancelar.Location = new Point(170, 331);
+            btnCancelar.Location = new Point(149, 248);
+            btnCancelar.Margin = new Padding(3, 2, 3, 2);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(143, 49);
+            btnCancelar.Size = new Size(125, 37);
             btnCancelar.TabIndex = 4;
             btnCancelar.Text = "CANCELAR";
             btnCancelar.UseVisualStyleBackColor = false;
@@ -90,9 +94,10 @@
             btnAceptar.BackColor = Color.FromArgb(58, 152, 146);
             btnAceptar.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnAceptar.ForeColor = Color.White;
-            btnAceptar.Location = new Point(629, 331);
+            btnAceptar.Location = new Point(550, 248);
+            btnAceptar.Margin = new Padding(3, 2, 3, 2);
             btnAceptar.Name = "btnAceptar";
-            btnAceptar.Size = new Size(143, 49);
+            btnAceptar.Size = new Size(125, 37);
             btnAceptar.TabIndex = 5;
             btnAceptar.Text = "ACEPTAR";
             btnAceptar.UseVisualStyleBackColor = false;
@@ -100,10 +105,10 @@
             // 
             // FormAltaActividades
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.InactiveBorder;
-            ClientSize = new Size(982, 450);
+            ClientSize = new Size(859, 338);
             Controls.Add(btnAceptar);
             Controls.Add(btnCancelar);
             Controls.Add(txtIngresoValor);
@@ -112,6 +117,7 @@
             Controls.Add(labelIngreseDescripcionActividad);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 2, 3, 2);
             Name = "FormAltaActividades";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ALTA DE ACTIVIDADES";

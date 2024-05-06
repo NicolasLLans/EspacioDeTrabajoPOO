@@ -147,19 +147,7 @@ namespace CentroDeportivo1E.Services
                 return null;
             }
         }
-
-        public Socio GetSocioByNumeroDeSocio(List<Socio> sociosList, int targetNumeroDeSocio)
-        {
-            foreach (Socio socio in sociosList)
-            {
-                if (socio.NumeroSocio == targetNumeroDeSocio)
-                {
-                    return socio;
-                }
-            }
-            return null;
-        }
-
+       
         public int ContarActividadesDelSocio(Socio socio)
         {
             if (socio != null && socio.Actividades != null)
@@ -236,42 +224,50 @@ namespace CentroDeportivo1E.Services
             {
                 return 0;
             }
-        
+
 
         }
-        
-        internal void ActualizarSocioEnArchivo(Socio socio)
+
+        public void ActualizarSocioEnArchivo(Socio socioActualizado)
         {
+            if (socioActualizado == null)
+            {
+                throw new ArgumentNullException(nameof(socioActualizado), "El socio actualizado no puede ser nulo.");
+            }
+
             string rutaArchivo = socioHelper.ObtenerRutaArchivoJson();
 
+            // Verificar si el archivo existe
             if (File.Exists(rutaArchivo))
             {
+                // Leer todos los socios del archivo JSON
                 string json = File.ReadAllText(rutaArchivo);
                 List<Socio> socios = JsonSerializer.Deserialize<List<Socio>>(json);
 
-                // Buscar y actualizar el socio en la lista
-                Socio socioExistente = socios.FirstOrDefault(e => e.NumeroSocio == socio.NumeroSocio);
+                // Buscar y actualizar el socio específico
+                Socio socioExistente = socios.FirstOrDefault(s => s.NumeroSocio == socioActualizado.NumeroSocio);
                 if (socioExistente != null)
-                {
-                    // Reemplazar el socio existente con el socio actualizado
-                    socios.Remove(socioExistente);
-                    socios.Add(socio);
+                {              
 
-                    // Convertir la lista actualizada a JSON y escribirla en el archivo
-                    string jsonString = JsonSerializer.Serialize(socios);
-                    File.WriteAllText(rutaArchivo, jsonString);
+                    // Agregar las actividades del socio actualizado al socio existente
+                    socioExistente.Actividades = socioActualizado.Actividades;
+                }
 
-                    Console.WriteLine("Actividad agregada al socio correctamente");
-                }
-                else
-                {
-                    Console.WriteLine("Error al actualizar el socio");
-                }
+                // Convertir la lista de socios actualizada a formato JSON
+                string jsonString = JsonSerializer.Serialize(socios);
+
+                // Guardar el JSON actualizado en el archivo
+                File.WriteAllText(rutaArchivo, jsonString);
             }
             else
             {
-                Console.WriteLine("Archivo no encontrado");
+                throw new FileNotFoundException("No se pudo encontrar el archivo JSON de socios.", rutaArchivo);
             }
         }
+
+
+
+
+
     }
 }

@@ -101,10 +101,15 @@ namespace CentroDeportivo1E.Services
                 Actividad actividad = todasLasActividades.FirstOrDefault(e => e.Nombre == nombre);
                 return actividad;
             }
-
+            else
+            {
+                // Si el archivo no existe, puedes devolver un valor predeterminado o null
+                return null;
+            }
         }
 
-       
+
+
         //se da de alta una actividad en el Club Deportivo
         public void AltaActividad(Actividad actividad)
 
@@ -163,48 +168,49 @@ namespace CentroDeportivo1E.Services
         }
 
         //se da de alta a un socio en una actividad
-        public string inscribirActividad(string nombreActividad, int idSocio)
-        {
+       public string inscribirActividad(string nombreActividad, int idSocio)
+{
+    // Verificar si la actividad existe
+    Actividad actividad = ObtenerActividadesPorNombre(nombreActividad);
+    if (actividad == null)
+    {
+        return "ACTIVIDAD INEXISTENTE";
+    }
 
-            // verifica si la actividad existe
-            Actividad actividad = ObtenerActividadesPorNombre(nombreActividad);
-            if (ObtenerActividadesPorNombre(nombreActividad) == null)
-            {
-                return "ACTIVIDAD INEXISTENTE";
-            }
+    // Verificar si el socio existe
+    Socio socio = socioService.ObtenerSociosPorId(idSocio);
+    if (socio == null)
+    {
+        return "SOCIO INEXISTENTE";
+    }
 
-            // verifica si el socio existe 
-            Socio socio = socioService.ObtenerSociosPorId(idSocio);
+    // Verificar que el socio no tenga más de 3 actividades permitidas
+    if (socio.Actividades != null && socio.Actividades.Any() && socioService.ContarActividadesDelSocioPorNumero(idSocio) >= 3)
+    {
+        return "TOPE DE ACTIVIDADES ALCANZADO";
+    }
 
-            if (socio == null)
-            {
-                return "SOCIO INEXISTENTE";
-            }
+    // Verificar si el socio ya está inscrito en la actividad
+    if (socio.Actividades != null && socio.Actividades.Any(a => a.Nombre == nombreActividad))
+    {
+        return "El socio ya está inscrito en esta actividad";
+    }
 
-            // verifica que el socio no tenga más de 3 actividades permitidas
-            if (socioService.ContarActividadesDelSocioPorNumero(idSocio) >3)
-            {
-                return "TOPE DE ACTIVIDADES ALCANZADO";
-            }
+    // Agregar la actividad al socio
+    if (socio.Actividades == null)
+    {
+        socio.Actividades = new List<Actividad>();
+    }
+    socio.Actividades.Add(actividad); // Agregar la actividad encontrada por nombre
+
+    // Guardar los cambios en el archivo JSON
+    socioService.ActualizarSocioEnArchivo(socio);
+
+    return "El socio ha sido inscrito en la actividad exitosamente.";
+}
 
 
-            
-            // Agrega la actividad al socio
-            socio.Actividades.Add(nombreActividad);
 
-            // Actualiza los datos del socio en el archivo JSON o en tu fuente de datos
-            socioService.ActualizarSocioEnArchivo(socio);
 
-            // Reserva un lugar para el socio en la actividad
-            Actividad actividad = BuscarActividad(nombreActividad);
-             actividad.Inscritos.Add(idSocio);
-
-                return "INSCRIPCIÓN EXITOSA";
-            }
-            else
-            {
-                return "ERROR AL INSCRIBIR AL SOCIO";
-            }
-        }
     }
 }

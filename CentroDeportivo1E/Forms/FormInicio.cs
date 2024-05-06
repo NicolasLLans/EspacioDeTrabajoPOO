@@ -56,13 +56,19 @@ namespace CentroDeportivo1E.Forms
 
         private void lISTADEACTIVIDADESToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void ActividadesToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             FormAltaActividades formAltaActividades = new FormAltaActividades();
             formAltaActividades.ShowDialog();
+        }
+
+        private void ActividadSociosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormInscribirEnUnaActividad formInscribirActividad = new FormInscribirEnUnaActividad();
+            formInscribirActividad.ShowDialog();
         }
     }
 }

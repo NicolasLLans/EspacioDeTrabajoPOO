@@ -64,7 +64,7 @@ namespace CentroDeportivo1E.Forms
                     Direccion = txtDireccion.Text.ToUpper().Trim(),
                     Telefono = Convert.ToInt64(txtTelefono.Text),
                     Email = txtEmail.Text.Trim(),
-                    NumeroSocio = ultimoNumeroSocio+1,
+                    NumeroSocio = Convert.ToInt32( ultimoNumeroSocio)+1,
                     CuotaMensual = Convert.ToInt64(txtCuota.Text),
                     FechaAlta=DateTime.Now,
                     EstadoPago=true,
