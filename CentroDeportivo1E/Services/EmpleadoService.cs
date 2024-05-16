@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 using CentroDeportivo1E.Helpers;
+using MySql.Data.MySqlClient;
 
 namespace CentroDeportivo1E.Services
 {
@@ -12,32 +13,57 @@ namespace CentroDeportivo1E.Services
         private EmpleadoHelper empleadoHelpler = new EmpleadoHelper();
 
 
+        private readonly ConexionMysql conexionMysql = new ConexionMysql();
+
         public Empleado BuscarUsuarioInicioSesion(string usuario, string contrasena)
         {
+            Empleado empleado = null;
 
-            string rutaArchivo = empleadoHelpler.ObtenerRutaArchivoJson();
-
-            // Verificar si el archivo existe
-            if (File.Exists(rutaArchivo))
+            try
             {
+                using (MySqlConnection conexion = conexionMysql.abrirConexion())
+                {
+                    string consulta = @"SELECT e.*, p.* FROM Empleado as e 
+                                        INNER JOIN Persona as p ON p.id = e.fkPersona 
+                                        WHERE e.Usuario = @usuario AND e.Contrasena = @contrasena;";
 
-                string json = File.ReadAllText(rutaArchivo);
-                List<Empleado> empleados = JsonSerializer.Deserialize<List<Empleado>>(json);
+                    MySqlCommand comando = new MySqlCommand(consulta, conexion);
 
-                Empleado empleado = empleados.FirstOrDefault(e => e.Usuario == usuario && e.Contrasena == contrasena);
+                    comando.Parameters.AddWithValue("@usuario", usuario);
+                    comando.Parameters.AddWithValue("@contrasena", contrasena);
 
-                return empleado;
+                    using (MySqlDataReader reader = comando.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            empleado = new Empleado
+                            {
+                                Id = reader.GetInt32("Id"),
+                                Usuario = reader.GetString("Usuario"),
+                                Contrasena = reader.GetString("Contrasena"),
+                                Nombre = reader.GetString("Nombre"),
+                                Apellido = reader.GetString("Apellido"),
+                                Puesto = reader.GetString("Puesto"),
+                                
+                            };
+                        }
+                    }
+                }
+                conexionMysql.cerrarConexion(conexionMysql.abrirConexion());
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("No se encontró el archivo de empleados. Por favor, contacte al administrador.", "Error de acceso", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;
+             
+                Console.WriteLine("Error al buscar usuario: " + ex.Message);
             }
+
+            return empleado;
         }
+    
 
 
 
-        public void GuardarEmpleado(Empleado empleado)
+    public void GuardarEmpleado(Empleado empleado)
 
         {
             string rutaArchivo = empleadoHelpler.ObtenerRutaArchivoJson();
