@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CentroDeportivo1E.Models
 {
     internal class Actividad
     {
-       public int Id { get; set; }
-       public string Nombre { get; set; }   
-
-       public int Precio { get; set; }
+        public int IdActividad { get; set; }
+        public string Nombre { get; set; }
+        public decimal Precio { get; set; }
+        public bool baja { get; set; }
 
     }
 }

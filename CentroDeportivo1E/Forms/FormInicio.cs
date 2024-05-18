@@ -49,16 +49,6 @@ namespace CentroDeportivo1E.Forms
             formListaSocios.ShowDialog();
         }
 
-        private void VerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lISTADEACTIVIDADESToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void ActividadesToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             FormAltaActividades formAltaActividades = new FormAltaActividades();
@@ -69,6 +59,12 @@ namespace CentroDeportivo1E.Forms
         {
             FormInscribirEnUnaActividad formInscribirActividad = new FormInscribirEnUnaActividad();
             formInscribirActividad.ShowDialog();
+        }
+
+        private void NoSociosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormAltaNoSocio formAltaNoSocios = new FormAltaNoSocio();
+            formAltaNoSocios.ShowDialog();
         }
     }
 }

@@ -5,32 +5,32 @@ using System.IO;
 using System.Text.Json;
 using CentroDeportivo1E.Helpers;
 using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace CentroDeportivo1E.Services
 {
     internal class EmpleadoService
-    {
-        private EmpleadoHelper empleadoHelpler = new EmpleadoHelper();
-
+    {        
 
         private readonly ConexionMysql conexionMysql = new ConexionMysql();
+
 
         public Empleado BuscarUsuarioInicioSesion(string usuario, string contrasena)
         {
             Empleado empleado = null;
+            MySqlConnection conexion = conexionMysql.abrirConexion();
 
             try
             {
-                using (MySqlConnection conexion = conexionMysql.abrirConexion())
+                using (conexion)
                 {
-                    string consulta = @"SELECT e.*, p.* FROM Empleado as e 
-                                        INNER JOIN Persona as p ON p.id = e.fkPersona 
-                                        WHERE e.Usuario = @usuario AND e.Contrasena = @contrasena;";
+                    string procedimiento = "BuscarUsuarioInicioSesion";
 
-                    MySqlCommand comando = new MySqlCommand(consulta, conexion);
+                    MySqlCommand comando = new MySqlCommand(procedimiento, conexion);
+                    comando.CommandType = CommandType.StoredProcedure;
 
-                    comando.Parameters.AddWithValue("@usuario", usuario);
-                    comando.Parameters.AddWithValue("@contrasena", contrasena);
+                    comando.Parameters.AddWithValue("@p_usuario", usuario);
+                    comando.Parameters.AddWithValue("@p_contrasena", contrasena);
 
                     using (MySqlDataReader reader = comando.ExecuteReader())
                     {
@@ -38,106 +38,112 @@ namespace CentroDeportivo1E.Services
                         {
                             empleado = new Empleado
                             {
-                                Id = reader.GetInt32("Id"),
                                 Usuario = reader.GetString("Usuario"),
                                 Contrasena = reader.GetString("Contrasena"),
                                 Nombre = reader.GetString("Nombre"),
-                                Apellido = reader.GetString("Apellido"),
-                                Puesto = reader.GetString("Puesto"),
-                                
+                                Apellido = reader.GetString("Apellido")
                             };
                         }
                     }
                 }
-                conexionMysql.cerrarConexion(conexionMysql.abrirConexion());
             }
             catch (Exception ex)
             {
-             
                 Console.WriteLine("Error al buscar usuario: " + ex.Message);
+            }
+            finally
+            {
+                if (conexion != null && conexion.State == ConnectionState.Open)
+                {
+                    conexionMysql.cerrarConexion(conexion);
+                }
             }
 
             return empleado;
         }
-    
 
 
 
-    public void GuardarEmpleado(Empleado empleado)
-
+        public void InsertarEmpleado(Empleado empleado)
         {
-            string rutaArchivo = empleadoHelpler.ObtenerRutaArchivoJson();
-
-            List<Empleado> empleados;
-
-            // Verificar si el archivo ya existe
-            if (File.Exists(rutaArchivo))
+            MySqlConnection conexion = null;
+            try
             {
-                string json = File.ReadAllText(rutaArchivo);
-                empleados = JsonSerializer.Deserialize<List<Empleado>>(json);
-            }
-            else
-            {
-                // crea una nueva lista de empleados si no existe una 
-                empleados = new List<Empleado>();
-            }
-
-            empleados.Add(empleado);
-
-            string jsonString = JsonSerializer.Serialize(empleados);
-
-            // guarda el JSON en el archivo
-            File.WriteAllText(rutaArchivo, jsonString);
-        }
-
-        public int ObtenerUltimoId()
-        {
-            string rutaArchivo = empleadoHelpler.ObtenerRutaArchivoJson();
-
-            // Verificar si el archivo existe
-            if (File.Exists(rutaArchivo))
-            {
-                string json = File.ReadAllText(rutaArchivo);
-                List<Empleado> empleados = JsonSerializer.Deserialize<List<Empleado>>(json);
-
-                if (empleados != null && empleados.Any())
+                conexion = conexionMysql.abrirConexion();
+                string procedimiento = "InsertarEmpleado";
+                
+                using (MySqlCommand comando = new MySqlCommand(procedimiento, conexion))
                 {
-                    int ultimoId = empleados.Max(empleado => empleado.Id);
-                    return ultimoId;
+                    comando.CommandType = CommandType.StoredProcedure;
+
+                    // Asignar valores de Empleado a los parámetros del procedimiento almacenado
+                    comando.Parameters.AddWithValue("@p_usuario", empleado.Usuario);
+                    comando.Parameters.AddWithValue("@p_contrasena", empleado.Contrasena);
+                    comando.Parameters.AddWithValue("@p_nombre", empleado.Nombre);
+                    comando.Parameters.AddWithValue("@p_apellido", empleado.Apellido);
+                    comando.Parameters.AddWithValue("@p_dni", empleado.Dni);
+                    comando.Parameters.AddWithValue("@p_direccion", empleado.Direccion);
+                    comando.Parameters.AddWithValue("@p_telefono", empleado.Telefono);
+                    comando.Parameters.AddWithValue("@p_email", empleado.Email);
+                    comando.Parameters.AddWithValue("@p_fechaAlta", empleado.FechaAlta);
+                    comando.Parameters.AddWithValue("@p_puesto", empleado.Puesto);
+
+                    comando.ExecuteNonQuery();
                 }
-                else
+
+                Console.WriteLine("Empleado insertado correctamente.");
+            }
+            catch (MySqlException ex)
+            {              
+                Console.WriteLine("Error al insertar empleado: " + ex.Message);
+            }
+            catch (Exception ex)
+            {              
+                Console.WriteLine("Error general al insertar empleado: " + ex.Message);
+            }
+            finally
+            {
+               
+                if (conexion != null && conexion.State == ConnectionState.Open)
                 {
-                    return 0;
+                    conexion.Close();
                 }
             }
-            else
-            {
-                return 0;
-            }
-
-
         }
 
-        public Empleado BuscarUsuario( string usuario)
+
+
+        public bool ExisteUsuario(string usuario)
         {
-            string rutaArchivo = empleadoHelpler.ObtenerRutaArchivoJson();
-
-            // Verificar si el archivo existe
-            if (File.Exists(rutaArchivo))
+            MySqlConnection conexion = conexionMysql.abrirConexion();
+            try
             {
-                string json = File.ReadAllText(rutaArchivo);
-                List<Empleado> empleados = JsonSerializer.Deserialize<List<Empleado>>(json);
+                string procedimiento = "BuscarUsuario";              
 
-                Empleado empleado = empleados.FirstOrDefault(e => (e.Usuario == usuario));
+              
+                using (MySqlCommand comando = new MySqlCommand(procedimiento, conexion))
+                {
+                    comando.CommandType = CommandType.StoredProcedure;
+                    comando.Parameters.AddWithValue("@p_usuario", usuario);
 
-                return empleado;
+                    using (MySqlDataReader reader = comando.ExecuteReader())
+                    {
+                     
+                        return reader.HasRows;
+                    }
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return null;
+                Console.WriteLine("Error al buscar usuario: " + ex.Message);
             }
+            finally
+            {
+                conexionMysql.cerrarConexion(conexion);
+            }
+            
+            return false;
         }
-
 
     }
 }

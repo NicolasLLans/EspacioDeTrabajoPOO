@@ -39,16 +39,13 @@
             CuotasToolStripMenuItem = new ToolStripMenuItem();
             ActividadesToolStripMenuItem = new ToolStripMenuItem();
             VerToolStripMenuItem = new ToolStripMenuItem();
-            ListaSociosToolStripMenuItem = new ToolStripMenuItem();
-            ListaNoSociosToolStripMenuItem = new ToolStripMenuItem();
-            ListaPersonalToolStripMenuItem = new ToolStripMenuItem();
             lIASTAACTIVIDADESToolStripMenuItem = new ToolStripMenuItem();
             VencimientosToolStripMenuItem = new ToolStripMenuItem();
             iNSCRIBIRToolStripMenuItem = new ToolStripMenuItem();
+            ActividadSociosToolStripMenuItem = new ToolStripMenuItem();
             pictureBox1 = new PictureBox();
             label1 = new Label();
             txtBienvenida = new TextBox();
-            ActividadSociosToolStripMenuItem = new ToolStripMenuItem();
             msOpciones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -87,6 +84,7 @@
             NoSociosToolStripMenuItem.Name = "NoSociosToolStripMenuItem";
             NoSociosToolStripMenuItem.Size = new Size(236, 36);
             NoSociosToolStripMenuItem.Text = "NO SOCIOS";
+            NoSociosToolStripMenuItem.Click += NoSociosToolStripMenuItem_Click;
             // 
             // PersonalToolStripMenuItem
             // 
@@ -125,39 +123,18 @@
             // 
             // VerToolStripMenuItem
             // 
-            VerToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ListaSociosToolStripMenuItem, ListaNoSociosToolStripMenuItem, ListaPersonalToolStripMenuItem, lIASTAACTIVIDADESToolStripMenuItem });
+            VerToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { lIASTAACTIVIDADESToolStripMenuItem });
             VerToolStripMenuItem.ForeColor = Color.FromArgb(6, 18, 30);
             VerToolStripMenuItem.Image = Properties.Resources.iconoListar;
             VerToolStripMenuItem.Name = "VerToolStripMenuItem";
             VerToolStripMenuItem.Size = new Size(118, 54);
             VerToolStripMenuItem.Text = "VER";
-            VerToolStripMenuItem.Click += VerToolStripMenuItem_Click;
-            // 
-            // ListaSociosToolStripMenuItem
-            // 
-            ListaSociosToolStripMenuItem.Name = "ListaSociosToolStripMenuItem";
-            ListaSociosToolStripMenuItem.Size = new Size(302, 36);
-            ListaSociosToolStripMenuItem.Text = "LISTA SOCIOS";
-            ListaSociosToolStripMenuItem.Click += ListaSociosToolStripMenuItem_Click;
-            // 
-            // ListaNoSociosToolStripMenuItem
-            // 
-            ListaNoSociosToolStripMenuItem.Name = "ListaNoSociosToolStripMenuItem";
-            ListaNoSociosToolStripMenuItem.Size = new Size(302, 36);
-            ListaNoSociosToolStripMenuItem.Text = "LISTA NO SOCIOS";
-            // 
-            // ListaPersonalToolStripMenuItem
-            // 
-            ListaPersonalToolStripMenuItem.Name = "ListaPersonalToolStripMenuItem";
-            ListaPersonalToolStripMenuItem.Size = new Size(302, 36);
-            ListaPersonalToolStripMenuItem.Text = "LISTA PERSONAL";
             // 
             // lIASTAACTIVIDADESToolStripMenuItem
             // 
             lIASTAACTIVIDADESToolStripMenuItem.Name = "lIASTAACTIVIDADESToolStripMenuItem";
             lIASTAACTIVIDADESToolStripMenuItem.Size = new Size(302, 36);
             lIASTAACTIVIDADESToolStripMenuItem.Text = "LISTA ACTIVIDADES";
-            lIASTAACTIVIDADESToolStripMenuItem.Click += lISTADEACTIVIDADESToolStripMenuItem_Click;
             // 
             // VencimientosToolStripMenuItem
             // 
@@ -173,6 +150,13 @@
             iNSCRIBIRToolStripMenuItem.Name = "iNSCRIBIRToolStripMenuItem";
             iNSCRIBIRToolStripMenuItem.Size = new Size(138, 54);
             iNSCRIBIRToolStripMenuItem.Text = "INSCRIBIR";
+            // 
+            // ActividadSociosToolStripMenuItem
+            // 
+            ActividadSociosToolStripMenuItem.Name = "ActividadSociosToolStripMenuItem";
+            ActividadSociosToolStripMenuItem.Size = new Size(302, 36);
+            ActividadSociosToolStripMenuItem.Text = "ACTIVIDAD SOCIOS";
+            ActividadSociosToolStripMenuItem.Click += ActividadSociosToolStripMenuItem_Click;
             // 
             // pictureBox1
             // 
@@ -202,20 +186,13 @@
             txtBienvenida.Enabled = false;
             txtBienvenida.Font = new Font("Palatino Linotype", 27.75F, FontStyle.Bold, GraphicsUnit.Point);
             txtBienvenida.ForeColor = Color.White;
-            txtBienvenida.Location = new Point(323, 219);
+            txtBienvenida.Location = new Point(339, 234);
             txtBienvenida.Multiline = true;
             txtBienvenida.Name = "txtBienvenida";
             txtBienvenida.ReadOnly = true;
             txtBienvenida.Size = new Size(455, 243);
             txtBienvenida.TabIndex = 3;
             txtBienvenida.TextAlign = HorizontalAlignment.Center;
-            // 
-            // ActividadSociosToolStripMenuItem
-            // 
-            ActividadSociosToolStripMenuItem.Name = "ActividadSociosToolStripMenuItem";
-            ActividadSociosToolStripMenuItem.Size = new Size(302, 36);
-            ActividadSociosToolStripMenuItem.Text = "ACTIVIDAD SOCIOS";
-            ActividadSociosToolStripMenuItem.Click += ActividadSociosToolStripMenuItem_Click;
             // 
             // FormInicio
             // 
@@ -257,12 +234,9 @@
         private Label label1;
         private TextBox txtBienvenida;
         private ToolStripMenuItem PersonalToolStripMenuItem;
-        private ToolStripMenuItem ListaSociosToolStripMenuItem;
-        private ToolStripMenuItem ListaNoSociosToolStripMenuItem;
-        private ToolStripMenuItem ListaPersonalToolStripMenuItem;
-        private ToolStripMenuItem ActividadesToolStripMenuItem1;
         private ToolStripMenuItem iNSCRIBIRToolStripMenuItem;
-        private ToolStripMenuItem lIASTAACTIVIDADESToolStripMenuItem;
         private ToolStripMenuItem ActividadSociosToolStripMenuItem;
+        private ToolStripMenuItem ActividadesToolStripMenuItem1;
+        private ToolStripMenuItem lIASTAACTIVIDADESToolStripMenuItem;
     }
 }

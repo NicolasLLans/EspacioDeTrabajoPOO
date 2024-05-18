@@ -34,32 +34,32 @@
             txtDescripcionActividad = new TextBox();
             txtIngresoValor = new TextBox();
             btnCancelar = new Button();
-            btnAceptar = new Button();
+            btnAgregarActividad = new Button();
             SuspendLayout();
             // 
             // labelIngreseDescripcionActividad
             // 
             labelIngreseDescripcionActividad.AutoSize = true;
             labelIngreseDescripcionActividad.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            labelIngreseDescripcionActividad.Location = new Point(60, 62);
+            labelIngreseDescripcionActividad.Location = new Point(47, 81);
             labelIngreseDescripcionActividad.Name = "labelIngreseDescripcionActividad";
-            labelIngreseDescripcionActividad.Size = new Size(303, 18);
+            labelIngreseDescripcionActividad.Size = new Size(162, 18);
             labelIngreseDescripcionActividad.TabIndex = 0;
-            labelIngreseDescripcionActividad.Text = "Ingrese el Nombre de la Actividad";
+            labelIngreseDescripcionActividad.Text = "Nombre Actividad";
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(68, 154);
+            label2.Location = new Point(47, 148);
             label2.Name = "label2";
-            label2.Size = new Size(279, 18);
+            label2.Size = new Size(63, 18);
             label2.TabIndex = 1;
-            label2.Text = "Ingrese el Valor de la Actividad";
+            label2.Text = "Precio";
             // 
             // txtDescripcionActividad
             // 
-            txtDescripcionActividad.Location = new Point(451, 62);
+            txtDescripcionActividad.Location = new Point(47, 101);
             txtDescripcionActividad.Margin = new Padding(3, 2, 3, 2);
             txtDescripcionActividad.Multiline = true;
             txtDescripcionActividad.Name = "txtDescripcionActividad";
@@ -68,20 +68,21 @@
             // 
             // txtIngresoValor
             // 
-            txtIngresoValor.Location = new Point(451, 154);
+            txtIngresoValor.Location = new Point(47, 168);
             txtIngresoValor.Margin = new Padding(3, 2, 3, 2);
             txtIngresoValor.Multiline = true;
             txtIngresoValor.Name = "txtIngresoValor";
             txtIngresoValor.Size = new Size(309, 26);
             txtIngresoValor.TabIndex = 3;
             txtIngresoValor.TextAlign = HorizontalAlignment.Right;
+            txtIngresoValor.KeyPress += txtIngresoValor_KeyPress;
             // 
             // btnCancelar
             // 
             btnCancelar.BackColor = Color.FromArgb(168, 105, 53);
             btnCancelar.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnCancelar.ForeColor = Color.White;
-            btnCancelar.Location = new Point(149, 248);
+            btnCancelar.Location = new Point(77, 236);
             btnCancelar.Margin = new Padding(3, 2, 3, 2);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(125, 37);
@@ -89,27 +90,27 @@
             btnCancelar.Text = "CANCELAR";
             btnCancelar.UseVisualStyleBackColor = false;
             // 
-            // btnAceptar
+            // btnAgregarActividad
             // 
-            btnAceptar.BackColor = Color.FromArgb(58, 152, 146);
-            btnAceptar.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnAceptar.ForeColor = Color.White;
-            btnAceptar.Location = new Point(550, 248);
-            btnAceptar.Margin = new Padding(3, 2, 3, 2);
-            btnAceptar.Name = "btnAceptar";
-            btnAceptar.Size = new Size(125, 37);
-            btnAceptar.TabIndex = 5;
-            btnAceptar.Text = "ACEPTAR";
-            btnAceptar.UseVisualStyleBackColor = false;
-            btnAceptar.Click += btnAceptar_Click;
+            btnAgregarActividad.BackColor = Color.FromArgb(58, 152, 146);
+            btnAgregarActividad.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnAgregarActividad.ForeColor = Color.White;
+            btnAgregarActividad.Location = new Point(217, 236);
+            btnAgregarActividad.Margin = new Padding(3, 2, 3, 2);
+            btnAgregarActividad.Name = "btnAgregarActividad";
+            btnAgregarActividad.Size = new Size(125, 37);
+            btnAgregarActividad.TabIndex = 5;
+            btnAgregarActividad.Text = "AGREGAR";
+            btnAgregarActividad.UseVisualStyleBackColor = false;
+            btnAgregarActividad.Click += btnAgregarActividad_Click;
             // 
             // FormAltaActividades
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.InactiveBorder;
-            ClientSize = new Size(859, 338);
-            Controls.Add(btnAceptar);
+            ClientSize = new Size(408, 338);
+            Controls.Add(btnAgregarActividad);
             Controls.Add(btnCancelar);
             Controls.Add(txtIngresoValor);
             Controls.Add(txtDescripcionActividad);
@@ -121,6 +122,7 @@
             Name = "FormAltaActividades";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ALTA DE ACTIVIDADES";
+            Load += FormAltaActividades_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -132,6 +134,6 @@
         private TextBox txtDescripcionActividad;
         private TextBox txtIngresoValor;
         private Button btnCancelar;
-        private Button btnAceptar;
+        private Button btnAgregarActividad;
     }
 }

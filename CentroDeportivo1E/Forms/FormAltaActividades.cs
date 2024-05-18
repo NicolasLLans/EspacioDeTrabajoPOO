@@ -1,71 +1,90 @@
 ﻿using CentroDeportivo1E.Models;
 using CentroDeportivo1E.Services;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using CentroDeportivo1E.Services;
-using CentroDeportivo1E.Forms;
-using CentroDeportivo1E.Helpers;
-using CentroDeportivo1E.Models;
 
 namespace CentroDeportivo1E.Forms
 {
     public partial class FormAltaActividades : Form
     {
-        ActividadService actividadService = new ActividadService();
+        private readonly ActividadService actividadService = new ActividadService();
+
         public FormAltaActividades()
         {
             InitializeComponent();
         }
 
-        private void btnAceptar_Click(object sender, EventArgs e)
+        private void FormAltaActividades_Load(object sender, EventArgs e)
         {
-            Actividad actividadExistente = actividadService.BuscarActividad(txtDescripcionActividad.Text.ToUpper().Trim());
+            
+        }
 
-            // Verifica si se encontró un socio con el mismo nombre y apellido
-            if (actividadExistente != null)
+       
+
+        private void btnAgregarActividad_Click(object sender, EventArgs e)
+        {
+            try
             {
-                MessageBox.Show("Ya existe una actividad con ese nombre: " + txtDescripcionActividad.Text.ToUpper().Trim(), "Actividad Existente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            else
-            {
-                if (string.IsNullOrWhiteSpace(txtDescripcionActividad.Text) ||
-                string.IsNullOrWhiteSpace(txtIngresoValor.Text))
-                
+                string nombre = txtDescripcionActividad.Text.Trim().ToUpper();
+                decimal precio = Convert.ToDecimal(txtIngresoValor.Text.Trim());
+
+                // Validar la entrada del usuario
+                if (string.IsNullOrWhiteSpace(nombre))
                 {
-                    MessageBox.Show("Por favor, complete todos los campos.", "Campos Incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("El nombre de la actividad no puede estar vacío.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // obtengo el ultimo numero socio de mi Socio.json
-                int ultimoNumeroActividad = actividadService.ObtenerUltimoNumeroActividad();
-
-                Actividad nuevaActividad =  new Actividad
+                // Crear la nueva actividad
+                Actividad nuevaActividad = new Actividad
                 {
-                    Id = ultimoNumeroActividad + 1,
-                    Nombre = txtDescripcionActividad.Text.ToUpper().Trim(),
-                    Precio = Convert.ToInt32 (txtIngresoValor.Text.Trim())
-
+                    Nombre = nombre,
+                    Precio = precio
                 };
 
+                actividadService.InsertarActividad(nuevaActividad);
+                
+                MessageBox.Show("Actividad agregada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("El precio debe ser un número válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al agregar la actividad: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }      
 
-                actividadService.AltaActividad(nuevaActividad);
+        private void txtIngresoValor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
 
-                DialogResult resultado = MessageBox.Show(" Actividad creada Correctamente", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            // Permitir solo un punto decimal
+            if (e.KeyChar == '.' && (sender as TextBox).Text.Contains('.'))
+            {
+                e.Handled = true;
+            }
 
-                if (resultado == DialogResult.Yes)
-                {
-                    this.Close();
-                }
+            // Permitir números decimales (0-9), tecla de retroceso, punto decimal y punto decimal con 2 dígitos después
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+                (e.KeyChar != '.') || (e.KeyChar == '.' && (sender as TextBox).Text.Contains('.')) ||
+                ((sender as TextBox).Text.Contains('.') && (sender as TextBox).Text.Split('.')[1].Length >= 2))
+            {
+                e.Handled = true;
+            }
 
+            if (e.KeyChar == (char)Keys.Back)
+            {
+                e.Handled = false;
             }
         }
+
+        
     }
 }

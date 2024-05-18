@@ -1,52 +1,45 @@
-﻿using System;
+﻿using CentroDeportivo1E.Helpers;
+using CentroDeportivo1E.Models;
+using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
-using System.Text.Json;
 using System.Threading.Tasks;
-using iTextSharp.text;
-using CentroDeportivo1E.Helpers;
-using CentroDeportivo1E.Models;
-using iTextSharp.text.pdf;
-using System.Diagnostics;
-using MySql.Data.MySqlClient;
-using System.Data;
-
-
 
 namespace CentroDeportivo1E.Services
 {
-    internal class SocioService
-    {
-        SocioHelper socioHelper = new SocioHelper();
+    internal class NoSocioService
+    {      
         private readonly ConexionMysql conexionMysql = new ConexionMysql();
 
 
-        public void InsertarSocio(Socio socio)
+        public void InsertarNoSocio(NoSocio noSocio)
         {
             MySqlConnection conexion = null;
             try
             {
                 conexion = conexionMysql.abrirConexion();
-                string procedimiento = "InsertarSocio";
+                string procedimiento = "InsertarNoSocio";
 
                 using (conexion)
                 {
                     MySqlCommand comando = new MySqlCommand(procedimiento, conexion);
-               
+                
                     comando.CommandType = CommandType.StoredProcedure;
 
                     // Asignar valores de Empleado a los parámetros del procedimiento almacenado
-                   
-                    comando.Parameters.AddWithValue("@p_nombre", socio.Nombre);
-                    comando.Parameters.AddWithValue("@p_apellido", socio.Apellido);
-                    comando.Parameters.AddWithValue("@p_dni", socio.Dni);
-                    comando.Parameters.AddWithValue("@p_direccion", socio.Direccion);
-                    comando.Parameters.AddWithValue("@p_telefono", socio.Telefono);
-                    comando.Parameters.AddWithValue("@p_email", socio.Email);
-                    comando.Parameters.AddWithValue("@p_fechaAlta", socio.FechaAlta);
-                    comando.Parameters.AddWithValue("@p_aptoFisico", socio.AptoFisico);
-                  
+
+                    comando.Parameters.AddWithValue("@p_nombre", noSocio.Nombre);
+                    comando.Parameters.AddWithValue("@p_apellido", noSocio.Apellido);
+                    comando.Parameters.AddWithValue("@p_dni", noSocio.Dni);
+                    comando.Parameters.AddWithValue("@p_direccion", noSocio.Direccion);
+                    comando.Parameters.AddWithValue("@p_telefono", noSocio.Telefono);
+                    comando.Parameters.AddWithValue("@p_email", noSocio.Email);
+                    comando.Parameters.AddWithValue("@p_fechaAlta", noSocio.FechaAlta);
+                    comando.Parameters.AddWithValue("@p_aptoFisico", noSocio.AptoFisico);
+
                     comando.ExecuteNonQuery();
                 }
 
@@ -64,7 +57,7 @@ namespace CentroDeportivo1E.Services
             }
             finally
             {
-             
+
                 if (conexion != null && conexion.State == ConnectionState.Open)
                 {
                     conexion.Close();
@@ -72,7 +65,7 @@ namespace CentroDeportivo1E.Services
             }
         }
 
-        public bool ExisteSocio(long dni)
+        public bool ExisteNoSocio(long dni)
         {
             bool existe = false;
             MySqlConnection conexion = null;
@@ -80,13 +73,12 @@ namespace CentroDeportivo1E.Services
             try
             {
                 conexion = conexionMysql.abrirConexion();
-                string procedimiento = "ExisteSocio";
-
-                using (conexion)
-                {
-                    MySqlCommand comando = new MySqlCommand(procedimiento, conexion);
+                string procedimiento = "ExisteNoSocio";
                 
-                    comando.CommandType = CommandType.StoredProcedure;
+                using (conexion) {
+
+                  MySqlCommand comando = new MySqlCommand(procedimiento, conexion);
+                  comando.CommandType = CommandType.StoredProcedure;
                     comando.Parameters.AddWithValue("@p_dni", dni);
 
                     using (MySqlDataReader reader = comando.ExecuteReader())
@@ -116,7 +108,6 @@ namespace CentroDeportivo1E.Services
 
             return existe;
         }
-
 
     }
 }

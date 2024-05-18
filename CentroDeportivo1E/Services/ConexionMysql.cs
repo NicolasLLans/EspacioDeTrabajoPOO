@@ -2,15 +2,15 @@
 using System.Windows.Forms; // Necesario para mostrar mensajes de MessageBox
 using MySql.Data.MySqlClient;
 
-namespace CentroDeportivo1E.Models
+namespace CentroDeportivo1E.Services
 {
     internal class ConexionMysql
     {
-        string cadenaConexion = @"Server=boqb2fw0r8paaef8nwrw-mysql.services.clever-cloud.com; 
-                                  Port=3306; 
-                                  Database=boqb2fw0r8paaef8nwrw; 
-                                  Uid=ugpeqcu41vayuvw1; 
-                                  Pwd=PSBRCFiK3DIAAgGaoG2p;";
+        string cadenaConexion = @"Server=localhost; 
+                          Port=3306; 
+                          Database=centrodeportivo1e; 
+                          Uid=root; 
+                          Pwd=admin;";
 
         public MySqlConnection abrirConexion()
         {
