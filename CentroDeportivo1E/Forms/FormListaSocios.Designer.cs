@@ -62,7 +62,7 @@
             btnBuscar.TabIndex = 27;
             btnBuscar.Text = "BUSCAR";
             btnBuscar.UseVisualStyleBackColor = false;
-            btnBuscar.Click += btnBuscar_Click;
+        
             // 
             // txtNombre
             // 
