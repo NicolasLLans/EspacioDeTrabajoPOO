@@ -33,8 +33,8 @@ namespace CentroDeportivo1E.Forms
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            string usuario = txtUsuario.Text;
-            string contrasena = empleadoHelper.encriptarContrasena(txtContrasena.Text);
+            string usuario = txtUsuario.Text.Trim();
+            string contrasena = empleadoHelper.encriptarContrasena(txtContrasena.Text.Trim());
 
             Empleado empleado = empleadoService.BuscarUsuarioInicioSesion(usuario, contrasena);
 
