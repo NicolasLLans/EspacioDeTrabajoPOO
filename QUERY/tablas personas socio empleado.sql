@@ -79,3 +79,6 @@ CREATE TABLE Socio_Actividad (
     FOREIGN KEY (IdSocio) REFERENCES Socio(NumeroSocio),
     FOREIGN KEY (IdActividad) REFERENCES Actividad(IdActividad)
 );
+
+
+

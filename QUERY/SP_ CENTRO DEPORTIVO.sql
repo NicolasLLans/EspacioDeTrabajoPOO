@@ -116,7 +116,6 @@ END //
 
 DELIMITER ;
 
-
 #insertar NO SOCIO
 
 # creo SP para insertar un nuevo Socio
@@ -197,3 +196,100 @@ BEGIN
 END //
 
 DELIMITER ;
+
+
+# SP PARA TRAER SOCIOS ACTIVAS
+DELIMITER //
+
+CREATE PROCEDURE TraerSociosActivos ()
+BEGIN
+SELECT  s.NumeroSocio,
+CONCAT(p.Nombre, ' ', p.Apellido) AS 'Nombre'
+FROM socio s
+INNER JOIN persona p ON p.IdPersona = s.FkPersona
+WHERE p.baja = 0;
+
+END //
+
+DELIMITER ;
+
+# SP PARA Cargar tabla intermedia  SOCIOS ACTIVAS
+
+DELIMITER //
+
+CREATE PROCEDURE InsertarSocioActividad(
+    IN p_IdSocio INT,
+    IN p_IdActividad INT
+)
+BEGIN         
+        INSERT INTO Socio_Actividad (IdSocio, IdActividad)
+        VALUES (p_IdSocio, p_IdActividad);
+   
+END //
+
+DELIMITER ;
+
+# verificar  cuantas actividades lleva inscripto
+DELIMITER //
+
+CREATE PROCEDURE VerificarLimiteActividades(
+    IN p_IdSocio INT,
+    OUT p_NumeroActividades INT
+)
+BEGIN    
+    DECLARE actividad_count INT;
+    
+    -- Contar cantidad actividades 
+    SELECT COUNT(*)
+    INTO actividad_count
+    FROM Socio_Actividad
+    WHERE IdSocio = p_IdSocio;
+    
+    SET p_NumeroActividades = actividad_count;
+END //
+
+DELIMITER ;
+
+#sp para verificar que no se repita la inscripcion a una misma actividad
+DELIMITER //
+
+CREATE PROCEDURE VerificarActividadSocio(
+    IN p_IdSocio INT,
+    IN p_IdActividad INT,
+    OUT p_ExisteInscripcion BOOL
+)
+BEGIN
+    -- Verificar si el socio ya está inscrito en la actividad
+    IF EXISTS (
+        SELECT 1
+        FROM Socio_Actividad
+        WHERE IdSocio = p_IdSocio AND IdActividad = p_IdActividad
+    ) THEN
+        SET p_ExisteInscripcion = TRUE;
+    ELSE
+        SET p_ExisteInscripcion = FALSE;
+    END IF;
+END //
+
+DELIMITER ;
+
+#traer actividad por numero socio
+DELIMITER //
+
+CREATE PROCEDURE TraerActividadesPorNumeroSocio(
+    IN p_NumeroSocio INT
+)
+BEGIN
+
+    SELECT a.*
+    FROM Actividad a
+    INNER JOIN Socio_Actividad sa ON a.IdActividad = sa.IdActividad
+    INNER JOIN Socio s ON sa.IdSocio = s.NumeroSocio
+    WHERE s.NumeroSocio = p_NumeroSocio;
+END //
+
+DELIMITER ;
+
+
+
+
