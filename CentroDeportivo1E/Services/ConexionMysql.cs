@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Windows.Forms; // Necesario para mostrar mensajes de MessageBox
+using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
 namespace CentroDeportivo1E.Services
@@ -14,7 +14,7 @@ namespace CentroDeportivo1E.Services
 
         public MySqlConnection abrirConexion()
         {
-            MySqlConnection conectarMySql = new MySqlConnection(); // Crea una nueva instancia de MySqlConnection aquí
+            MySqlConnection conectarMySql = new MySqlConnection(); 
 
             try
             {

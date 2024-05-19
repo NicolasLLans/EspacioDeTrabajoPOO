@@ -27,9 +27,7 @@ namespace CentroDeportivo1E.Services
                 {
                     MySqlCommand comando = new MySqlCommand(procedimiento, conexion);
                 
-                    comando.CommandType = CommandType.StoredProcedure;
-
-                    // Asignar valores de Empleado a los parámetros del procedimiento almacenado
+                    comando.CommandType = CommandType.StoredProcedure;                  
 
                     comando.Parameters.AddWithValue("@p_nombre", noSocio.Nombre);
                     comando.Parameters.AddWithValue("@p_apellido", noSocio.Apellido);
@@ -47,21 +45,17 @@ namespace CentroDeportivo1E.Services
             }
             catch (MySqlException ex)
             {
-                // Manejar excepciones específicas de MySQL
+               
                 Console.WriteLine("Error al cargar socio: " + ex.Message);
             }
             catch (Exception ex)
             {
-                // Manejar otras excepciones
+               
                 Console.WriteLine("Error general al nuevo socio: " + ex.Message);
             }
             finally
             {
-
-                if (conexion != null && conexion.State == ConnectionState.Open)
-                {
-                    conexion.Close();
-                }
+                conexionMysql.cerrarConexion(conexion);
             }
         }
 
@@ -100,10 +94,7 @@ namespace CentroDeportivo1E.Services
             }
             finally
             {
-                if (conexion != null && conexion.State == ConnectionState.Open)
-                {
-                    conexion.Close();
-                }
+                conexionMysql.cerrarConexion(conexion);
             }
 
             return existe;

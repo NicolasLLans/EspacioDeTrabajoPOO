@@ -53,10 +53,7 @@ namespace CentroDeportivo1E.Services
             }
             finally
             {
-                if (conexion != null && conexion.State == ConnectionState.Open)
-                {
-                    conexionMysql.cerrarConexion(conexion);
-                }
+                conexionMysql.cerrarConexion(conexion);
             }
 
             return empleado;
@@ -103,11 +100,7 @@ namespace CentroDeportivo1E.Services
             }
             finally
             {
-               
-                if (conexion != null && conexion.State == ConnectionState.Open)
-                {
-                    conexion.Close();
-                }
+                conexionMysql.cerrarConexion(conexion);
             }
         }
 

@@ -32,11 +32,11 @@
             btnInscribir = new Button();
             btnCancelar = new Button();
             lblSocio = new Label();
-            txtNumeroSocio = new TextBox();
             lblActividad = new Label();
-            txtActividad = new ComboBox();
+            cmbActividades = new ComboBox();
             groupBox1 = new GroupBox();
             dgvActividades = new DataGridView();
+            cmbSocio = new ComboBox();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvActividades).BeginInit();
             SuspendLayout();
@@ -46,7 +46,7 @@
             btnInscribir.BackColor = Color.FromArgb(58, 152, 146);
             btnInscribir.Font = new Font("Verdana", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
             btnInscribir.ForeColor = Color.White;
-            btnInscribir.Location = new Point(188, 227);
+            btnInscribir.Location = new Point(280, 227);
             btnInscribir.Margin = new Padding(3, 2, 3, 2);
             btnInscribir.Name = "btnInscribir";
             btnInscribir.Size = new Size(117, 37);
@@ -75,18 +75,9 @@
             lblSocio.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblSocio.Location = new Point(42, 70);
             lblSocio.Name = "lblSocio";
-            lblSocio.Size = new Size(91, 18);
+            lblSocio.Size = new Size(67, 18);
             lblSocio.TabIndex = 2;
-            lblSocio.Text = "Nro Socio";
-            // 
-            // txtNumeroSocio
-            // 
-            txtNumeroSocio.Location = new Point(42, 90);
-            txtNumeroSocio.Margin = new Padding(3, 2, 3, 2);
-            txtNumeroSocio.Name = "txtNumeroSocio";
-            txtNumeroSocio.Size = new Size(263, 23);
-            txtNumeroSocio.TabIndex = 3;
-            txtNumeroSocio.TabStop = false;
+            lblSocio.Text = "SOCIO";
             // 
             // lblActividad
             // 
@@ -99,27 +90,29 @@
             lblActividad.TabIndex = 4;
             lblActividad.Text = "Actividad";
             // 
-            // txtActividad
+            // cmbActividades
             // 
-            txtActividad.FormattingEnabled = true;
-            txtActividad.Location = new Point(42, 169);
-            txtActividad.Name = "txtActividad";
-            txtActividad.Size = new Size(263, 23);
-            txtActividad.TabIndex = 5;
+            cmbActividades.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            cmbActividades.FormattingEnabled = true;
+            cmbActividades.Location = new Point(42, 169);
+            cmbActividades.Name = "cmbActividades";
+            cmbActividades.Size = new Size(355, 26);
+            cmbActividades.TabIndex = 5;
             // 
             // groupBox1
             // 
             groupBox1.Controls.Add(dgvActividades);
             groupBox1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            groupBox1.Location = new Point(347, 43);
+            groupBox1.Location = new Point(465, 46);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(322, 236);
             groupBox1.TabIndex = 9;
             groupBox1.TabStop = false;
-            groupBox1.Text = "ACTIVIDADES";
+            groupBox1.Text = "ACTIVIDADES SOCIO";
             // 
             // dgvActividades
             // 
+            dgvActividades.AllowUserToAddRows = false;
             dgvActividades.BackgroundColor = SystemColors.ButtonHighlight;
             dgvActividades.BorderStyle = BorderStyle.Fixed3D;
             dgvActividades.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -127,19 +120,30 @@
             dgvActividades.Location = new Point(28, 39);
             dgvActividades.Name = "dgvActividades";
             dgvActividades.RowTemplate.Height = 25;
+            dgvActividades.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvActividades.Size = new Size(262, 163);
             dgvActividades.TabIndex = 6;
+            // 
+            // cmbSocio
+            // 
+            cmbSocio.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            cmbSocio.FormattingEnabled = true;
+            cmbSocio.Location = new Point(42, 91);
+            cmbSocio.Name = "cmbSocio";
+            cmbSocio.Size = new Size(355, 26);
+            cmbSocio.TabIndex = 10;
+            cmbSocio.SelectedIndexChanged += cmbSocio_SelectedIndexChanged;
             // 
             // FormInscribirEnUnaActividad
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.InactiveBorder;
-            ClientSize = new Size(700, 338);
+            ClientSize = new Size(812, 338);
+            Controls.Add(cmbSocio);
             Controls.Add(groupBox1);
-            Controls.Add(txtActividad);
+            Controls.Add(cmbActividades);
             Controls.Add(lblActividad);
-            Controls.Add(txtNumeroSocio);
             Controls.Add(lblSocio);
             Controls.Add(btnCancelar);
             Controls.Add(btnInscribir);
@@ -149,6 +153,7 @@
             Name = "FormInscribirEnUnaActividad";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FormInscribirEnUnaActividad";
+            Load += FormInscribirEnUnaActividad_Load;
             groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvActividades).EndInit();
             ResumeLayout(false);
@@ -160,10 +165,10 @@
         private Button btnInscribir;
         private Button btnCancelar;
         private Label lblSocio;
-        private TextBox txtNumeroSocio;
         private Label lblActividad;
-        private ComboBox txtActividad;
+        private ComboBox cmbActividades;
         private GroupBox groupBox1;
         private DataGridView dgvActividades;
+        private ComboBox cmbSocio;
     }
 }

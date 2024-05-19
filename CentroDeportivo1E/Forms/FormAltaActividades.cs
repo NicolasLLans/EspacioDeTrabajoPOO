@@ -17,10 +17,10 @@ namespace CentroDeportivo1E.Forms
 
         private void FormAltaActividades_Load(object sender, EventArgs e)
         {
-            
+            cargarDatagridActividades();
         }
 
-       
+
 
         private void btnAgregarActividad_Click(object sender, EventArgs e)
         {
@@ -44,9 +44,9 @@ namespace CentroDeportivo1E.Forms
                 };
 
                 actividadService.InsertarActividad(nuevaActividad);
-                
+
                 MessageBox.Show("Actividad agregada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
+                cargarDatagridActividades();
             }
             catch (FormatException)
             {
@@ -56,7 +56,7 @@ namespace CentroDeportivo1E.Forms
             {
                 MessageBox.Show("Error al agregar la actividad: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }      
+        }
 
         private void txtIngresoValor_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -85,6 +85,25 @@ namespace CentroDeportivo1E.Forms
             }
         }
 
-        
+        private void cargarDatagridActividades()
+        {
+            dgvActividades.DataSource = actividadService.traerTodasActividades();
+
+            dgvActividades.Columns["IdActividad"].Visible = false;
+            dgvActividades.Columns["baja"].Visible = false;
+            dgvActividades.Columns["Nombre"].Width = 245;
+
+            dgvActividades.Columns["Precio"].Width = 100;
+            dgvActividades.Columns["Precio"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvActividades.Columns["Precio"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvActividades.RowHeadersVisible = false;
+        }
+
+       
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

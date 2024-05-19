@@ -27,7 +27,7 @@ namespace CentroDeportivo1E.Services
                     comando.Parameters.AddWithValue("@p_nombre", actividad.Nombre);
                     comando.Parameters.AddWithValue("@p_precio", actividad.Precio);
 
-                    if (conexion.State != ConnectionState.Open) // Verificar si la conexión está cerrada
+                    if (conexion.State != ConnectionState.Open) 
                     {
                         conexion.Open();
                     }
@@ -42,11 +42,39 @@ namespace CentroDeportivo1E.Services
             }
             finally
             {
-                if (conexion != null && conexion.State == ConnectionState.Open)
+                conexionMysql.cerrarConexion(conexion);
+            }
+        }
+
+
+        public DataTable traerTodasActividades()
+        {
+            MySqlConnection conexion = null;
+            DataTable dataTable = new DataTable();
+            string procedimiento = "TraerActividadesActivas";
+
+            try
+            {
+                conexion = conexionMysql.abrirConexion();
+
+                MySqlDataAdapter dataAdapter = new MySqlDataAdapter(procedimiento, conexion);
+                dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+                dataAdapter.Fill(dataTable);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (conexion != null)
                 {
                     conexionMysql.cerrarConexion(conexion);
                 }
             }
+
+            return dataTable;
         }
 
 

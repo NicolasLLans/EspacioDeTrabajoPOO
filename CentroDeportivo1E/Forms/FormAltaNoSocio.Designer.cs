@@ -54,7 +54,7 @@
             cmbAptoFisico.Location = new Point(173, 261);
             cmbAptoFisico.Name = "cmbAptoFisico";
             cmbAptoFisico.Size = new Size(81, 26);
-            cmbAptoFisico.TabIndex = 65;
+            cmbAptoFisico.TabIndex = 8;
             // 
             // label6
             // 
@@ -85,7 +85,7 @@
             txtDNI.MaxLength = 10;
             txtDNI.Name = "txtDNI";
             txtDNI.Size = new Size(300, 27);
-            txtDNI.TabIndex = 62;
+            txtDNI.TabIndex = 3;
             txtDNI.KeyPress += txtDNI_KeyPress;
             // 
             // label5
@@ -105,7 +105,7 @@
             txtEmail.Location = new Point(173, 213);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(826, 27);
-            txtEmail.TabIndex = 60;
+            txtEmail.TabIndex = 7;
             // 
             // label4
             // 
@@ -124,7 +124,7 @@
             txtDireccion.Location = new Point(174, 161);
             txtDireccion.Name = "txtDireccion";
             txtDireccion.Size = new Size(825, 27);
-            txtDireccion.TabIndex = 58;
+            txtDireccion.TabIndex = 5;
             // 
             // label3
             // 
@@ -155,7 +155,7 @@
             txtTelefono.MaxLength = 10;
             txtTelefono.Name = "txtTelefono";
             txtTelefono.Size = new Size(300, 27);
-            txtTelefono.TabIndex = 55;
+            txtTelefono.TabIndex = 4;
             txtTelefono.KeyPress += txtTelefono_KeyPress;
             // 
             // txtApellido
@@ -164,7 +164,7 @@
             txtApellido.Location = new Point(699, 54);
             txtApellido.Name = "txtApellido";
             txtApellido.Size = new Size(300, 27);
-            txtApellido.TabIndex = 54;
+            txtApellido.TabIndex = 2;
             // 
             // txtNombre
             // 
@@ -172,7 +172,7 @@
             txtNombre.Location = new Point(173, 54);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(300, 27);
-            txtNombre.TabIndex = 53;
+            txtNombre.TabIndex = 1;
             // 
             // label1
             // 
@@ -193,7 +193,7 @@
             btnCancelarAlta.Location = new Point(296, 366);
             btnCancelarAlta.Name = "btnCancelarAlta";
             btnCancelarAlta.Size = new Size(125, 37);
-            btnCancelarAlta.TabIndex = 51;
+            btnCancelarAlta.TabIndex = 10;
             btnCancelarAlta.Text = "CANCELAR";
             btnCancelarAlta.UseVisualStyleBackColor = false;
             btnCancelarAlta.Click += btnCancelarAlta_Click;
@@ -206,7 +206,7 @@
             btnAltaSocio.Location = new Point(681, 366);
             btnAltaSocio.Name = "btnAltaSocio";
             btnAltaSocio.Size = new Size(135, 37);
-            btnAltaSocio.TabIndex = 50;
+            btnAltaSocio.TabIndex = 9;
             btnAltaSocio.Text = "DAR ALTA";
             btnAltaSocio.UseVisualStyleBackColor = false;
             btnAltaSocio.Click += btnAltaSocio_Click;

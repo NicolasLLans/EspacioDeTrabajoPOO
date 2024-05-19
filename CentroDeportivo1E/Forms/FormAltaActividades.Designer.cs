@@ -35,6 +35,9 @@
             txtIngresoValor = new TextBox();
             btnCancelar = new Button();
             btnAgregarActividad = new Button();
+            dgvActividades = new DataGridView();
+            label1 = new Label();
+            ((System.ComponentModel.ISupportInitialize)dgvActividades).BeginInit();
             SuspendLayout();
             // 
             // labelIngreseDescripcionActividad
@@ -59,21 +62,23 @@
             // 
             // txtDescripcionActividad
             // 
+            txtDescripcionActividad.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             txtDescripcionActividad.Location = new Point(47, 101);
             txtDescripcionActividad.Margin = new Padding(3, 2, 3, 2);
             txtDescripcionActividad.Multiline = true;
             txtDescripcionActividad.Name = "txtDescripcionActividad";
             txtDescripcionActividad.Size = new Size(309, 27);
-            txtDescripcionActividad.TabIndex = 2;
+            txtDescripcionActividad.TabIndex = 1;
             // 
             // txtIngresoValor
             // 
+            txtIngresoValor.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             txtIngresoValor.Location = new Point(47, 168);
             txtIngresoValor.Margin = new Padding(3, 2, 3, 2);
             txtIngresoValor.Multiline = true;
             txtIngresoValor.Name = "txtIngresoValor";
             txtIngresoValor.Size = new Size(309, 26);
-            txtIngresoValor.TabIndex = 3;
+            txtIngresoValor.TabIndex = 2;
             txtIngresoValor.TextAlign = HorizontalAlignment.Right;
             txtIngresoValor.KeyPress += txtIngresoValor_KeyPress;
             // 
@@ -89,6 +94,7 @@
             btnCancelar.TabIndex = 4;
             btnCancelar.Text = "CANCELAR";
             btnCancelar.UseVisualStyleBackColor = false;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // btnAgregarActividad
             // 
@@ -99,17 +105,43 @@
             btnAgregarActividad.Margin = new Padding(3, 2, 3, 2);
             btnAgregarActividad.Name = "btnAgregarActividad";
             btnAgregarActividad.Size = new Size(125, 37);
-            btnAgregarActividad.TabIndex = 5;
+            btnAgregarActividad.TabIndex = 3;
             btnAgregarActividad.Text = "AGREGAR";
             btnAgregarActividad.UseVisualStyleBackColor = false;
             btnAgregarActividad.Click += btnAgregarActividad_Click;
+            // 
+            // dgvActividades
+            // 
+            dgvActividades.AllowUserToAddRows = false;
+            dgvActividades.BackgroundColor = SystemColors.Control;
+            dgvActividades.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvActividades.Location = new Point(412, 62);
+            dgvActividades.Name = "dgvActividades";
+            dgvActividades.ReadOnly = true;
+            dgvActividades.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Sunken;
+            dgvActividades.RowTemplate.Height = 25;
+            dgvActividades.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvActividades.Size = new Size(351, 211);
+            dgvActividades.TabIndex = 6;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(412, 41);
+            label1.Name = "label1";
+            label1.Size = new Size(174, 18);
+            label1.TabIndex = 7;
+            label1.Text = "Actividades Activas";
             // 
             // FormAltaActividades
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.InactiveBorder;
-            ClientSize = new Size(408, 338);
+            ClientSize = new Size(805, 328);
+            Controls.Add(label1);
+            Controls.Add(dgvActividades);
             Controls.Add(btnAgregarActividad);
             Controls.Add(btnCancelar);
             Controls.Add(txtIngresoValor);
@@ -123,6 +155,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ALTA DE ACTIVIDADES";
             Load += FormAltaActividades_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvActividades).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -135,5 +168,7 @@
         private TextBox txtIngresoValor;
         private Button btnCancelar;
         private Button btnAgregarActividad;
+        private DataGridView dgvActividades;
+        private Label label1;
     }
 }

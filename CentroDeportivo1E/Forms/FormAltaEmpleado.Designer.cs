@@ -72,7 +72,7 @@
             btnIngresar.Location = new Point(629, 421);
             btnIngresar.Name = "btnIngresar";
             btnIngresar.Size = new Size(125, 37);
-            btnIngresar.TabIndex = 7;
+            btnIngresar.TabIndex = 10;
             btnIngresar.Text = "DAR ALTA";
             btnIngresar.UseVisualStyleBackColor = false;
             btnIngresar.Click += btnIngresar_Click;
@@ -94,7 +94,7 @@
             txtNombre.Location = new Point(165, 38);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(300, 27);
-            txtNombre.TabIndex = 14;
+            txtNombre.TabIndex = 1;
             // 
             // txtApellido
             // 
@@ -102,7 +102,7 @@
             txtApellido.Location = new Point(629, 43);
             txtApellido.Name = "txtApellido";
             txtApellido.Size = new Size(300, 27);
-            txtApellido.TabIndex = 15;
+            txtApellido.TabIndex = 2;
             // 
             // txtTelefono
             // 
@@ -111,7 +111,7 @@
             txtTelefono.MaxLength = 10;
             txtTelefono.Name = "txtTelefono";
             txtTelefono.Size = new Size(300, 27);
-            txtTelefono.TabIndex = 16;
+            txtTelefono.TabIndex = 4;
             txtTelefono.KeyPress += txtTelefono_KeyPress;
             // 
             // label2
@@ -154,7 +154,7 @@
             txtUsuario.Location = new Point(163, 290);
             txtUsuario.Name = "txtUsuario";
             txtUsuario.Size = new Size(308, 27);
-            txtUsuario.TabIndex = 19;
+            txtUsuario.TabIndex = 8;
             // 
             // label5
             // 
@@ -174,7 +174,7 @@
             txtContrasena.Name = "txtContrasena";
             txtContrasena.PasswordChar = '*';
             txtContrasena.Size = new Size(306, 27);
-            txtContrasena.TabIndex = 21;
+            txtContrasena.TabIndex = 9;
             // 
             // label6
             // 
@@ -195,7 +195,7 @@
             cmbPuesto.Location = new Point(163, 239);
             cmbPuesto.Name = "cmbPuesto";
             cmbPuesto.Size = new Size(308, 26);
-            cmbPuesto.TabIndex = 25;
+            cmbPuesto.TabIndex = 7;
             // 
             // label7
             // 
@@ -214,7 +214,7 @@
             txtEmail.Location = new Point(163, 184);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(780, 27);
-            txtEmail.TabIndex = 40;
+            txtEmail.TabIndex = 6;
             // 
             // label8
             // 
@@ -233,7 +233,7 @@
             txtDireccion.Location = new Point(165, 135);
             txtDireccion.Name = "txtDireccion";
             txtDireccion.Size = new Size(778, 27);
-            txtDireccion.TabIndex = 38;
+            txtDireccion.TabIndex = 5;
             // 
             // label9
             // 
@@ -253,7 +253,7 @@
             txtDNI.MaxLength = 10;
             txtDNI.Name = "txtDNI";
             txtDNI.Size = new Size(300, 27);
-            txtDNI.TabIndex = 42;
+            txtDNI.TabIndex = 3;
             txtDNI.KeyPress += txtDNI_KeyPress;
             // 
             // FormAltaEmpleado

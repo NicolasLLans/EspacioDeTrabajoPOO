@@ -36,10 +36,7 @@
             PersonalToolStripMenuItem = new ToolStripMenuItem();
             ActividadesToolStripMenuItem1 = new ToolStripMenuItem();
             PagoToolStripMenuItem = new ToolStripMenuItem();
-            CuotasToolStripMenuItem = new ToolStripMenuItem();
-            ActividadesToolStripMenuItem = new ToolStripMenuItem();
             VerToolStripMenuItem = new ToolStripMenuItem();
-            lIASTAACTIVIDADESToolStripMenuItem = new ToolStripMenuItem();
             VencimientosToolStripMenuItem = new ToolStripMenuItem();
             iNSCRIBIRToolStripMenuItem = new ToolStripMenuItem();
             ActividadSociosToolStripMenuItem = new ToolStripMenuItem();
@@ -55,7 +52,7 @@
             msOpciones.BackColor = Color.FromArgb(205, 210, 188);
             msOpciones.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point);
             msOpciones.ImageScalingSize = new Size(50, 50);
-            msOpciones.Items.AddRange(new ToolStripItem[] { AltaToolStripMenuItem, PagoToolStripMenuItem, VerToolStripMenuItem, VencimientosToolStripMenuItem, iNSCRIBIRToolStripMenuItem });
+            msOpciones.Items.AddRange(new ToolStripItem[] { AltaToolStripMenuItem, iNSCRIBIRToolStripMenuItem, PagoToolStripMenuItem, VerToolStripMenuItem, VencimientosToolStripMenuItem });
             msOpciones.Location = new Point(0, 0);
             msOpciones.Name = "msOpciones";
             msOpciones.RenderMode = ToolStripRenderMode.System;
@@ -102,39 +99,19 @@
             // 
             // PagoToolStripMenuItem
             // 
-            PagoToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { CuotasToolStripMenuItem, ActividadesToolStripMenuItem });
             PagoToolStripMenuItem.ForeColor = Color.FromArgb(6, 18, 30);
             PagoToolStripMenuItem.Image = Properties.Resources.iconoDinero;
             PagoToolStripMenuItem.Name = "PagoToolStripMenuItem";
             PagoToolStripMenuItem.Size = new Size(139, 54);
             PagoToolStripMenuItem.Text = "PAGO";
             // 
-            // CuotasToolStripMenuItem
-            // 
-            CuotasToolStripMenuItem.Name = "CuotasToolStripMenuItem";
-            CuotasToolStripMenuItem.Size = new Size(236, 36);
-            CuotasToolStripMenuItem.Text = "CUOTAS";
-            // 
-            // ActividadesToolStripMenuItem
-            // 
-            ActividadesToolStripMenuItem.Name = "ActividadesToolStripMenuItem";
-            ActividadesToolStripMenuItem.Size = new Size(236, 36);
-            ActividadesToolStripMenuItem.Text = "ACTIVIDADES";
-            // 
             // VerToolStripMenuItem
             // 
-            VerToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { lIASTAACTIVIDADESToolStripMenuItem });
             VerToolStripMenuItem.ForeColor = Color.FromArgb(6, 18, 30);
             VerToolStripMenuItem.Image = Properties.Resources.iconoListar;
             VerToolStripMenuItem.Name = "VerToolStripMenuItem";
             VerToolStripMenuItem.Size = new Size(118, 54);
             VerToolStripMenuItem.Text = "VER";
-            // 
-            // lIASTAACTIVIDADESToolStripMenuItem
-            // 
-            lIASTAACTIVIDADESToolStripMenuItem.Name = "lIASTAACTIVIDADESToolStripMenuItem";
-            lIASTAACTIVIDADESToolStripMenuItem.Size = new Size(302, 36);
-            lIASTAACTIVIDADESToolStripMenuItem.Text = "LISTA ACTIVIDADES";
             // 
             // VencimientosToolStripMenuItem
             // 
@@ -147,8 +124,9 @@
             // iNSCRIBIRToolStripMenuItem
             // 
             iNSCRIBIRToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ActividadSociosToolStripMenuItem });
+            iNSCRIBIRToolStripMenuItem.Image = Properties.Resources.icons8_autógrafo_45;
             iNSCRIBIRToolStripMenuItem.Name = "iNSCRIBIRToolStripMenuItem";
-            iNSCRIBIRToolStripMenuItem.Size = new Size(138, 54);
+            iNSCRIBIRToolStripMenuItem.Size = new Size(188, 54);
             iNSCRIBIRToolStripMenuItem.Text = "INSCRIBIR";
             // 
             // ActividadSociosToolStripMenuItem
@@ -228,8 +206,6 @@
         private ToolStripMenuItem VencimientosToolStripMenuItem;
         private ToolStripMenuItem SociosToolStripMenuItem;
         private ToolStripMenuItem NoSociosToolStripMenuItem;
-        private ToolStripMenuItem CuotasToolStripMenuItem;
-        private ToolStripMenuItem ActividadesToolStripMenuItem;
         private PictureBox pictureBox1;
         private Label label1;
         private TextBox txtBienvenida;
@@ -237,6 +213,5 @@
         private ToolStripMenuItem iNSCRIBIRToolStripMenuItem;
         private ToolStripMenuItem ActividadSociosToolStripMenuItem;
         private ToolStripMenuItem ActividadesToolStripMenuItem1;
-        private ToolStripMenuItem lIASTAACTIVIDADESToolStripMenuItem;
     }
 }
