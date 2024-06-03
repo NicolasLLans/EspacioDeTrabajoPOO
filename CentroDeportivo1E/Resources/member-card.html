@@ -1,108 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-  </head>
-  <body>
-    <section class="card-container">
-      <img src="./img/logo-bn.png" alt="log" class="logo-icon" />
-      <div class="data-client__section">
-        <div class="field__container">
-          <div class="field-spacing"></div>
-          <div class="field-label">Nombre</div>
+</head>
+<body>
+    <section class="card-container"
+             style="
+        background-color: white;
+        width: 640px;
+        height: 340px;
+        border-radius: 15px;
+        color: rgb(20, 47, 72);
+        font-size: 14px;
+        font-family: sans-serif;
+        padding: 20px 30px;
+        margin: 35px;
+        position: relative;
+        border: 2px solid rgb(20, 47, 72);
+      ">
+        <img src="./img/logo-bn.png"
+             alt="log"
+             class="logo-icon"
+             style="
+          position: absolute;
+          width: 160px;
+          height: 160px;
+          right: 10px;
+          top: 10px;
+        " />
+        <div class="data-client__section" style="width: 70%">
+            <div class="field__container" style="margin-bottom: 18px">
+                <div class="field-spacing"
+                     style="
+              background-color: white;
+              width: 100%;
+              height: 28px;
+              margin: 7px 0;
+              border: 1px solid rgb(20, 47, 72);
+              border-radius: 2px;
+            "></div>
+                <div class="field-label"
+                     style="
+              text-transform: uppercase;
+              font-weight: bold;
+              font-size: 12px;
+              padding-left: 4px;
+            ">
+                    Nombre
+                </div>
+            </div>
+            <div class="field__container" style="margin-bottom: 18px">
+                <div class="field-spacing"
+                     style="
+              background-color: white;
+              width: 100%;
+              height: 28px;
+              margin: 7px 0;
+              border: 1px solid rgb(20, 47, 72);
+              border-radius: 2px;
+            "></div>
+                <div class="field-label"
+                     style="
+              text-transform: uppercase;
+              font-weight: bold;
+              font-size: 12px;
+              padding-left: 4px;
+            ">
+                    DNI
+                </div>
+            </div>
         </div>
-        <div class="field__container">
-          <div class="field-spacing"></div>
-          <div class="field-label">DNI</div>
+        <h1 class="title" style="margin: 20px 0; font-size: 32px">
+            CARNET DE MIEMBRO
+        </h1>
+        <div class="data-member__section"
+             style="display: flex; gap: 15px; width: 70%">
+            <div class="field__container" style="flex: 2; margin-bottom: 18px">
+                <div class="field-spacing"
+                     style="
+              background-color: white;
+              width: 100%;
+              height: 28px;
+              margin: 7px 0;
+              border: 1px solid rgb(20, 47, 72);
+              border-radius: 2px;
+            "></div>
+                <div class="field-label"
+                     style="
+              text-transform: uppercase;
+              font-weight: bold;
+              font-size: 12px;
+              padding-left: 4px;
+            ">
+                    N° Socio
+                </div>
+            </div>
+            <div class="field__container" style="flex: 1; margin-bottom: 18px">
+                <div class="field-spacing"
+                     style="
+              background-color: white;
+              width: 100%;
+              height: 28px;
+              margin: 7px 0;
+              border: 1px solid rgb(20, 47, 72);
+              border-radius: 2px;
+            "></div>
+                <div class="field-label"
+                     style="
+              text-transform: uppercase;
+              font-weight: bold;
+              font-size: 12px;
+              padding-left: 4px;
+            ">
+                    Desde
+                </div>
+            </div>
         </div>
-      </div>
-      <h1 class="title">CARNET DE MIEMBRO</h1>
-      <div class="data-member__section">
-        <div class="field__container">
-          <div class="field-spacing"></div>
-          <div class="field-label">N° Socio</div>
-        </div>
-        <div class="field__container">
-          <div class="field-spacing"></div>
-          <div class="field-label">Desde</div>
-        </div>
-      </div>
 
-      <div class="info__section">
-        <span>E1Sports.com.ar</span>
-        <span>E1 SPORT CLUB</span>
-        <span>Direccion</span>
-      </div>
+        <div class="info__section"
+             style="display: flex; justify-content: space-between; margin-top: 35px">
+            <span>E1Sports.com.ar</span>
+            <span>E1 SPORT CLUB</span>
+            <span>Direccion</span>
+        </div>
     </section>
-  </body>
-
-  <style>
-    * {
-      padding: 0;
-      margin: 0;
-      box-sizing: border-box;
-    }
-    .card-container {
-      background-color: white;
-      width: 640px;
-      height: 340px;
-      border-radius: 15px;
-      color: rgb(20 47 72);
-      font-size: 14px;
-      font-family: sans-serif;
-      padding: 20px 30px;
-      margin: 35px;
-      position: relative;
-      border: 2px solid rgb(20 47 72);
-    }
-    .logo-icon {
-      position: absolute;
-      width: 160px;
-      height: 160px;
-      right: 10px;
-      top: 10px;
-    }
-    .data-client__section {
-      width: 70%;
-    }
-    .field__container {
-      margin-bottom: 18px;
-    }
-    .field-label {
-      text-transform: uppercase;
-      font-weight: bold;
-      font-size: 12px;
-      padding-left: 4px;
-    }
-    .field-spacing {
-      background-color: white;
-      width: 100%;
-      height: 28px;
-      margin: 7px 0;
-      border: 1px solid rgb(20 47 72);
-      border-radius: 2px;
-    }
-    .title {
-      margin: 20px 0;
-      font-size: 32px;
-    }
-    .data-member__section {
-      display: flex;
-      gap: 15px;
-      width: 70%;
-    }
-    .data-member__section .field__container:nth-child(1) {
-      flex: 2;
-    }
-    .data-member__section .field__container:nth-child(2) {
-      flex: 1;
-    }
-    .info__section {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 14px;
-    }
-  </style>
+</body>
 </html>
