@@ -1,6 +1,4 @@
-﻿using System;
-using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 
 namespace CentroDeportivo1E.Services
 {
@@ -10,11 +8,11 @@ namespace CentroDeportivo1E.Services
                           Port=3306; 
                           Database=centrodeportivo1e; 
                           Uid=root; 
-                          Pwd=admin;";
+                          Pwd=root;";
 
         public MySqlConnection abrirConexion()
         {
-            MySqlConnection conectarMySql = new MySqlConnection(); 
+            MySqlConnection conectarMySql = new MySqlConnection();
 
             try
             {
