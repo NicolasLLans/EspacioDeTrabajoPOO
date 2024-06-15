@@ -1,37 +1,32 @@
-﻿using System;
+﻿using CentroDeportivo1E.Models;
+using CentroDeportivo1E.Services;
+using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CentroDeportivo1E.Helpers;
-using CentroDeportivo1E.Models;
-using CentroDeportivo1E.Services;
-using MySql.Data.MySqlClient;
-
-
 
 namespace CentroDeportivo1E.Forms
 {
-    public partial class FormAltaSocio : Form
+    public partial class FormAltaNoSocio : Form
     {
-        SocioService socioService = new SocioService();
-        public FormAltaSocio()
+
+        NoSocioService noSocioService = new NoSocioService();
+        public FormAltaNoSocio()
         {
             InitializeComponent();
         }
-
-
 
         private void btnAltaSocio_Click(object sender, EventArgs e)
         {
             try
             {
-                bool socioExistente = socioService.ExisteSocio(Convert.ToInt64(txtDNI.Text.Trim()));
+                bool socioExistente = noSocioService.ExisteNoSocio(Convert.ToInt64(txtDNI.Text.Trim()));
 
                 // Verifica si se encontró un socio con el mismo DNI
                 if (socioExistente)
@@ -52,7 +47,7 @@ namespace CentroDeportivo1E.Forms
                         return;
                     }
 
-                    Socio nuevoSocio = new Socio
+                    NoSocio nuevoNoSocio = new NoSocio
                     {
                         Nombre = txtNombre.Text.ToUpper().Trim(),
                         Apellido = txtApellido.Text.ToUpper().Trim(),
@@ -64,9 +59,9 @@ namespace CentroDeportivo1E.Forms
                         FechaAlta = DateTime.Now,
                     };
 
-                    socioService.InsertarSocio(nuevoSocio);
+                    noSocioService.InsertarNoSocio(nuevoNoSocio);
 
-                    DialogResult resultado = MessageBox.Show("Socio creado correctamente", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult resultado = MessageBox.Show(" No Socio creado correctamente", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (resultado == DialogResult.Yes)
                     {
@@ -88,15 +83,6 @@ namespace CentroDeportivo1E.Forms
             }
         }
 
-
-
-
-        private void btnCancelarAlta_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-
         private void txtDNI_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -111,6 +97,11 @@ namespace CentroDeportivo1E.Forms
             {
                 e.Handled = true;
             }
+        }
+
+        private void btnCancelarAlta_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

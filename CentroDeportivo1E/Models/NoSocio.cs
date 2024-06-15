@@ -1,4 +1,3 @@
-
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -6,14 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace CentroDeportivo1E.Models
 {
-    internal class Socio : Persona
+    internal class NoSocio: Persona
     {
-        public int NumeroSocio { get; set; }
-        public bool Activo { get; set; }
-        public decimal CuotaMensual { get; set; }
+
+        public int NumeroNoSocio { get; set; }
+        public decimal ValorPago { get; set; }
 
         [ForeignKey("Persona")]
         public int FkPersona { get; set; }
@@ -22,6 +20,3 @@ namespace CentroDeportivo1E.Models
 
     }
 }
-
-
-

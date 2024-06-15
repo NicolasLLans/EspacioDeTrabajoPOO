@@ -32,7 +32,7 @@ namespace CentroDeportivo1E.Forms
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
-        {
+       {
             string usuario = txtUsuario.Text.Trim();
             string contrasena = empleadoHelper.encriptarContrasena(txtContrasena.Text.Trim());
 
@@ -52,11 +52,17 @@ namespace CentroDeportivo1E.Forms
                 else
                 {
                     MessageBox.Show("Usuario o contraseña incorrectos. Por favor, inténtelo de nuevo.", "Error de inicio de sesión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtUsuario.Text = "";
+                    txtContrasena.Text = "";
+                    txtUsuario.Focus();
                 }
             }
             else
             {
                 MessageBox.Show("Usuario o contraseña incorrectos. Por favor, inténtelo de nuevo.", "Error de inicio de sesión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtUsuario.Text = "";
+                txtContrasena.Text = "";
+                txtUsuario.Focus();
             }
 
         }
