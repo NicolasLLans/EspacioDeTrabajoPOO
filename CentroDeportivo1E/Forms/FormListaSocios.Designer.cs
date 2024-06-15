@@ -45,9 +45,10 @@
             dgvListaSocios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvListaSocios.Location = new Point(61, 137);
             dgvListaSocios.Name = "dgvListaSocios";
+            dgvListaSocios.RowHeadersWidth = 51;
             dgvListaSocios.RowTemplate.Height = 25;
             dgvListaSocios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvListaSocios.Size = new Size(859, 328);
+            dgvListaSocios.Size = new Size(859, 302);
             dgvListaSocios.TabIndex = 0;
             // 
             // btnBuscar
@@ -55,13 +56,13 @@
             btnBuscar.BackColor = Color.FromArgb(58, 152, 146);
             btnBuscar.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnBuscar.ForeColor = Color.White;
-            btnBuscar.Location = new Point(764, 94);
+            btnBuscar.Location = new Point(764, 84);
             btnBuscar.Name = "btnBuscar";
             btnBuscar.Size = new Size(125, 37);
             btnBuscar.TabIndex = 27;
             btnBuscar.Text = "BUSCAR";
             btnBuscar.UseVisualStyleBackColor = false;
-            btnBuscar.Click += btnBuscar_Click;
+        
             // 
             // txtNombre
             // 
