@@ -1,6 +1,6 @@
 ﻿namespace CentroDeportivo1E.Forms
 {
-    partial class FormAltaSocio
+    partial class FormAltaNoSocio
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAltaSocio));
+            cmbAptoFisico = new ComboBox();
+            label6 = new Label();
+            label9 = new Label();
+            txtDNI = new TextBox();
             label5 = new Label();
             txtEmail = new TextBox();
             label4 = new Label();
@@ -41,59 +44,97 @@
             label1 = new Label();
             btnCancelarAlta = new Button();
             btnAltaSocio = new Button();
-            label9 = new Label();
-            txtDNI = new TextBox();
-            cmbAptoFisico = new ComboBox();
-            label6 = new Label();
             SuspendLayout();
+            // 
+            // cmbAptoFisico
+            // 
+            cmbAptoFisico.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            cmbAptoFisico.FormattingEnabled = true;
+            cmbAptoFisico.Items.AddRange(new object[] { "SI", "NO" });
+            cmbAptoFisico.Location = new Point(173, 261);
+            cmbAptoFisico.Name = "cmbAptoFisico";
+            cmbAptoFisico.Size = new Size(81, 26);
+            cmbAptoFisico.TabIndex = 8;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label6.ForeColor = Color.FromArgb(6, 18, 30);
+            label6.Location = new Point(42, 269);
+            label6.Name = "label6";
+            label6.Size = new Size(107, 18);
+            label6.TabIndex = 64;
+            label6.Text = "Apto Fisico:";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label9.ForeColor = Color.FromArgb(6, 18, 30);
+            label9.Location = new Point(42, 120);
+            label9.Name = "label9";
+            label9.Size = new Size(48, 18);
+            label9.TabIndex = 63;
+            label9.Text = "DNI:";
+            // 
+            // txtDNI
+            // 
+            txtDNI.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            txtDNI.Location = new Point(173, 111);
+            txtDNI.MaxLength = 10;
+            txtDNI.Name = "txtDNI";
+            txtDNI.Size = new Size(300, 27);
+            txtDNI.TabIndex = 3;
+            txtDNI.KeyPress += txtDNI_KeyPress;
             // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label5.ForeColor = Color.FromArgb(6, 18, 30);
-            label5.Location = new Point(50, 210);
+            label5.Location = new Point(42, 222);
             label5.Name = "label5";
             label5.Size = new Size(60, 18);
-            label5.TabIndex = 37;
+            label5.TabIndex = 61;
             label5.Text = "Email:";
             // 
             // txtEmail
             // 
             txtEmail.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            txtEmail.Location = new Point(181, 201);
+            txtEmail.Location = new Point(173, 213);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(826, 27);
-            txtEmail.TabIndex = 36;
+            txtEmail.TabIndex = 7;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label4.ForeColor = Color.FromArgb(6, 18, 30);
-            label4.Location = new Point(46, 158);
+            label4.Location = new Point(38, 170);
             label4.Name = "label4";
             label4.Size = new Size(88, 18);
-            label4.TabIndex = 35;
+            label4.TabIndex = 59;
             label4.Text = "Direccion";
             // 
             // txtDireccion
             // 
             txtDireccion.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            txtDireccion.Location = new Point(182, 149);
+            txtDireccion.Location = new Point(174, 161);
             txtDireccion.Name = "txtDireccion";
             txtDireccion.Size = new Size(825, 27);
-            txtDireccion.TabIndex = 34;
+            txtDireccion.TabIndex = 5;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label3.ForeColor = Color.FromArgb(6, 18, 30);
-            label3.Location = new Point(576, 99);
+            label3.Location = new Point(568, 111);
             label3.Name = "label3";
             label3.Size = new Size(92, 18);
-            label3.TabIndex = 33;
+            label3.TabIndex = 57;
             label3.Text = "Telefono:";
             // 
             // label2
@@ -101,47 +142,47 @@
             label2.AutoSize = true;
             label2.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = Color.FromArgb(6, 18, 30);
-            label2.Location = new Point(576, 51);
+            label2.Location = new Point(568, 63);
             label2.Name = "label2";
             label2.Size = new Size(82, 18);
-            label2.TabIndex = 32;
+            label2.TabIndex = 56;
             label2.Text = "Apellido:";
             // 
             // txtTelefono
             // 
             txtTelefono.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            txtTelefono.Location = new Point(707, 90);
+            txtTelefono.Location = new Point(699, 102);
             txtTelefono.MaxLength = 10;
             txtTelefono.Name = "txtTelefono";
             txtTelefono.Size = new Size(300, 27);
-            txtTelefono.TabIndex = 31;
+            txtTelefono.TabIndex = 4;
             txtTelefono.KeyPress += txtTelefono_KeyPress;
             // 
             // txtApellido
             // 
             txtApellido.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            txtApellido.Location = new Point(707, 42);
+            txtApellido.Location = new Point(699, 54);
             txtApellido.Name = "txtApellido";
             txtApellido.Size = new Size(300, 27);
-            txtApellido.TabIndex = 30;
+            txtApellido.TabIndex = 2;
             // 
             // txtNombre
             // 
             txtNombre.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            txtNombre.Location = new Point(181, 42);
+            txtNombre.Location = new Point(173, 54);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(300, 27);
-            txtNombre.TabIndex = 29;
+            txtNombre.TabIndex = 1;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.FromArgb(6, 18, 30);
-            label1.Location = new Point(50, 51);
+            label1.Location = new Point(42, 63);
             label1.Name = "label1";
             label1.Size = new Size(84, 18);
-            label1.TabIndex = 28;
+            label1.TabIndex = 52;
             label1.Text = "Nombre:";
             // 
             // btnCancelarAlta
@@ -149,10 +190,10 @@
             btnCancelarAlta.BackColor = Color.FromArgb(168, 105, 53);
             btnCancelarAlta.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnCancelarAlta.ForeColor = Color.White;
-            btnCancelarAlta.Location = new Point(304, 354);
+            btnCancelarAlta.Location = new Point(296, 366);
             btnCancelarAlta.Name = "btnCancelarAlta";
             btnCancelarAlta.Size = new Size(125, 37);
-            btnCancelarAlta.TabIndex = 27;
+            btnCancelarAlta.TabIndex = 10;
             btnCancelarAlta.Text = "CANCELAR";
             btnCancelarAlta.UseVisualStyleBackColor = false;
             btnCancelarAlta.Click += btnCancelarAlta_Click;
@@ -162,62 +203,20 @@
             btnAltaSocio.BackColor = Color.FromArgb(58, 152, 146);
             btnAltaSocio.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnAltaSocio.ForeColor = Color.White;
-            btnAltaSocio.Location = new Point(689, 354);
+            btnAltaSocio.Location = new Point(681, 366);
             btnAltaSocio.Name = "btnAltaSocio";
-            btnAltaSocio.Size = new Size(125, 37);
-            btnAltaSocio.TabIndex = 26;
+            btnAltaSocio.Size = new Size(135, 37);
+            btnAltaSocio.TabIndex = 9;
             btnAltaSocio.Text = "DAR ALTA";
             btnAltaSocio.UseVisualStyleBackColor = false;
             btnAltaSocio.Click += btnAltaSocio_Click;
             // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label9.ForeColor = Color.FromArgb(6, 18, 30);
-            label9.Location = new Point(50, 108);
-            label9.Name = "label9";
-            label9.Size = new Size(48, 18);
-            label9.TabIndex = 47;
-            label9.Text = "DNI:";
-            // 
-            // txtDNI
-            // 
-            txtDNI.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            txtDNI.Location = new Point(181, 99);
-            txtDNI.MaxLength = 10;
-            txtDNI.Name = "txtDNI";
-            txtDNI.Size = new Size(300, 27);
-            txtDNI.TabIndex = 46;
-            txtDNI.KeyPress += txtDNI_KeyPress;
-            // 
-            // cmbAptoFisico
-            // 
-            cmbAptoFisico.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            cmbAptoFisico.FormattingEnabled = true;
-            cmbAptoFisico.Items.AddRange(new object[] { "SI", "NO" });
-            cmbAptoFisico.Location = new Point(181, 249);
-            cmbAptoFisico.Name = "cmbAptoFisico";
-            cmbAptoFisico.Size = new Size(81, 26);
-            cmbAptoFisico.TabIndex = 49;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.ForeColor = Color.FromArgb(6, 18, 30);
-            label6.Location = new Point(50, 257);
-            label6.Name = "label6";
-            label6.Size = new Size(107, 18);
-            label6.TabIndex = 48;
-            label6.Text = "Apto Fisico:";
-            // 
-            // FormAltaSocio
+            // FormAltaNoSocio
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.InactiveBorder;
-            ClientSize = new Size(1052, 417);
+            ClientSize = new Size(1037, 427);
             Controls.Add(cmbAptoFisico);
             Controls.Add(label6);
             Controls.Add(label9);
@@ -235,17 +234,19 @@
             Controls.Add(btnCancelarAlta);
             Controls.Add(btnAltaSocio);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "FormAltaSocio";
+            Name = "FormAltaNoSocio";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "ALTA SOCIO";
+            Text = "ALTA NO SOCIOS";
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-
+        private ComboBox cmbAptoFisico;
+        private Label label6;
+        private Label label9;
+        private TextBox txtDNI;
         private Label label5;
         private TextBox txtEmail;
         private Label label4;
@@ -258,9 +259,5 @@
         private Label label1;
         private Button btnCancelarAlta;
         private Button btnAltaSocio;
-        private Label label9;
-        private TextBox txtDNI;
-        private ComboBox cmbAptoFisico;
-        private Label label6;
     }
 }

@@ -113,6 +113,16 @@ namespace CentroDeportivo1E.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_autógrafo_45 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-autógrafo-45", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LogoClub {
             get {
                 object obj = ResourceManager.GetObject("LogoClub", resourceCulture);

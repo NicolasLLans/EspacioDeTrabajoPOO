@@ -11,11 +11,6 @@ namespace CentroDeportivo1E.Forms
         EmpleadoHelper empleadoHelper = new EmpleadoHelper();
         EmpleadoService empleadoService = new EmpleadoService();
 
-        private string nombre, apellido, puesto, usuario, contrasena;
-        private long telefono;
-        private DateTime fechaAlta;
-
-
         public FormAltaEmpleado()
         {
             InitializeComponent();
@@ -23,57 +18,74 @@ namespace CentroDeportivo1E.Forms
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            Empleado UsuarioExistente = empleadoService.BuscarUsuario(txtUsuario.Text.Trim().ToUpper());
+            bool usuarioExistente = empleadoService.ExisteUsuario(txtUsuario.Text.Trim().ToUpper());
 
-            if (UsuarioExistente != null)
+            if (usuarioExistente)
             {
-                MessageBox.Show("usuario ya existe ", "Usuario Existente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("El usuario ya existe.", "Usuario Existente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            else { 
 
+            // Verificar campos incompletos
             if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
                 string.IsNullOrWhiteSpace(txtApellido.Text) ||
                 string.IsNullOrWhiteSpace(cmbPuesto.Text) ||
                 string.IsNullOrWhiteSpace(txtTelefono.Text) ||
                 string.IsNullOrWhiteSpace(txtUsuario.Text) ||
-                string.IsNullOrWhiteSpace(txtContrasena.Text))
+                string.IsNullOrWhiteSpace(txtContrasena.Text) ||
+                string.IsNullOrWhiteSpace(txtDNI.Text))
             {
                 MessageBox.Show("Por favor, complete todos los campos.", "Campos Incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            int ultimoId = empleadoService.ObtenerUltimoId();
-            // Se crea Nuevo Empleado
-            Empleado nuevoEmpleado = new Empleado
+
+            try
             {
-                Id= ultimoId+1,
-                Nombre = txtNombre.Text.ToUpper().Trim(),
-                Apellido = txtApellido.Text.ToUpper().Trim(),
-                Puesto = cmbPuesto.Text.ToUpper().Trim(),
-                Telefono = Convert.ToInt64(txtTelefono.Text.ToUpper().Trim()),
-                Usuario = txtUsuario.Text.ToUpper().Trim(),
-                Contrasena = empleadoHelper.encriptarContrasena(txtContrasena.Text),
-                FechaAlta = DateTime.Now,
+                // Crear un nuevo empleado
+                Empleado nuevoEmpleado = new Empleado
+                {
+                    Nombre = txtNombre.Text.ToUpper().Trim(),
+                    Apellido = txtApellido.Text.ToUpper().Trim(),
+                    Puesto = cmbPuesto.Text.ToUpper().Trim(),
+                    Telefono = Convert.ToInt64(txtTelefono.Text.Trim()),
+                    Usuario = txtUsuario.Text.ToUpper().Trim(),
+                    Dni= Convert.ToInt64(txtDNI.Text.Trim()),
+                    Direccion= txtDireccion.Text.ToUpper().Trim(),
+                    Email= txtEmail.Text.ToUpper().Trim(),
+                    Contrasena = empleadoHelper.encriptarContrasena(txtContrasena.Text),
+                    FechaAlta = DateTime.Now,
+                };
 
-            };
+                empleadoService.InsertarEmpleado(nuevoEmpleado);
 
-            empleadoService.GuardarEmpleado(nuevoEmpleado);
-
-            MessageBox.Show("Usuario Creado Correctamente");
-           
-            this.Close();
-             
-
-
+                MessageBox.Show("Usuario creado correctamente.");
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al crear usuario: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-       
+
         private void btnCancelarAlta_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
         private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void FormAltaEmpleado_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDNI_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
