@@ -417,7 +417,7 @@ CREATE PROCEDURE ListadoPagos(
     IN p_IdPersona INT
 )
 BEGIN
-    SELECT  p.IdPersona, pg.IdPago, pg.FechaPago, c.FechaVencimiento, tp.Tipo AS TipoPago, tp.Monto
+    SELECT  p.IdPersona, pg.IdPago, pg.FechaPago , c.FechaVencimiento, tp.Tipo AS TipoPago, tp.Monto
     FROM 
         persona p
         INNER JOIN cuota c ON p.IdPersona = c.FkPersona
@@ -426,6 +426,36 @@ BEGIN
     WHERE p.IdPersona = p_IdPersona;
 END //
 DELIMITER ;
+
+
+#se crea SP para traer el tipo de pago para socio y no socio 
+
+DELIMITER //
+CREATE PROCEDURE TraerTipoPago(
+    IN p_IdPersona INT
+)
+BEGIN
+    SELECT 
+        p.IdPersona,
+        CASE
+			WHEN s.FkPersona IS NOT NULL THEN (SELECT Tipo FROM tipopago WHERE IdTipoPago = 1)
+            WHEN ns.FkPersona IS NOT NULL THEN (SELECT Tipo FROM tipopago WHERE IdTipoPago = 2)
+            ELSE 'SIN ASIGNAR'
+        END AS TipoPago,
+        CASE
+            WHEN s.FkPersona IS NOT NULL THEN (SELECT Monto FROM tipopago WHERE IdTipoPago = 1)
+            WHEN ns.FkPersona IS NOT NULL THEN (SELECT Monto FROM tipopago WHERE IdTipoPago = 2)
+            ELSE 0
+        END AS Monto
+    FROM 
+        persona p
+    LEFT JOIN socio s ON p.IdPersona = s.FkPersona
+    LEFT JOIN nosocio ns ON p.IdPersona = ns.FkPersona
+    WHERE 
+        p.IdPersona = p_IdPersona;
+END //
+DELIMITER ;
+
 
 
 

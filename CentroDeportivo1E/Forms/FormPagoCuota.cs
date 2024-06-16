@@ -17,6 +17,7 @@ namespace CentroDeportivo1E.Forms
         PagosService pagosService = new PagosService();
         DataTable dtSociosYNoSocios;
         DataTable dtPagos;
+        DataTable dtTipoPago;
         public FormPagoCuota()
         {
             InitializeComponent();
@@ -25,7 +26,7 @@ namespace CentroDeportivo1E.Forms
         private void FormPagoCuota_Load(object sender, EventArgs e)
         {
             cargarListadoSociosYNoSocios();
-           
+
         }
 
         private void cargarListadoSociosYNoSocios()
@@ -62,7 +63,7 @@ namespace CentroDeportivo1E.Forms
         }
 
 
-       
+
         private void dgvListaClientes_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvListaClientes.SelectedRows.Count > 0)
@@ -73,19 +74,26 @@ namespace CentroDeportivo1E.Forms
                 int idPersona = Convert.ToInt32(selectedRow.Cells["IdPersona"].Value);
                 cargarPagos(idPersona);
 
+                MostrarMonto(idPersona);
+
                 // obtenemos el tipo de cliente y actualizar el DateTimePicker
                 string tipo = selectedRow.Cells["Tipo"].Value.ToString();
 
-                if (tipo == "Socio")
-                {
-                    dtpHasta.Value = DateTime.Now.AddDays(30);
-                }
-                else if (tipo == "No Socio")
-                {
-                    dtpHasta.Value = DateTime.Now.AddDays(1);
-                }
+                AjustarFechaHasta(tipo);
+            }
+        }
 
+        private void AjustarFechaHasta(string tipo)
+        {
+            DateTime desdeFecha = dtpDesde.Value;
 
+            if (tipo == "Socio")
+            {
+                dtpHasta.Value = desdeFecha.AddDays(30);
+            }
+            else if (tipo == "No Socio")
+            {
+                dtpHasta.Value = desdeFecha.AddDays(1);
             }
         }
 
@@ -110,6 +118,21 @@ namespace CentroDeportivo1E.Forms
 
         }
 
+        private void MostrarMonto(int idPersona)
+        {
+            DataTable dtTipoPago = pagosService.TraerTipoPago(idPersona);
+
+            if (dtTipoPago.Rows.Count > 0)
+            {
+
+                txtMonto.Text = dtTipoPago.Rows[0]["Monto"].ToString();
+            }
+            else
+            {
+                txtMonto.Text = "0";
+            }
+        }
+
 
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -117,6 +140,24 @@ namespace CentroDeportivo1E.Forms
             this.Close();
         }
 
-       
+        private void dtpDesde_ValueChanged(object sender, EventArgs e)
+        {
+
+            if (dgvListaClientes.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = dgvListaClientes.SelectedRows[0];
+
+
+                string tipo = selectedRow.Cells["Tipo"].Value.ToString();
+
+
+                AjustarFechaHasta(tipo);
+            }
+        }
+
+        private void btnPagar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

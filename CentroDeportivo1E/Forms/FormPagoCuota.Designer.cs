@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPagoCuota));
             dgvHistorialPagos = new DataGridView();
             btnCancelar = new Button();
-            btnInscribir = new Button();
+            btnPagar = new Button();
             dgvListaClientes = new DataGridView();
             txtBusquedaClientes = new TextBox();
             label1 = new Label();
@@ -74,18 +74,19 @@
             btnCancelar.UseVisualStyleBackColor = false;
             btnCancelar.Click += btnCancelar_Click;
             // 
-            // btnInscribir
+            // btnPagar
             // 
-            btnInscribir.BackColor = Color.FromArgb(58, 152, 146);
-            btnInscribir.Font = new Font("Verdana", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            btnInscribir.ForeColor = Color.White;
-            btnInscribir.Location = new Point(482, 479);
-            btnInscribir.Margin = new Padding(3, 2, 3, 2);
-            btnInscribir.Name = "btnInscribir";
-            btnInscribir.Size = new Size(149, 37);
-            btnInscribir.TabIndex = 14;
-            btnInscribir.Text = "PAGAR";
-            btnInscribir.UseVisualStyleBackColor = false;
+            btnPagar.BackColor = Color.FromArgb(58, 152, 146);
+            btnPagar.Font = new Font("Verdana", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            btnPagar.ForeColor = Color.White;
+            btnPagar.Location = new Point(482, 479);
+            btnPagar.Margin = new Padding(3, 2, 3, 2);
+            btnPagar.Name = "btnPagar";
+            btnPagar.Size = new Size(149, 37);
+            btnPagar.TabIndex = 14;
+            btnPagar.Text = "PAGAR";
+            btnPagar.UseVisualStyleBackColor = false;
+            btnPagar.Click += btnPagar_Click;
             // 
             // dgvListaClientes
             // 
@@ -138,12 +139,13 @@
             // 
             // txtMonto
             // 
-            txtMonto.Enabled = false;
             txtMonto.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             txtMonto.Location = new Point(369, 389);
             txtMonto.Name = "txtMonto";
+            txtMonto.ReadOnly = true;
             txtMonto.Size = new Size(262, 27);
             txtMonto.TabIndex = 31;
+            txtMonto.TextAlign = HorizontalAlignment.Right;
             // 
             // label3
             // 
@@ -186,9 +188,11 @@
             dtpDesde.Name = "dtpDesde";
             dtpDesde.Size = new Size(154, 27);
             dtpDesde.TabIndex = 35;
+            dtpDesde.ValueChanged += dtpDesde_ValueChanged;
             // 
             // dtpHasta
             // 
+            dtpHasta.Enabled = false;
             dtpHasta.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             dtpHasta.Format = DateTimePickerFormat.Short;
             dtpHasta.Location = new Point(130, 399);
@@ -213,7 +217,8 @@
             Controls.Add(txtBusquedaClientes);
             Controls.Add(dgvListaClientes);
             Controls.Add(btnCancelar);
-            Controls.Add(btnInscribir);
+            Controls.Add(btnPagar);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FormPagoCuota";
             StartPosition = FormStartPosition.CenterScreen;
@@ -227,7 +232,7 @@
 
         #endregion
         private Button btnCancelar;
-        private Button btnInscribir;
+        private Button btnPagar;
         private DataGridView dgvListaClientes;
         private TextBox txtBusquedaClientes;
         private Label label1;
