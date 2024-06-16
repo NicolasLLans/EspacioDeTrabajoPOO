@@ -1,5 +1,6 @@
 ﻿using CentroDeportivo1E.Models;
 using CentroDeportivo1E.Services;
+using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -66,5 +67,27 @@ namespace CentroDeportivo1E.Forms
             FormAltaNoSocio formAltaNoSocios = new FormAltaNoSocio();
             formAltaNoSocios.ShowDialog();
         }
+
+        private void VencimientosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void fORMULARIOALTASOCIOToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Para imprimir el formulario de alta de socio
+           //PDFGenerator.GenerateRegistrationForm("C:\\Users\\nicol\\Desktop"); 
+        }
+
+        private void cARNETToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Para imprimir el carnet de socio
+            FormImpresiones formImpresiones = new FormImpresiones();
+            formImpresiones.ShowDialog();
+
+        }
+
+   
     }
+
 }

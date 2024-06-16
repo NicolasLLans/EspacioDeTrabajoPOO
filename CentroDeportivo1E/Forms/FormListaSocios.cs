@@ -20,7 +20,7 @@ namespace CentroDeportivo1E.Forms
             InitializeComponent();
         }
 
-       
-      
+
+
     }
 }

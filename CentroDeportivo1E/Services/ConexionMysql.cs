@@ -11,7 +11,6 @@ namespace CentroDeportivo1E.Services
                           Database=centrodeportivo1e; 
                           Uid=root; 
                           Pwd=";
-
         public MySqlConnection abrirConexion()
         {
             MySqlConnection conectarMySql = new MySqlConnection(); 

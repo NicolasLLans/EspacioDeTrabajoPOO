@@ -52,6 +52,7 @@ CREATE TABLE Carnet (
     Vencimiento DATETIME,
     FOREIGN KEY (Fk_NumeroSocio) REFERENCES Socio(NumeroSocio)
 );
+
 CREATE TABLE Actividad (
     IdActividad INT PRIMARY KEY AUTO_INCREMENT,
     Nombre VARCHAR(100),
@@ -201,7 +202,7 @@ DELIMITER ;
 
 #insertar NO SOCIO
 
-# creo SP para insertar un nuevo Socio
+# creo SP para insertar un nuevo No Socio
 DELIMITER //
 
 CREATE PROCEDURE InsertarNoSocio (
@@ -281,7 +282,7 @@ END //
 DELIMITER ;
 
 
-# SP PARA TRAER SOCIOS ACTIVAS
+# SP PARA TRAER SOCIOS ACTIVOS
 DELIMITER //
 
 CREATE PROCEDURE TraerSociosActivos ()
