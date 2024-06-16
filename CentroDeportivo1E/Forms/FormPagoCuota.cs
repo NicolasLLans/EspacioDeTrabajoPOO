@@ -1,4 +1,5 @@
-﻿using CentroDeportivo1E.Services;
+﻿using CentroDeportivo1E.Models;
+using CentroDeportivo1E.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -120,7 +121,7 @@ namespace CentroDeportivo1E.Forms
 
         private void MostrarMonto(int idPersona)
         {
-            DataTable dtTipoPago = pagosService.TraerTipoPago(idPersona);
+            dtTipoPago = pagosService.TraerTipoPago(idPersona);
 
             if (dtTipoPago.Rows.Count > 0)
             {
@@ -132,13 +133,7 @@ namespace CentroDeportivo1E.Forms
                 txtMonto.Text = "0";
             }
         }
-
-
-
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+      
 
         private void dtpDesde_ValueChanged(object sender, EventArgs e)
         {
@@ -157,7 +152,33 @@ namespace CentroDeportivo1E.Forms
 
         private void btnPagar_Click(object sender, EventArgs e)
         {
+            if (dgvListaClientes.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = dgvListaClientes.SelectedRows[0];
+                              
+                int idPersona = Convert.ToInt32(selectedRow.Cells["IdPersona"].Value);
+               
+                int fkTipo = Convert.ToInt32(dtTipoPago.Rows[0]["IdTipoPago"]);
+               
+                DateTime fechaVencimiento = dtpHasta.Value;
+                DateTime fechaPago = dtpDesde.Value;
+               
+                pagosService.InsertarCuotaYPago(idPersona, fechaVencimiento, fkTipo, fechaPago);
 
+                MessageBox.Show("Cuota y Pago insertados correctamente.");
+                cargarPagos(idPersona);
+
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un cliente de la lista.");
+            }
+        }
+
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

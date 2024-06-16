@@ -437,6 +437,11 @@ CREATE PROCEDURE TraerTipoPago(
 BEGIN
     SELECT 
         p.IdPersona,
+          CASE
+            WHEN s.FkPersona IS NOT NULL THEN (SELECT IdTipoPago FROM tipopago WHERE IdTipoPago = 1)
+            WHEN ns.FkPersona IS NOT NULL THEN (SELECT IdTipoPago FROM tipopago WHERE IdTipoPago = 2)
+            ELSE 0
+        END AS IdTipoPago,
         CASE
 			WHEN s.FkPersona IS NOT NULL THEN (SELECT Tipo FROM tipopago WHERE IdTipoPago = 1)
             WHEN ns.FkPersona IS NOT NULL THEN (SELECT Tipo FROM tipopago WHERE IdTipoPago = 2)
@@ -457,7 +462,27 @@ END //
 DELIMITER ;
 
 
+#se crea sp para insertar registros en cuota y pago 
 
+DELIMITER //
+CREATE PROCEDURE InsertarCuotaYPago(
+    IN p_IdPersona INT,
+    IN p_FechaVencimiento DATETIME,
+    IN p_FkTipo INT,
+    IN p_FechaPago DATETIME
+)
+BEGIN
+    DECLARE ultimoIdCuota INT;
+
+    -- Insertar en la tabla cuota
+    INSERT INTO cuota (FkPersona, FechaVencimiento)
+    VALUES (p_IdPersona, p_FechaVencimiento);
+
+	SET ultimoIdCuota = LAST_INSERT_ID();
+
+      INSERT INTO pago (FkCuota, FkTipo, FechaPago) VALUES (ultimoIdCuota, p_FkTipo, p_FechaPago);
+END //
+DELIMITER ;
 
 
 
