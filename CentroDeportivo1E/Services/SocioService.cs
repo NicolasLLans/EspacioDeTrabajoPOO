@@ -17,8 +17,7 @@ using System.Data;
 namespace CentroDeportivo1E.Services
 {
     internal class SocioService
-    {
-        SocioHelper socioHelper = new SocioHelper();
+    {       
         private readonly ConexionMysql conexionMysql = new ConexionMysql();
 
 

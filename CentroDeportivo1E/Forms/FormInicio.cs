@@ -66,5 +66,10 @@ namespace CentroDeportivo1E.Forms
             FormAltaNoSocio formAltaNoSocios = new FormAltaNoSocio();
             formAltaNoSocios.ShowDialog();
         }
+
+        private void cuotaMensuallToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
