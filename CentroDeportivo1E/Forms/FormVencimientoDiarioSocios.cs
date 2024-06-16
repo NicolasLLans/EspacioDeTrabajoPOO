@@ -15,6 +15,15 @@ namespace CentroDeportivo1E.Forms
             InitializeComponent();
         }
 
+        private void FormVencimientoDiarioSocios_Load(object sender, EventArgs e)
+        {
+            // Cargar vencimientos del día actual
+            DateTime fechaActual = DateTime.Today;
+            dtpDesde.Value = fechaActual;
+            dtpHasta.Value = fechaActual;
+            CargarVencimientos(fechaActual, fechaActual);
+        }
+
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -35,6 +44,11 @@ namespace CentroDeportivo1E.Forms
             DateTime fechaInicio = dtpDesde.Value.Date;
             DateTime fechaFin = dtpHasta.Value.Date;
 
+            CargarVencimientos(fechaInicio, fechaFin);
+        }
+
+        private void CargarVencimientos(DateTime fechaInicio, DateTime fechaFin)
+        {
             dtSociosConCuotaVencida = pagosService.ListadoSociosFechaVencimiento(fechaInicio, fechaFin);
             dgvListaVencimientos.DataSource = dtSociosConCuotaVencida;
 
@@ -43,7 +57,7 @@ namespace CentroDeportivo1E.Forms
                 Console.WriteLine(column.ColumnName);
             }
 
-            // Ajustar las columnas del DataGridView según sea necesario
+         
             dgvListaVencimientos.Columns["IdPersona"].Visible = false;
             dgvListaVencimientos.Columns["FechaVencimiento"].Width = 100;
             dgvListaVencimientos.Columns["Nombre"].Width = 200;

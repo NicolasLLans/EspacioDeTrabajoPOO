@@ -38,15 +38,15 @@
             btnCancelar = new Button();
             btnPagar = new Button();
             btnBuscarCuotasVencidas = new Button();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvListaVencimientos).BeginInit();
             SuspendLayout();
             // 
             // dtpHasta
             // 
-            dtpHasta.Enabled = false;
             dtpHasta.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             dtpHasta.Format = DateTimePickerFormat.Short;
-            dtpHasta.Location = new Point(749, 34);
+            dtpHasta.Location = new Point(642, 34);
             dtpHasta.Name = "dtpHasta";
             dtpHasta.Size = new Size(154, 27);
             dtpHasta.TabIndex = 45;
@@ -55,7 +55,7 @@
             // 
             dtpDesde.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             dtpDesde.Format = DateTimePickerFormat.Short;
-            dtpDesde.Location = new Point(472, 35);
+            dtpDesde.Location = new Point(365, 35);
             dtpDesde.Name = "dtpDesde";
             dtpDesde.Size = new Size(154, 27);
             dtpDesde.TabIndex = 44;
@@ -65,7 +65,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label5.ForeColor = Color.FromArgb(6, 18, 30);
-            label5.Location = new Point(667, 40);
+            label5.Location = new Point(560, 40);
             label5.Name = "label5";
             label5.Size = new Size(74, 18);
             label5.TabIndex = 43;
@@ -76,7 +76,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label4.ForeColor = Color.FromArgb(6, 18, 30);
-            label4.Location = new Point(390, 40);
+            label4.Location = new Point(283, 40);
             label4.Name = "label4";
             label4.Size = new Size(73, 18);
             label4.TabIndex = 42;
@@ -100,6 +100,7 @@
             txtBusquedaClientes.Name = "txtBusquedaClientes";
             txtBusquedaClientes.Size = new Size(632, 27);
             txtBusquedaClientes.TabIndex = 40;
+            txtBusquedaClientes.TextChanged += txtBusquedaClientes_TextChanged;
             // 
             // dgvListaVencimientos
             // 
@@ -130,6 +131,7 @@
             btnCancelar.TabIndex = 38;
             btnCancelar.Text = "CANCELAR";
             btnCancelar.UseVisualStyleBackColor = false;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // btnPagar
             // 
@@ -149,19 +151,32 @@
             btnBuscarCuotasVencidas.BackColor = Color.FromArgb(58, 152, 146);
             btnBuscarCuotasVencidas.Font = new Font("Verdana", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
             btnBuscarCuotasVencidas.ForeColor = Color.White;
-            btnBuscarCuotasVencidas.Location = new Point(939, 24);
+            btnBuscarCuotasVencidas.Location = new Point(844, 25);
             btnBuscarCuotasVencidas.Margin = new Padding(3, 2, 3, 2);
             btnBuscarCuotasVencidas.Name = "btnBuscarCuotasVencidas";
             btnBuscarCuotasVencidas.Size = new Size(149, 37);
             btnBuscarCuotasVencidas.TabIndex = 46;
-            btnBuscarCuotasVencidas.Text = "PAGAR";
+            btnBuscarCuotasVencidas.Text = "BUSCAR";
             btnBuscarCuotasVencidas.UseVisualStyleBackColor = false;
+            btnBuscarCuotasVencidas.Click += btnBuscarCuotasVencidas_Click;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.ForeColor = Color.FromArgb(6, 18, 30);
+            label2.Location = new Point(79, 40);
+            label2.Name = "label2";
+            label2.Size = new Size(154, 18);
+            label2.TabIndex = 47;
+            label2.Text = "VENCIMIENTOS:";
             // 
             // FormVencimientoDiarioSocios
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1182, 511);
+            Controls.Add(label2);
             Controls.Add(btnBuscarCuotasVencidas);
             Controls.Add(dtpHasta);
             Controls.Add(dtpDesde);
@@ -174,6 +189,7 @@
             Controls.Add(btnPagar);
             Name = "FormVencimientoDiarioSocios";
             Text = "FormVencimientoDiarioSocios";
+            Load += FormVencimientoDiarioSocios_Load;
             ((System.ComponentModel.ISupportInitialize)dgvListaVencimientos).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -191,5 +207,6 @@
         private Button btnCancelar;
         private Button btnPagar;
         private Button btnBuscarCuotasVencidas;
+        private Label label2;
     }
 }
