@@ -40,7 +40,6 @@
             PagoToolStripMenuItem = new ToolStripMenuItem();
             VerToolStripMenuItem = new ToolStripMenuItem();
             VencimientosToolStripMenuItem = new ToolStripMenuItem();
-            cUOTAMENSUALToolStripMenuItem = new ToolStripMenuItem();
             pictureBox1 = new PictureBox();
             label1 = new Label();
             txtBienvenida = new TextBox();
@@ -132,18 +131,12 @@
             // 
             // VencimientosToolStripMenuItem
             // 
-            VencimientosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { cUOTAMENSUALToolStripMenuItem });
             VencimientosToolStripMenuItem.ForeColor = Color.FromArgb(6, 18, 30);
             VencimientosToolStripMenuItem.Image = Properties.Resources.iconoVencimiento;
             VencimientosToolStripMenuItem.Name = "VencimientosToolStripMenuItem";
             VencimientosToolStripMenuItem.Size = new Size(245, 54);
             VencimientosToolStripMenuItem.Text = "VENCIMIENTOS";
-            // 
-            // cUOTAMENSUALToolStripMenuItem
-            // 
-            cUOTAMENSUALToolStripMenuItem.Name = "cUOTAMENSUALToolStripMenuItem";
-            cUOTAMENSUALToolStripMenuItem.Size = new Size(280, 36);
-            cUOTAMENSUALToolStripMenuItem.Text = "CUOTA MENSUAL";
+            VencimientosToolStripMenuItem.Click += VencimientosToolStripMenuItem_Click;
             // 
             // pictureBox1
             // 
@@ -222,6 +215,5 @@
         private ToolStripMenuItem iNSCRIBIRToolStripMenuItem;
         private ToolStripMenuItem ActividadSociosToolStripMenuItem;
         private ToolStripMenuItem ActividadesToolStripMenuItem1;
-        private ToolStripMenuItem cUOTAMENSUALToolStripMenuItem;
     }
 }

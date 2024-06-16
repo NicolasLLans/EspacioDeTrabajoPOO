@@ -113,5 +113,47 @@ namespace CentroDeportivo1E.Services
             }
         }
 
+
+        public DataTable ListadoSociosFechaVencimiento(DateTime fechaInicio, DateTime fechaFin)
+        {
+            MySqlConnection conexion = null;
+            DataTable dataTable = new DataTable();
+            string procedimiento = "ListadoSociosFechaVencimiento";
+
+            try
+            {
+                conexion = conexionMysql.abrirConexion();
+
+                MySqlCommand comando = new MySqlCommand(procedimiento, conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+
+                // Convertir las fechas a formato 'yyyy-MM-dd'
+                string fechaInicioStr = fechaInicio.ToString("yyyy-MM-dd");
+                string fechaFinStr = fechaFin.ToString("yyyy-MM-dd");
+
+                // Agregar parámetros de entrada
+                comando.Parameters.AddWithValue("@p_FechaInicio", fechaInicioStr);
+                comando.Parameters.AddWithValue("@p_FechaFin", fechaFinStr);
+
+                MySqlDataAdapter dataAdapter = new MySqlDataAdapter(comando);
+
+                dataAdapter.Fill(dataTable);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (conexion != null)
+                {
+                    conexionMysql.cerrarConexion(conexion);
+                }
+            }
+
+            return dataTable;
+        }
+
+
     }
 }

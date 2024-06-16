@@ -72,5 +72,11 @@ namespace CentroDeportivo1E.Forms
             FormPagoCuota formPagoCuota = new FormPagoCuota();
             formPagoCuota.ShowDialog();
         }
+
+        private void VencimientosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormVencimientoDiarioSocios formVencimientoDiarioSocios = new FormVencimientoDiarioSocios();
+            formVencimientoDiarioSocios.ShowDialog();
+        }
     }
 }
