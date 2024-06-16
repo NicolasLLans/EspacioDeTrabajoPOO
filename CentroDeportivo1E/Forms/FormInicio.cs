@@ -68,26 +68,25 @@ namespace CentroDeportivo1E.Forms
             formAltaNoSocios.ShowDialog();
         }
 
-        private void VencimientosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
 
+        private void PagoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormPagoCuota formPagoCuota = new FormPagoCuota();
+            formPagoCuota.ShowDialog();
         }
 
-        private void fORMULARIOALTASOCIOToolStripMenuItem_Click(object sender, EventArgs e)
+        private void VencimientosToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            //Para imprimir el formulario de alta de socio
-           //PDFGenerator.GenerateRegistrationForm("C:\\Users\\nicol\\Desktop"); 
+            FormVencimientoDiarioSocios formVencimientoDiarioSocios = new FormVencimientoDiarioSocios();
+            formVencimientoDiarioSocios.ShowDialog();
         }
 
-        private void cARNETToolStripMenuItem_Click(object sender, EventArgs e)
+        private void carnetSocioToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //Para imprimir el carnet de socio
             FormImpresiones formImpresiones = new FormImpresiones();
             formImpresiones.ShowDialog();
-
         }
-
-   
     }
 
 }

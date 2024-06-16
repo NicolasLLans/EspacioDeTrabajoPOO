@@ -75,9 +75,6 @@ namespace CentroDeportivo1E.Forms
                         string templatePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", templateFileName);
                         string outputPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"Carnet_{nuevoSocio.NumeroSocio}.pdf");
 
-                        // Debug: Imprimir la ruta del archivo HTML para verificar
-                        MessageBox.Show("Ruta del archivo HTML: " + templatePath);
-
                         // Generar el PDF del carnet
                         nuevoSocio.GenerarCarnetPdf(templatePath, outputPath, Convert.ToInt64(txtDNI.Text));
 

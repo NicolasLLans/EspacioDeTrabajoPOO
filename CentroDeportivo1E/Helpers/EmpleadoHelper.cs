@@ -8,23 +8,7 @@ using System.Security.Cryptography;
 namespace CentroDeportivo1E.Helpers
 {
     internal class EmpleadoHelper
-    {
-
-        //metodo para obtener carpeta y ruta de archivo json para empleado
-        internal string ObtenerRutaArchivoJson()
-        {
-           
-            string carpetaJson = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ArchivosJSON");
-            string rutaArchivo = Path.Combine(carpetaJson, "empleados.json");
-
-            if (!Directory.Exists(carpetaJson))
-            {
-                Directory.CreateDirectory(carpetaJson);
-            }
-
-            return rutaArchivo;
-        }
-
+    {              
 
         //metodo para encriptarContraseña
         internal string encriptarContrasena(string contrasena)

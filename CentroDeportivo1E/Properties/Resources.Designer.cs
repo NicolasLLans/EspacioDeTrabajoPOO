@@ -123,6 +123,16 @@ namespace CentroDeportivo1E.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_whatsapp_40__1_ {
+            get {
+                object obj = ResourceManager.GetObject("icons8-whatsapp-40 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LogoClub {
             get {
                 object obj = ResourceManager.GetObject("LogoClub", resourceCulture);
