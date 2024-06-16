@@ -66,5 +66,27 @@ namespace CentroDeportivo1E.Forms
             FormAltaNoSocio formAltaNoSocios = new FormAltaNoSocio();
             formAltaNoSocios.ShowDialog();
         }
+
+        private void VencimientosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void fORMULARIOALTASOCIOToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Para imprimir el formulario de alta de socios
+           FormImpresiones formImpresiones = new FormImpresiones();
+            formImpresiones.ShowDialog();
+
+        }
+
+        private void cARNETToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Para imprimir el carnet de socio
+
+        }
+
+   
     }
+
 }

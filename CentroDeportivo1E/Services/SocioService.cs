@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using iTextSharp.text;
-using CentroDeportivo1E.Helpers;
+
 using CentroDeportivo1E.Models;
 using iTextSharp.text.pdf;
 using System.Diagnostics;
@@ -18,7 +18,7 @@ namespace CentroDeportivo1E.Services
 {
     internal class SocioService
     {
-        SocioHelper socioHelper = new SocioHelper();
+       
         private readonly ConexionMysql conexionMysql = new ConexionMysql();
 
 
@@ -33,11 +33,11 @@ namespace CentroDeportivo1E.Services
                 using (conexion)
                 {
                     MySqlCommand comando = new MySqlCommand(procedimiento, conexion);
-               
+
                     comando.CommandType = CommandType.StoredProcedure;
 
                     // Asignar valores de Empleado a los parámetros del procedimiento almacenado
-                   
+
                     comando.Parameters.AddWithValue("@p_nombre", socio.Nombre);
                     comando.Parameters.AddWithValue("@p_apellido", socio.Apellido);
                     comando.Parameters.AddWithValue("@p_dni", socio.Dni);
@@ -46,7 +46,7 @@ namespace CentroDeportivo1E.Services
                     comando.Parameters.AddWithValue("@p_email", socio.Email);
                     comando.Parameters.AddWithValue("@p_fechaAlta", socio.FechaAlta);
                     comando.Parameters.AddWithValue("@p_aptoFisico", socio.AptoFisico);
-                  
+
                     comando.ExecuteNonQuery();
                 }
 
@@ -54,7 +54,7 @@ namespace CentroDeportivo1E.Services
             }
             catch (MySqlException ex)
             {
-                
+
                 Console.WriteLine("Error al cargar socio: " + ex.Message);
             }
             catch (Exception ex)
@@ -80,7 +80,7 @@ namespace CentroDeportivo1E.Services
                 using (conexion)
                 {
                     MySqlCommand comando = new MySqlCommand(procedimiento, conexion);
-                
+
                     comando.CommandType = CommandType.StoredProcedure;
                     comando.Parameters.AddWithValue("@p_dni", dni);
 
@@ -152,7 +152,7 @@ namespace CentroDeportivo1E.Services
                 {
                     MySqlCommand comando = new MySqlCommand(procedimiento, conexion);
                     comando.CommandType = CommandType.StoredProcedure;
-                    
+
                     comando.Parameters.AddWithValue("@p_IdSocio", idSocio);
                     comando.Parameters.AddWithValue("@p_IdActividad", idActividad);
 
@@ -167,7 +167,7 @@ namespace CentroDeportivo1E.Services
             }
             catch (Exception ex)
             {
-               
+
                 Console.WriteLine("Error general al nuevo socio_actividad: " + ex.Message);
             }
             finally
@@ -191,28 +191,28 @@ namespace CentroDeportivo1E.Services
                 {
                     MySqlCommand comando = new MySqlCommand(procedimiento, conexion);
                     comando.CommandType = CommandType.StoredProcedure;
-                   
+
                     comando.Parameters.AddWithValue("@p_IdSocio", idSocio);
-                   
+
                     MySqlParameter parametroSalida = new MySqlParameter("@p_NumeroActividades", MySqlDbType.Int32);
                     parametroSalida.Direction = ParameterDirection.Output;
                     comando.Parameters.Add(parametroSalida);
 
                     comando.ExecuteNonQuery();
-                   
+
                     numeroActividades = Convert.ToInt32(comando.Parameters["@p_NumeroActividades"].Value);
                 }
             }
             catch (MySqlException ex)
             {
-                
+
                 Console.WriteLine("Error al verificar límite de actividades del socio: " + ex.Message);
-                throw; 
+                throw;
             }
             catch (Exception ex)
-            {               
+            {
                 Console.WriteLine("Error general al verificar límite de actividades del socio: " + ex.Message);
-                throw; 
+                throw;
             }
             finally
             {
@@ -247,18 +247,18 @@ namespace CentroDeportivo1E.Services
                     comando.Parameters.Add(parametroSalida);
 
                     comando.ExecuteNonQuery();
-                    
+
                     existeInscripcion = Convert.ToBoolean(comando.Parameters["@p_ExisteInscripcion"].Value);
                 }
             }
             catch (MySqlException ex)
             {
-               
+
                 Console.WriteLine("Error al verificar inscripción existente: " + ex.Message);
                 throw;
             }
             catch (Exception ex)
-            {               
+            {
                 Console.WriteLine("Error general al verificar inscripción existente: " + ex.Message);
                 throw;
             }
@@ -305,10 +305,6 @@ namespace CentroDeportivo1E.Services
 
             return dataTable;
         }
-
-
-
-
 
     }
 }
