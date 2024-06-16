@@ -485,4 +485,30 @@ END //
 DELIMITER ;
 
 
+#Sp para traer los vencimientos por fechas. 
+
+DELIMITER //
+CREATE PROCEDURE ListadoSociosFechaVencimiento(
+    IN p_FechaInicio DATE,
+    IN p_FechaFin DATE
+)
+BEGIN
+    SELECT 
+        p.IdPersona, 
+		c.FechaVencimiento,
+        p.Dni, 
+        p.Nombre, 
+        p.Apellido, 
+        p.Direccion, 
+        p.Telefono, 
+        p.Email       
+    FROM 
+        persona p
+    INNER JOIN socio s ON p.IdPersona = s.FkPersona
+    INNER JOIN cuota c ON p.IdPersona = c.FkPersona
+    WHERE 
+        DATE(c.FechaVencimiento) BETWEEN p_FechaInicio AND p_FechaFin;
+END //
+DELIMITER ;
+
 

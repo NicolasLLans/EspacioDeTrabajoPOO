@@ -1,6 +1,7 @@
 ﻿using CentroDeportivo1E.Services;
 using System;
 using System.Data;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace CentroDeportivo1E.Forms
@@ -17,7 +18,7 @@ namespace CentroDeportivo1E.Forms
 
         private void FormVencimientoDiarioSocios_Load(object sender, EventArgs e)
         {
-            // Cargar vencimientos del día actual
+
             DateTime fechaActual = DateTime.Today;
             dtpDesde.Value = fechaActual;
             dtpHasta.Value = fechaActual;
@@ -57,15 +58,52 @@ namespace CentroDeportivo1E.Forms
                 Console.WriteLine(column.ColumnName);
             }
 
-         
+
             dgvListaVencimientos.Columns["IdPersona"].Visible = false;
-            dgvListaVencimientos.Columns["FechaVencimiento"].Width = 100;
+            dgvListaVencimientos.Columns["FechaVencimiento"].Width = 150;
             dgvListaVencimientos.Columns["Nombre"].Width = 200;
             dgvListaVencimientos.Columns["Apellido"].Width = 200;
             dgvListaVencimientos.Columns["Direccion"].Width = 200;
-            dgvListaVencimientos.Columns["Telefono"].Width = 100;
+            dgvListaVencimientos.Columns["Telefono"].Width = 80;
             dgvListaVencimientos.Columns["Email"].Width = 200;
             dgvListaVencimientos.RowHeadersVisible = false;
+        }
+
+        private void btnAvisarVencimiento_Click(object sender, EventArgs e)
+        {
+            if (dgvListaVencimientos.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = dgvListaVencimientos.SelectedRows[0];
+                
+                string telefono = selectedRow.Cells["Telefono"].Value.ToString();
+                string nombre = selectedRow.Cells["Nombre"].Value.ToString();
+                DateTime fechaVencimiento = Convert.ToDateTime(selectedRow.Cells["FechaVencimiento"].Value);
+
+                
+                string mensaje = $"Hola {nombre}, tu cuota del club vence el {fechaVencimiento.ToString("dd/MM/yyyy")}.";
+
+               
+                string url = $"https://wa.me/+54{telefono}?text={Uri.EscapeDataString(mensaje)}";
+
+               
+                try
+                {
+                    ProcessStartInfo psi = new ProcessStartInfo
+                    {
+                        FileName = url,
+                        UseShellExecute = true
+                    };
+                    Process.Start(psi);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"No se pudo abrir la URL de WhatsApp. Error: {ex.Message}");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Seleccione una fila de la lista.");
+            }
         }
     }
 }
