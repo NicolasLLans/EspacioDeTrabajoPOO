@@ -10,6 +10,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\img\logo-bn.png" />
+    <None Remove="Resources\member-card.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\img\logo-bn.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\member-card.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Helpers\PDFGenerator.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -30,6 +47,7 @@
 
   <ItemGroup>
     <PackageReference Include="BouncyCastle" Version="1.8.9" />
+    <PackageReference Include="DinkToPdf" Version="1.0.8" />
     <PackageReference Include="iTextSharp" Version="5.5.13.3" />
     <PackageReference Include="MySql.Data" Version="8.4.0" />
   </ItemGroup>

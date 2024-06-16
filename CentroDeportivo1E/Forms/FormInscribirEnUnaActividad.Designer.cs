@@ -37,6 +37,7 @@
             groupBox1 = new GroupBox();
             dgvActividades = new DataGridView();
             cmbSocio = new ComboBox();
+            radioButton1 = new RadioButton();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvActividades).BeginInit();
             SuspendLayout();
@@ -46,10 +47,9 @@
             btnInscribir.BackColor = Color.FromArgb(58, 152, 146);
             btnInscribir.Font = new Font("Verdana", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
             btnInscribir.ForeColor = Color.White;
-            btnInscribir.Location = new Point(280, 227);
-            btnInscribir.Margin = new Padding(3, 2, 3, 2);
+            btnInscribir.Location = new Point(320, 303);
             btnInscribir.Name = "btnInscribir";
-            btnInscribir.Size = new Size(117, 37);
+            btnInscribir.Size = new Size(134, 49);
             btnInscribir.TabIndex = 0;
             btnInscribir.Text = "INSCRIBIR";
             btnInscribir.UseVisualStyleBackColor = false;
@@ -60,10 +60,9 @@
             btnCancelar.BackColor = Color.FromArgb(168, 105, 53);
             btnCancelar.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnCancelar.ForeColor = Color.White;
-            btnCancelar.Location = new Point(42, 227);
-            btnCancelar.Margin = new Padding(3, 2, 3, 2);
+            btnCancelar.Location = new Point(48, 303);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(121, 37);
+            btnCancelar.Size = new Size(152, 49);
             btnCancelar.TabIndex = 1;
             btnCancelar.Text = "CANCELAR";
             btnCancelar.UseVisualStyleBackColor = false;
@@ -73,20 +72,21 @@
             lblSocio.AutoEllipsis = true;
             lblSocio.AutoSize = true;
             lblSocio.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lblSocio.Location = new Point(42, 70);
+            lblSocio.Location = new Point(48, 93);
             lblSocio.Name = "lblSocio";
-            lblSocio.Size = new Size(67, 18);
+            lblSocio.Size = new Size(85, 25);
             lblSocio.TabIndex = 2;
             lblSocio.Text = "SOCIO";
+            lblSocio.Click += lblSocio_Click;
             // 
             // lblActividad
             // 
             lblActividad.AutoEllipsis = true;
             lblActividad.AutoSize = true;
             lblActividad.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lblActividad.Location = new Point(42, 148);
+            lblActividad.Location = new Point(48, 197);
             lblActividad.Name = "lblActividad";
-            lblActividad.Size = new Size(87, 18);
+            lblActividad.Size = new Size(117, 25);
             lblActividad.TabIndex = 4;
             lblActividad.Text = "Actividad";
             // 
@@ -94,18 +94,21 @@
             // 
             cmbActividades.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             cmbActividades.FormattingEnabled = true;
-            cmbActividades.Location = new Point(42, 169);
+            cmbActividades.Location = new Point(48, 225);
+            cmbActividades.Margin = new Padding(3, 4, 3, 4);
             cmbActividades.Name = "cmbActividades";
-            cmbActividades.Size = new Size(355, 26);
+            cmbActividades.Size = new Size(405, 33);
             cmbActividades.TabIndex = 5;
             // 
             // groupBox1
             // 
             groupBox1.Controls.Add(dgvActividades);
             groupBox1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            groupBox1.Location = new Point(465, 46);
+            groupBox1.Location = new Point(531, 61);
+            groupBox1.Margin = new Padding(3, 4, 3, 4);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(322, 236);
+            groupBox1.Padding = new Padding(3, 4, 3, 4);
+            groupBox1.Size = new Size(368, 315);
             groupBox1.TabIndex = 9;
             groupBox1.TabStop = false;
             groupBox1.Text = "ACTIVIDADES SOCIO";
@@ -117,29 +120,44 @@
             dgvActividades.BorderStyle = BorderStyle.Fixed3D;
             dgvActividades.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvActividades.GridColor = SystemColors.InactiveBorder;
-            dgvActividades.Location = new Point(28, 39);
+            dgvActividades.Location = new Point(32, 52);
+            dgvActividades.Margin = new Padding(3, 4, 3, 4);
             dgvActividades.Name = "dgvActividades";
+            dgvActividades.RowHeadersWidth = 51;
             dgvActividades.RowTemplate.Height = 25;
             dgvActividades.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvActividades.Size = new Size(262, 163);
+            dgvActividades.Size = new Size(299, 217);
             dgvActividades.TabIndex = 6;
             // 
             // cmbSocio
             // 
             cmbSocio.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             cmbSocio.FormattingEnabled = true;
-            cmbSocio.Location = new Point(42, 91);
+            cmbSocio.Location = new Point(48, 121);
+            cmbSocio.Margin = new Padding(3, 4, 3, 4);
             cmbSocio.Name = "cmbSocio";
-            cmbSocio.Size = new Size(355, 26);
+            cmbSocio.Size = new Size(405, 33);
             cmbSocio.TabIndex = 10;
             cmbSocio.SelectedIndexChanged += cmbSocio_SelectedIndexChanged;
             // 
+            // radioButton1
+            // 
+            radioButton1.AutoSize = true;
+            radioButton1.Location = new Point(285, 386);
+            radioButton1.Name = "radioButton1";
+            radioButton1.Size = new Size(117, 24);
+            radioButton1.TabIndex = 11;
+            radioButton1.TabStop = true;
+            radioButton1.Text = "radioButton1";
+            radioButton1.UseVisualStyleBackColor = true;
+            // 
             // FormInscribirEnUnaActividad
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.InactiveBorder;
-            ClientSize = new Size(812, 338);
+            ClientSize = new Size(928, 451);
+            Controls.Add(radioButton1);
             Controls.Add(cmbSocio);
             Controls.Add(groupBox1);
             Controls.Add(cmbActividades);
@@ -149,7 +167,6 @@
             Controls.Add(btnInscribir);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(3, 2, 3, 2);
             Name = "FormInscribirEnUnaActividad";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FormInscribirEnUnaActividad";
@@ -170,5 +187,6 @@
         private GroupBox groupBox1;
         private DataGridView dgvActividades;
         private ComboBox cmbSocio;
+        private RadioButton radioButton1;
     }
 }

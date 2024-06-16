@@ -110,23 +110,23 @@ namespace CentroDeportivo1E.Forms
 
         private void cmbSocio_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbSocio.SelectedIndex != -1) 
+            if (cmbSocio.SelectedIndex != -1)
             {
-              
+
                 int numeroSocio = (int)cmbSocio.SelectedValue; // Obtener el número de socio seleccionado
                 CargarActividades(numeroSocio);
 
                 DataTable actividades = socioService.traerActividadPorNumeroSocio(numeroSocio);
-                
+
                 dgvActividades.DataSource = actividades;
 
-               
+
             }
         }
 
         private void CargarActividades(int numeroSocio)
         {
-            DataTable actividades = socioService.traerActividadPorNumeroSocio(numeroSocio); 
+            DataTable actividades = socioService.traerActividadPorNumeroSocio(numeroSocio);
             dgvActividades.DataSource = actividades;
 
             dgvActividades.Columns["IdActividad"].Visible = false;
@@ -134,7 +134,12 @@ namespace CentroDeportivo1E.Forms
             dgvActividades.Columns["Precio"].Visible = false;
             dgvActividades.Columns["Nombre"].Width = 290;
             dgvActividades.RowHeadersVisible = false;
-            
+
+        }
+
+        private void lblSocio_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

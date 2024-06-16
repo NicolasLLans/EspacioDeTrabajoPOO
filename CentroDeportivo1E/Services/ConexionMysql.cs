@@ -10,8 +10,7 @@ namespace CentroDeportivo1E.Services
                           Port=3306; 
                           Database=centrodeportivo1e; 
                           Uid=root; 
-                          Pwd=admin;";
-
+                          Pwd=";
         public MySqlConnection abrirConexion()
         {
             MySqlConnection conectarMySql = new MySqlConnection(); 

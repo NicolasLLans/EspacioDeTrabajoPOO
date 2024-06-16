@@ -1,5 +1,6 @@
 ﻿using CentroDeportivo1E.Models;
 using CentroDeportivo1E.Services;
+using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -66,5 +67,26 @@ namespace CentroDeportivo1E.Forms
             FormAltaNoSocio formAltaNoSocios = new FormAltaNoSocio();
             formAltaNoSocios.ShowDialog();
         }
+
+
+        private void PagoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormPagoCuota formPagoCuota = new FormPagoCuota();
+            formPagoCuota.ShowDialog();
+        }
+
+        private void VencimientosToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            FormVencimientoDiarioSocios formVencimientoDiarioSocios = new FormVencimientoDiarioSocios();
+            formVencimientoDiarioSocios.ShowDialog();
+        }
+
+        private void carnetSocioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Para imprimir el carnet de socio
+            FormImpresiones formImpresiones = new FormImpresiones();
+            formImpresiones.ShowDialog();
+        }
     }
+
 }

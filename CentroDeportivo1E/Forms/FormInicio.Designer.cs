@@ -35,14 +35,16 @@
             NoSociosToolStripMenuItem = new ToolStripMenuItem();
             PersonalToolStripMenuItem = new ToolStripMenuItem();
             ActividadesToolStripMenuItem1 = new ToolStripMenuItem();
+            iNSCRIBIRToolStripMenuItem = new ToolStripMenuItem();
+            ActividadSociosToolStripMenuItem = new ToolStripMenuItem();
             PagoToolStripMenuItem = new ToolStripMenuItem();
             VerToolStripMenuItem = new ToolStripMenuItem();
             VencimientosToolStripMenuItem = new ToolStripMenuItem();
-            iNSCRIBIRToolStripMenuItem = new ToolStripMenuItem();
-            ActividadSociosToolStripMenuItem = new ToolStripMenuItem();
             pictureBox1 = new PictureBox();
             label1 = new Label();
             txtBienvenida = new TextBox();
+            toolStripMenuItem1 = new ToolStripMenuItem();
+            carnetSocioToolStripMenuItem = new ToolStripMenuItem();
             msOpciones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -52,7 +54,7 @@
             msOpciones.BackColor = Color.FromArgb(205, 210, 188);
             msOpciones.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point);
             msOpciones.ImageScalingSize = new Size(50, 50);
-            msOpciones.Items.AddRange(new ToolStripItem[] { AltaToolStripMenuItem, iNSCRIBIRToolStripMenuItem, PagoToolStripMenuItem, VerToolStripMenuItem, VencimientosToolStripMenuItem });
+            msOpciones.Items.AddRange(new ToolStripItem[] { AltaToolStripMenuItem, iNSCRIBIRToolStripMenuItem, PagoToolStripMenuItem, VerToolStripMenuItem, VencimientosToolStripMenuItem, toolStripMenuItem1 });
             msOpciones.Location = new Point(0, 0);
             msOpciones.Name = "msOpciones";
             msOpciones.RenderMode = ToolStripRenderMode.System;
@@ -97,6 +99,21 @@
             ActividadesToolStripMenuItem1.Text = "ACTIVIDADES";
             ActividadesToolStripMenuItem1.Click += ActividadesToolStripMenuItem1_Click;
             // 
+            // iNSCRIBIRToolStripMenuItem
+            // 
+            iNSCRIBIRToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ActividadSociosToolStripMenuItem });
+            iNSCRIBIRToolStripMenuItem.Image = Properties.Resources.icons8_autógrafo_45;
+            iNSCRIBIRToolStripMenuItem.Name = "iNSCRIBIRToolStripMenuItem";
+            iNSCRIBIRToolStripMenuItem.Size = new Size(188, 54);
+            iNSCRIBIRToolStripMenuItem.Text = "INSCRIBIR";
+            // 
+            // ActividadSociosToolStripMenuItem
+            // 
+            ActividadSociosToolStripMenuItem.Name = "ActividadSociosToolStripMenuItem";
+            ActividadSociosToolStripMenuItem.Size = new Size(302, 36);
+            ActividadSociosToolStripMenuItem.Text = "ACTIVIDAD SOCIOS";
+            ActividadSociosToolStripMenuItem.Click += ActividadSociosToolStripMenuItem_Click;
+            // 
             // PagoToolStripMenuItem
             // 
             PagoToolStripMenuItem.ForeColor = Color.FromArgb(6, 18, 30);
@@ -104,6 +121,7 @@
             PagoToolStripMenuItem.Name = "PagoToolStripMenuItem";
             PagoToolStripMenuItem.Size = new Size(139, 54);
             PagoToolStripMenuItem.Text = "PAGO";
+            PagoToolStripMenuItem.Click += PagoToolStripMenuItem_Click;
             // 
             // VerToolStripMenuItem
             // 
@@ -120,21 +138,7 @@
             VencimientosToolStripMenuItem.Name = "VencimientosToolStripMenuItem";
             VencimientosToolStripMenuItem.Size = new Size(245, 54);
             VencimientosToolStripMenuItem.Text = "VENCIMIENTOS";
-            // 
-            // iNSCRIBIRToolStripMenuItem
-            // 
-            iNSCRIBIRToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ActividadSociosToolStripMenuItem });
-            iNSCRIBIRToolStripMenuItem.Image = Properties.Resources.icons8_autógrafo_45;
-            iNSCRIBIRToolStripMenuItem.Name = "iNSCRIBIRToolStripMenuItem";
-            iNSCRIBIRToolStripMenuItem.Size = new Size(188, 54);
-            iNSCRIBIRToolStripMenuItem.Text = "INSCRIBIR";
-            // 
-            // ActividadSociosToolStripMenuItem
-            // 
-            ActividadSociosToolStripMenuItem.Name = "ActividadSociosToolStripMenuItem";
-            ActividadSociosToolStripMenuItem.Size = new Size(302, 36);
-            ActividadSociosToolStripMenuItem.Text = "ACTIVIDAD SOCIOS";
-            ActividadSociosToolStripMenuItem.Click += ActividadSociosToolStripMenuItem_Click;
+            VencimientosToolStripMenuItem.Click += VencimientosToolStripMenuItem_Click_1;
             // 
             // pictureBox1
             // 
@@ -171,6 +175,20 @@
             txtBienvenida.Size = new Size(455, 243);
             txtBienvenida.TabIndex = 3;
             txtBienvenida.TextAlign = HorizontalAlignment.Center;
+            // 
+            // toolStripMenuItem1
+            // 
+            toolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { carnetSocioToolStripMenuItem });
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new Size(157, 54);
+            toolStripMenuItem1.Text = "Impresiones";
+            // 
+            // carnetSocioToolStripMenuItem
+            // 
+            carnetSocioToolStripMenuItem.Name = "carnetSocioToolStripMenuItem";
+            carnetSocioToolStripMenuItem.Size = new Size(226, 36);
+            carnetSocioToolStripMenuItem.Text = "Carnet Socio";
+            carnetSocioToolStripMenuItem.Click += carnetSocioToolStripMenuItem_Click;
             // 
             // FormInicio
             // 
@@ -213,5 +231,10 @@
         private ToolStripMenuItem iNSCRIBIRToolStripMenuItem;
         private ToolStripMenuItem ActividadSociosToolStripMenuItem;
         private ToolStripMenuItem ActividadesToolStripMenuItem1;
+        private ToolStripMenuItem iMPRESIONESToolStripMenuItem;
+        private ToolStripMenuItem cARNETToolStripMenuItem;
+        private ToolStripMenuItem fORMULARIOALTASOCIOToolStripMenuItem;
+        private ToolStripMenuItem toolStripMenuItem1;
+        private ToolStripMenuItem carnetSocioToolStripMenuItem;
     }
 }
