@@ -51,6 +51,7 @@ namespace CentroDeportivo1E.Services
                 }
 
                 Console.WriteLine("Socio cargado correctamente.");
+
             }
             catch (MySqlException ex)
             {
@@ -109,6 +110,43 @@ namespace CentroDeportivo1E.Services
             return existe;
         }
 
+        public DataTable TraerSocioPorDni(long dni)
+        {
+            
+            MySqlConnection conexion = null;
+            DataTable dataTable = new DataTable();
+
+            try
+            {
+                conexion = conexionMysql.abrirConexion();
+                string procedimiento = "TraerSocioPorDni";
+
+                using (conexion)
+                {
+                    MySqlCommand comando = new MySqlCommand(procedimiento, conexion);
+
+                    comando.CommandType = CommandType.StoredProcedure;
+                    comando.Parameters.AddWithValue("@p_Dni", dni);
+
+                    MySqlDataAdapter dataAdapter = new MySqlDataAdapter(comando);
+
+                    dataAdapter.Fill(dataTable);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (conexion != null)
+                {
+                    conexionMysql.cerrarConexion(conexion);
+                }
+            }
+
+            return dataTable;
+        }
 
         public DataTable traerSociosActivos()
         {

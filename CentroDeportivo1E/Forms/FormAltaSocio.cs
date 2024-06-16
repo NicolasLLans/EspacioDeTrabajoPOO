@@ -66,10 +66,22 @@ namespace CentroDeportivo1E.Forms
 
                     socioService.InsertarSocio(nuevoSocio);
 
-                    DialogResult resultado = MessageBox.Show("Socio creado correctamente", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult resultado = MessageBox.Show("Socio creado correctamente. ¿Desea imprimir el carnet?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (resultado == DialogResult.Yes)
                     {
+                        // Obtener la ruta del archivo HTML de la plantilla
+                        string templateFileName = "member-card.html";
+                        string templatePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", templateFileName);
+                        string outputPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"Carnet_{nuevoSocio.NumeroSocio}.pdf");
+
+                        // Debug: Imprimir la ruta del archivo HTML para verificar
+                        MessageBox.Show("Ruta del archivo HTML: " + templatePath);
+
+                        // Generar el PDF del carnet
+                        nuevoSocio.GenerarCarnetPdf(templatePath, outputPath, Convert.ToInt64(txtDNI.Text));
+
+                        MessageBox.Show("Carnet generado exitosamente.", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Close();
                     }
                 }
@@ -95,6 +107,7 @@ namespace CentroDeportivo1E.Forms
         {
             this.Close();
         }
+
 
 
         private void txtDNI_KeyPress(object sender, KeyPressEventArgs e)

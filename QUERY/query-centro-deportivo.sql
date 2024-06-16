@@ -372,3 +372,17 @@ BEGIN
 END //
 
 DELIMITER ;
+DELIMITER //
+
+CREATE PROCEDURE TraerSocioPorDni(
+    IN p_Dni INT
+)
+BEGIN
+
+    SELECT s.*, p.*
+    FROM Socio s
+    INNER JOIN Persona p ON p.IdPersona = s.FkPersona
+    WHERE p.Dni = p_Dni;
+END //
+
+DELIMITER ;
