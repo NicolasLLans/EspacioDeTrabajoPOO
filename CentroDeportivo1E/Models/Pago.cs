@@ -10,6 +10,9 @@ namespace CentroDeportivo1E.Models
         [ForeignKey("Cuota")]
         public int FkCuota { get; set;}
 
+        [ForeignKey("TipoPago")]
+        public int fkTipo { get; set; }
+
         public DateTime FechaPago { get; set; }
     }
 }

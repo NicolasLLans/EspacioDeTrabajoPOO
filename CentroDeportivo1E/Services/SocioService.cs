@@ -305,6 +305,41 @@ namespace CentroDeportivo1E.Services
             return dataTable;
         }
 
+        public DataTable traerListadoSociosYNoSocios()
+        {
+            MySqlConnection conexion = null;
+            DataTable dataTable = new DataTable();
+            string procedimiento = "ListadoSociosYNoSocios";
+
+            try
+            {
+                conexion = conexionMysql.abrirConexion();
+
+                MySqlCommand comando = new MySqlCommand(procedimiento, conexion);
+                comando.CommandType = CommandType.StoredProcedure;
+
+                MySqlDataAdapter dataAdapter = new MySqlDataAdapter(comando);
+
+                dataAdapter.Fill(dataTable);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                if (conexion != null)
+                {
+                    conexionMysql.cerrarConexion(conexion);
+                }
+            }
+
+            return dataTable;
+        }
+
+
+
+
 
 
 

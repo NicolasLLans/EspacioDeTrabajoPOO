@@ -38,8 +38,6 @@
             iNSCRIBIRToolStripMenuItem = new ToolStripMenuItem();
             ActividadSociosToolStripMenuItem = new ToolStripMenuItem();
             PagoToolStripMenuItem = new ToolStripMenuItem();
-            cuotaMensuallToolStripMenuItem = new ToolStripMenuItem();
-            pAGODIARIONOSOCIOToolStripMenuItem = new ToolStripMenuItem();
             VerToolStripMenuItem = new ToolStripMenuItem();
             VencimientosToolStripMenuItem = new ToolStripMenuItem();
             cUOTAMENSUALToolStripMenuItem = new ToolStripMenuItem();
@@ -117,25 +115,12 @@
             // 
             // PagoToolStripMenuItem
             // 
-            PagoToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { cuotaMensuallToolStripMenuItem, pAGODIARIONOSOCIOToolStripMenuItem });
             PagoToolStripMenuItem.ForeColor = Color.FromArgb(6, 18, 30);
             PagoToolStripMenuItem.Image = Properties.Resources.iconoDinero;
             PagoToolStripMenuItem.Name = "PagoToolStripMenuItem";
             PagoToolStripMenuItem.Size = new Size(139, 54);
             PagoToolStripMenuItem.Text = "PAGO";
-            // 
-            // cuotaMensuallToolStripMenuItem
-            // 
-            cuotaMensuallToolStripMenuItem.Name = "cuotaMensuallToolStripMenuItem";
-            cuotaMensuallToolStripMenuItem.Size = new Size(359, 36);
-            cuotaMensuallToolStripMenuItem.Text = "CUOTA MENSUAL SOCIO";
-            cuotaMensuallToolStripMenuItem.Click += cuotaMensuallToolStripMenuItem_Click;
-            // 
-            // pAGODIARIONOSOCIOToolStripMenuItem
-            // 
-            pAGODIARIONOSOCIOToolStripMenuItem.Name = "pAGODIARIONOSOCIOToolStripMenuItem";
-            pAGODIARIONOSOCIOToolStripMenuItem.Size = new Size(359, 36);
-            pAGODIARIONOSOCIOToolStripMenuItem.Text = "PAGO DIARIO NO SOCIO";
+            PagoToolStripMenuItem.Click += PagoToolStripMenuItem_Click;
             // 
             // VerToolStripMenuItem
             // 
@@ -237,8 +222,6 @@
         private ToolStripMenuItem iNSCRIBIRToolStripMenuItem;
         private ToolStripMenuItem ActividadSociosToolStripMenuItem;
         private ToolStripMenuItem ActividadesToolStripMenuItem1;
-        private ToolStripMenuItem cuotaMensuallToolStripMenuItem;
-        private ToolStripMenuItem pAGODIARIONOSOCIOToolStripMenuItem;
         private ToolStripMenuItem cUOTAMENSUALToolStripMenuItem;
     }
 }

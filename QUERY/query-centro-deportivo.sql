@@ -59,6 +59,16 @@ CREATE TABLE Actividad (
     baja BOOL DEFAULT 0
 );
 
+CREATE TABLE TipoPago(
+IdTipoPago BIGINT PRIMARY KEY AUTO_INCREMENT,
+Tipo VARCHAR(200),
+Monto  DECIMAL(10, 2),
+Baja BOOL DEFAULT 0
+);
+
+INSERT INTO tipopago(Tipo, Monto) VALUES( 'CUOTA MENSUAL',80000), ( 'CUOTA DUARIA',5000);
+
+
 CREATE TABLE Cuota (
     IdCuota BIGINT PRIMARY KEY AUTO_INCREMENT,
     fkPersona INT ,     
@@ -69,7 +79,9 @@ CREATE TABLE Cuota (
 CREATE TABLE Pago (
     IdPago BIGINT PRIMARY KEY AUTO_INCREMENT,
     fkCuota BIGINT,  -- Asegúrate de que los tipos de datos coincidan
+    fkTipo BIGINT,
     FechaPago DATETIME,    
+    FOREIGN KEY (fkTipo) REFERENCES TipoPago(IdTipoPago),
     FOREIGN KEY (fkCuota) REFERENCES Cuota(IdCuota)
 );
 
@@ -81,6 +93,10 @@ CREATE TABLE Socio_Actividad (
     FOREIGN KEY (IdSocio) REFERENCES Socio(NumeroSocio),
     FOREIGN KEY (IdActividad) REFERENCES Actividad(IdActividad)
 );
+
+
+
+
 
 # creo SP para buscar usuario y contraseña de un empleado 
 DELIMITER //
@@ -372,3 +388,46 @@ BEGIN
 END //
 
 DELIMITER ;
+
+
+#creamos procedimiento para traer la lista de socios y no socios para utilizar en form pago
+
+DELIMITER //
+CREATE PROCEDURE ListadoSociosYNoSocios()
+BEGIN
+    SELECT p.IdPersona,p.Dni,p.Nombre,p.Apellido,p.Direccion,p.Telefono,p.Email,p.FechaAlta,
+        p.FechaBaja,p.AptoFisico,p.Baja,s.NumeroSocio,
+        'Socio' AS Tipo
+    FROM 
+        persona p
+        INNER JOIN socio s ON p.IdPersona = s.FkPersona
+    UNION ALL
+    SELECT  p.IdPersona,p.Dni, p.Nombre, p.Apellido,p.Direccion, p.Telefono,p.Email,p.FechaAlta, 
+		p.FechaBaja,p.AptoFisico,p.Baja,ns.NumeroNoSocio AS NumeroSocio,
+        'No Socio' AS Tipo
+    FROM 
+        persona p
+        INNER JOIN nosocio ns ON p.IdPersona = ns.FkPersona;
+END //
+DELIMITER ;
+
+#se crea SP para traer el listado de pago de personas
+DELIMITER //
+CREATE PROCEDURE ListadoPagos(
+    IN p_IdPersona INT
+)
+BEGIN
+    SELECT  p.IdPersona, pg.IdPago, pg.FechaPago, c.FechaVencimiento, tp.Tipo AS TipoPago, tp.Monto
+    FROM 
+        persona p
+        INNER JOIN cuota c ON p.IdPersona = c.FkPersona
+        INNER JOIN pago pg ON c.IdCuota = pg.FkCuota 
+        INNER JOIN tipopago tp ON pg.FkTipo = tp.IdTipoPago
+    WHERE p.IdPersona = p_IdPersona;
+END //
+DELIMITER ;
+
+
+
+
+

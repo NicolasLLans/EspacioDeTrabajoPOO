@@ -14,6 +14,9 @@ namespace CentroDeportivo1E.Forms
     public partial class FormPagoCuota : Form
     {
         SocioService socioService = new SocioService();
+        PagosService pagosService = new PagosService();
+        DataTable dtSociosYNoSocios;
+        DataTable dtPagos;
         public FormPagoCuota()
         {
             InitializeComponent();
@@ -21,29 +24,99 @@ namespace CentroDeportivo1E.Forms
 
         private void FormPagoCuota_Load(object sender, EventArgs e)
         {
-            cargarComboBox();
+            cargarListadoSociosYNoSocios();
+           
         }
 
-        private void cargarComboBox()
-        {           
+        private void cargarListadoSociosYNoSocios()
+        {
+            dtSociosYNoSocios = socioService.traerListadoSociosYNoSocios();
+            dgvListaClientes.DataSource = dtSociosYNoSocios;
 
-            DataTable dtSocios = socioService.traerSociosActivos();
-
-            DataRow filaTodos1 = dtSocios.NewRow();
-            filaTodos1["NumeroSocio"] = "0";
-            filaTodos1["Nombre"] = "";
-            dtSocios.Rows.InsertAt(filaTodos1, 0);
-
-            if (dtSocios.Rows.Count > 0)
-
+            foreach (DataColumn column in dtSociosYNoSocios.Columns)
             {
-                cmbSocio.DisplayMember = "Nombre";
-                cmbSocio.ValueMember = "NumeroSocio";
-                cmbSocio.DataSource = dtSocios;
-                cmbSocio.SelectedIndex = 0;
-                cmbSocio.AutoCompleteSource = AutoCompleteSource.ListItems;
-                cmbSocio.AutoCompleteMode = AutoCompleteMode.Suggest;
+                Console.WriteLine(column.ColumnName);
+            }
+
+            dgvListaClientes.Columns["Nombre"].Width = 210;
+            dgvListaClientes.Columns["Apellido"].Width = 210;
+
+            dgvListaClientes.Columns["IdPersona"].Visible = false;
+            dgvListaClientes.Columns["Direccion"].Visible = false;
+            dgvListaClientes.Columns["Telefono"].Visible = false;
+            dgvListaClientes.Columns["Email"].Visible = false;
+            dgvListaClientes.Columns["FechaAlta"].Visible = false;
+            dgvListaClientes.Columns["FechaBaja"].Visible = false;
+            dgvListaClientes.Columns["AptoFisico"].Visible = false;
+            dgvListaClientes.Columns["NumeroSocio"].Visible = false;
+            dgvListaClientes.Columns["Baja"].Visible = false;
+            dgvListaClientes.RowHeadersVisible = false;
+
+        }
+
+        private void txtBusquedaClientes_TextChanged(object sender, EventArgs e)
+        {
+            DataView dv = dtSociosYNoSocios.DefaultView;
+            dv.RowFilter = string.Format("Nombre LIKE '%{0}%' OR Apellido LIKE '%{0}%'", txtBusquedaClientes.Text);
+            dgvListaClientes.DataSource = dv.ToTable();
+        }
+
+
+       
+        private void dgvListaClientes_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvListaClientes.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = dgvListaClientes.SelectedRows[0];
+
+                // obtenemos el IdPersona y cargar los pagos
+                int idPersona = Convert.ToInt32(selectedRow.Cells["IdPersona"].Value);
+                cargarPagos(idPersona);
+
+                // obtenemos el tipo de cliente y actualizar el DateTimePicker
+                string tipo = selectedRow.Cells["Tipo"].Value.ToString();
+
+                if (tipo == "Socio")
+                {
+                    dtpHasta.Value = DateTime.Now.AddDays(30);
+                }
+                else if (tipo == "No Socio")
+                {
+                    dtpHasta.Value = DateTime.Now.AddDays(1);
+                }
+
+
             }
         }
+
+        private void cargarPagos(int IdPersona)
+        {
+            dtPagos = pagosService.ListadoPagos(IdPersona);
+            dgvHistorialPagos.DataSource = dtPagos;
+
+            foreach (DataColumn column in dtPagos.Columns)
+            {
+                Console.WriteLine(column.ColumnName);
+            }
+
+
+            dgvHistorialPagos.Columns["FechaPago"].Width = 150;
+            dgvHistorialPagos.Columns["FechaVencimiento"].Width = 150;
+
+            dgvHistorialPagos.Columns["IdPersona"].Visible = false;
+            dgvHistorialPagos.Columns["IdPago"].Visible = false;
+            dgvHistorialPagos.Columns["IdPago"].Visible = false;
+            dgvHistorialPagos.RowHeadersVisible = false;
+
+        }
+
+
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+       
     }
 }

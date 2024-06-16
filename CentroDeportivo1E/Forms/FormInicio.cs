@@ -67,9 +67,10 @@ namespace CentroDeportivo1E.Forms
             formAltaNoSocios.ShowDialog();
         }
 
-        private void cuotaMensuallToolStripMenuItem_Click(object sender, EventArgs e)
+        private void PagoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            FormPagoCuota formPagoCuota = new FormPagoCuota();
+            formPagoCuota.ShowDialog();
         }
     }
 }

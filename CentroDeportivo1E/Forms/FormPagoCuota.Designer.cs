@@ -29,35 +29,22 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPagoCuota));
-            cmbSocio = new ComboBox();
-            groupBox1 = new GroupBox();
             dgvHistorialPagos = new DataGridView();
-            lblSocio = new Label();
             btnCancelar = new Button();
             btnInscribir = new Button();
-            groupBox1.SuspendLayout();
+            dgvListaClientes = new DataGridView();
+            txtBusquedaClientes = new TextBox();
+            label1 = new Label();
+            label2 = new Label();
+            txtMonto = new TextBox();
+            label3 = new Label();
+            label4 = new Label();
+            label5 = new Label();
+            dtpDesde = new DateTimePicker();
+            dtpHasta = new DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)dgvHistorialPagos).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvListaClientes).BeginInit();
             SuspendLayout();
-            // 
-            // cmbSocio
-            // 
-            cmbSocio.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            cmbSocio.FormattingEnabled = true;
-            cmbSocio.Location = new Point(25, 101);
-            cmbSocio.Name = "cmbSocio";
-            cmbSocio.Size = new Size(355, 26);
-            cmbSocio.TabIndex = 13;
-            // 
-            // groupBox1
-            // 
-            groupBox1.Controls.Add(dgvHistorialPagos);
-            groupBox1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            groupBox1.Location = new Point(444, 37);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(391, 236);
-            groupBox1.TabIndex = 12;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "HISTORIAL PAGOS";
             // 
             // dgvHistorialPagos
             // 
@@ -66,78 +53,191 @@
             dgvHistorialPagos.BorderStyle = BorderStyle.Fixed3D;
             dgvHistorialPagos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvHistorialPagos.GridColor = SystemColors.InactiveBorder;
-            dgvHistorialPagos.Location = new Point(21, 43);
+            dgvHistorialPagos.Location = new Point(700, 108);
             dgvHistorialPagos.Name = "dgvHistorialPagos";
             dgvHistorialPagos.RowTemplate.Height = 25;
             dgvHistorialPagos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvHistorialPagos.Size = new Size(355, 163);
+            dgvHistorialPagos.Size = new Size(506, 221);
             dgvHistorialPagos.TabIndex = 6;
-            // 
-            // lblSocio
-            // 
-            lblSocio.AutoEllipsis = true;
-            lblSocio.AutoSize = true;
-            lblSocio.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lblSocio.Location = new Point(25, 80);
-            lblSocio.Name = "lblSocio";
-            lblSocio.Size = new Size(67, 18);
-            lblSocio.TabIndex = 11;
-            lblSocio.Text = "SOCIO";
             // 
             // btnCancelar
             // 
             btnCancelar.BackColor = Color.FromArgb(168, 105, 53);
             btnCancelar.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnCancelar.ForeColor = Color.White;
-            btnCancelar.Location = new Point(40, 180);
+            btnCancelar.Location = new Point(163, 479);
             btnCancelar.Margin = new Padding(3, 2, 3, 2);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(121, 37);
             btnCancelar.TabIndex = 15;
             btnCancelar.Text = "CANCELAR";
             btnCancelar.UseVisualStyleBackColor = false;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // btnInscribir
             // 
             btnInscribir.BackColor = Color.FromArgb(58, 152, 146);
             btnInscribir.Font = new Font("Verdana", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
             btnInscribir.ForeColor = Color.White;
-            btnInscribir.Location = new Point(231, 180);
+            btnInscribir.Location = new Point(482, 479);
             btnInscribir.Margin = new Padding(3, 2, 3, 2);
             btnInscribir.Name = "btnInscribir";
             btnInscribir.Size = new Size(149, 37);
             btnInscribir.TabIndex = 14;
-            btnInscribir.Text = "PAGAR CUOTA";
+            btnInscribir.Text = "PAGAR";
             btnInscribir.UseVisualStyleBackColor = false;
+            // 
+            // dgvListaClientes
+            // 
+            dgvListaClientes.AllowUserToAddRows = false;
+            dgvListaClientes.AllowUserToDeleteRows = false;
+            dgvListaClientes.AllowUserToResizeColumns = false;
+            dgvListaClientes.AllowUserToResizeRows = false;
+            dgvListaClientes.BackgroundColor = SystemColors.ButtonHighlight;
+            dgvListaClientes.BorderStyle = BorderStyle.Fixed3D;
+            dgvListaClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvListaClientes.Location = new Point(48, 108);
+            dgvListaClientes.Name = "dgvListaClientes";
+            dgvListaClientes.ReadOnly = true;
+            dgvListaClientes.RowTemplate.Height = 25;
+            dgvListaClientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvListaClientes.Size = new Size(632, 221);
+            dgvListaClientes.TabIndex = 16;
+            dgvListaClientes.SelectionChanged += dgvListaClientes_SelectionChanged;
+            // 
+            // txtBusquedaClientes
+            // 
+            txtBusquedaClientes.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            txtBusquedaClientes.Location = new Point(48, 57);
+            txtBusquedaClientes.Name = "txtBusquedaClientes";
+            txtBusquedaClientes.Size = new Size(632, 27);
+            txtBusquedaClientes.TabIndex = 17;
+            txtBusquedaClientes.TextChanged += txtBusquedaClientes_TextChanged;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.ForeColor = Color.FromArgb(6, 18, 30);
+            label1.Location = new Point(48, 36);
+            label1.Name = "label1";
+            label1.Size = new Size(247, 18);
+            label1.TabIndex = 29;
+            label1.Text = "BUSCAR SOCIO/NO SOCIO";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.ForeColor = Color.FromArgb(6, 18, 30);
+            label2.Location = new Point(369, 356);
+            label2.Name = "label2";
+            label2.Size = new Size(166, 18);
+            label2.TabIndex = 30;
+            label2.Text = "MONTO A PAGAR:";
+            // 
+            // txtMonto
+            // 
+            txtMonto.Enabled = false;
+            txtMonto.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            txtMonto.Location = new Point(369, 389);
+            txtMonto.Name = "txtMonto";
+            txtMonto.Size = new Size(262, 27);
+            txtMonto.TabIndex = 31;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.ForeColor = Color.FromArgb(6, 18, 30);
+            label3.Location = new Point(700, 87);
+            label3.Name = "label3";
+            label3.Size = new Size(156, 18);
+            label3.TabIndex = 32;
+            label3.Text = "Historial de Pago";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.ForeColor = Color.FromArgb(6, 18, 30);
+            label4.Location = new Point(48, 361);
+            label4.Name = "label4";
+            label4.Size = new Size(73, 18);
+            label4.TabIndex = 33;
+            label4.Text = "DESDE:";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.ForeColor = Color.FromArgb(6, 18, 30);
+            label5.Location = new Point(48, 405);
+            label5.Name = "label5";
+            label5.Size = new Size(74, 18);
+            label5.TabIndex = 34;
+            label5.Text = "HASTA:";
+            // 
+            // dtpDesde
+            // 
+            dtpDesde.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            dtpDesde.Format = DateTimePickerFormat.Short;
+            dtpDesde.Location = new Point(130, 356);
+            dtpDesde.Name = "dtpDesde";
+            dtpDesde.Size = new Size(154, 27);
+            dtpDesde.TabIndex = 35;
+            // 
+            // dtpHasta
+            // 
+            dtpHasta.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            dtpHasta.Format = DateTimePickerFormat.Short;
+            dtpHasta.Location = new Point(130, 399);
+            dtpHasta.Name = "dtpHasta";
+            dtpHasta.Size = new Size(154, 27);
+            dtpHasta.TabIndex = 36;
             // 
             // FormPagoCuota
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(881, 299);
+            ClientSize = new Size(1218, 539);
+            Controls.Add(dtpHasta);
+            Controls.Add(dtpDesde);
+            Controls.Add(label5);
+            Controls.Add(label4);
+            Controls.Add(label3);
+            Controls.Add(dgvHistorialPagos);
+            Controls.Add(txtMonto);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Controls.Add(txtBusquedaClientes);
+            Controls.Add(dgvListaClientes);
             Controls.Add(btnCancelar);
             Controls.Add(btnInscribir);
-            Controls.Add(cmbSocio);
-            Controls.Add(groupBox1);
-            Controls.Add(lblSocio);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FormPagoCuota";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "PAGO CUOTA";
             Load += FormPagoCuota_Load;
-            groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvHistorialPagos).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvListaClientes).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private ComboBox cmbSocio;
-        private GroupBox groupBox1;
-        private DataGridView dgvHistorialPagos;
-        private Label lblSocio;
         private Button btnCancelar;
         private Button btnInscribir;
+        private DataGridView dgvListaClientes;
+        private TextBox txtBusquedaClientes;
+        private Label label1;
+        private Label label2;
+        private TextBox txtMonto;
+        private DataGridView dgvHistorialPagos;
+        private Label label3;
+        private Label label4;
+        private Label label5;
+        private DateTimePicker dtpDesde;
+        private DateTimePicker dtpHasta;
     }
 }
