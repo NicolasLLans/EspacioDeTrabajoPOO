@@ -8,19 +8,19 @@ namespace CentroDeportivo1E.Forms
 {
     public partial class FormAltaActividades : Form
     {
-        private readonly ActividadService actividadService = new ActividadService();
+        private readonly ActividadService actividadService;
 
-        public FormAltaActividades()
+        // Modifica el constructor para recibir las credenciales de conexión
+        public FormAltaActividades(string servidor, string puerto, string baseDatos, string usuario, string contrasena)
         {
             InitializeComponent();
+            actividadService = new ActividadService(servidor, puerto, baseDatos, usuario, contrasena);
         }
 
         private void FormAltaActividades_Load(object sender, EventArgs e)
         {
             cargarDatagridActividades();
         }
-
-
 
         private void btnAgregarActividad_Click(object sender, EventArgs e)
         {
@@ -87,7 +87,7 @@ namespace CentroDeportivo1E.Forms
 
         private void cargarDatagridActividades()
         {
-            dgvActividades.DataSource = actividadService.traerTodasActividades();
+            dgvActividades.DataSource = actividadService.TraerTodasActividades();
 
             dgvActividades.Columns["IdActividad"].Visible = false;
             dgvActividades.Columns["baja"].Visible = false;
@@ -98,8 +98,6 @@ namespace CentroDeportivo1E.Forms
             dgvActividades.Columns["Precio"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvActividades.RowHeadersVisible = false;
         }
-
-       
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {

@@ -1,28 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using CentroDeportivo1E.Helpers;
 using CentroDeportivo1E.Models;
 using CentroDeportivo1E.Services;
-using CentroDeportivo1E.Helpers;
 
 namespace CentroDeportivo1E.Forms
 {
-    public partial class FormLogin : Form
+    internal partial class FormLogin : Form
     {
-        private readonly EmpleadoService empleadoService = new EmpleadoService();
+        private readonly EmpleadoService empleadoService;
         private EmpleadoHelper empleadoHelper = new EmpleadoHelper();
         public string Usuario { get; private set; }
         public string Contrasena { get; private set; }
 
-        public FormLogin()
+        internal FormLogin(EmpleadoService empleadoService)
         {
             InitializeComponent();
+            this.empleadoService = empleadoService;
             this.AcceptButton = btnIngresar;
         }
 
@@ -32,18 +24,16 @@ namespace CentroDeportivo1E.Forms
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
-       {
+        {
             string usuario = txtUsuario.Text.Trim();
             string contrasena = empleadoHelper.encriptarContrasena(txtContrasena.Text.Trim());
 
             Empleado empleado = empleadoService.BuscarUsuarioInicioSesion(usuario, contrasena);
 
-         
             if (empleado != null)
             {
                 if (usuario == empleado.Usuario && contrasena == empleado.Contrasena)
                 {
-
                     Usuario = txtUsuario.Text;
                     Contrasena = empleadoHelper.encriptarContrasena(txtContrasena.Text);
                     DialogResult = DialogResult.OK;
@@ -64,9 +54,6 @@ namespace CentroDeportivo1E.Forms
                 txtContrasena.Text = "";
                 txtUsuario.Focus();
             }
-
         }
-
     }
-    
 }

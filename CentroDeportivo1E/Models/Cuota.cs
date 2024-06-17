@@ -13,13 +13,8 @@ namespace CentroDeportivo1E.Models
 
         [ForeignKey("Persona")]
         public int FkPersona { get; set; }
-
-        [ForeignKey("Actividad")]
-        public int fkActividad { get; set; }
-       
-        public DateTime FechaPago { get; set; }
-
-        public Persona Persona { get; set; }
-        public Actividad Actividad { get; set; }
+           
+        public DateTime FechaVencimiento { get; set; }
+    
     }
 }

@@ -1,33 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using CentroDeportivo1E.Models;
 using CentroDeportivo1E.Services;
-using CentroDeportivo1E.Models;
-using CentroDeportivo1E.Helpers;
-using MySql.Data.MySqlClient;
+using System;
+using System.Data;
+using System.Windows.Forms;
 
 namespace CentroDeportivo1E.Forms
 {
     public partial class FormInscribirEnUnaActividad : Form
     {
-        ActividadService actividadService = new ActividadService();
-        SocioService socioService = new SocioService();
-        public FormInscribirEnUnaActividad()
+        private readonly ActividadService actividadService;
+        private readonly SocioService socioService;
+
+        // Modifica el constructor para recibir las credenciales de conexión
+        public FormInscribirEnUnaActividad(string servidor, string puerto, string baseDatos, string usuario, string contrasena)
         {
             InitializeComponent();
+            actividadService = new ActividadService(servidor, puerto, baseDatos, usuario, contrasena);
+            socioService = new SocioService(servidor, puerto, baseDatos, usuario, contrasena);
         }
 
         private void buttonInscribir_Click(object sender, EventArgs e)
         {
             try
             {
-
                 int idSocio = (int)cmbSocio.SelectedValue;
                 int idActividad = (int)cmbActividades.SelectedValue;
 
@@ -42,35 +37,28 @@ namespace CentroDeportivo1E.Forms
 
                 if (numeroActividades >= 3)
                 {
-
                     MessageBox.Show("El socio ya tiene el número máximo de actividades permitidas (3).");
                     return;
                 }
 
                 socioService.InsertarSocioActividad(idSocio, idActividad);
-
                 CargarActividades(idSocio);
-
                 MessageBox.Show("Inscripción realizada correctamente.");
             }
             catch (Exception ex)
             {
-                // Manejar cualquier excepción y mostrar un mensaje de error
                 MessageBox.Show("Error al inscribir socio en actividad: " + ex.Message);
             }
         }
-
-
 
         private void FormInscribirEnUnaActividad_Load(object sender, EventArgs e)
         {
             cargarComboBoxes();
         }
 
-
         private void cargarComboBoxes()
         {
-            DataTable dtActividades = actividadService.traerTodasActividades();
+            DataTable dtActividades = actividadService.TraerTodasActividades();
 
             DataRow filaTodos = dtActividades.NewRow();
             filaTodos["IdActividad"] = "0";
@@ -78,7 +66,6 @@ namespace CentroDeportivo1E.Forms
             dtActividades.Rows.InsertAt(filaTodos, 0);
 
             if (dtActividades.Rows.Count > 0)
-
             {
                 cmbActividades.DisplayMember = "Nombre";
                 cmbActividades.ValueMember = "IdActividad";
@@ -88,8 +75,7 @@ namespace CentroDeportivo1E.Forms
                 cmbActividades.AutoCompleteMode = AutoCompleteMode.Suggest;
             }
 
-
-            DataTable dtSocios = socioService.traerSociosActivos();
+            DataTable dtSocios = socioService.TraerSociosActivos();
 
             DataRow filaTodos1 = dtSocios.NewRow();
             filaTodos1["NumeroSocio"] = "0";
@@ -97,7 +83,6 @@ namespace CentroDeportivo1E.Forms
             dtSocios.Rows.InsertAt(filaTodos1, 0);
 
             if (dtSocios.Rows.Count > 0)
-
             {
                 cmbSocio.DisplayMember = "Nombre";
                 cmbSocio.ValueMember = "NumeroSocio";
@@ -110,23 +95,19 @@ namespace CentroDeportivo1E.Forms
 
         private void cmbSocio_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbSocio.SelectedIndex != -1) 
+            if (cmbSocio.SelectedIndex != -1)
             {
-              
                 int numeroSocio = (int)cmbSocio.SelectedValue; // Obtener el número de socio seleccionado
                 CargarActividades(numeroSocio);
 
-                DataTable actividades = socioService.traerActividadPorNumeroSocio(numeroSocio);
-                
+                DataTable actividades = socioService.TraerActividadPorNumeroSocio(numeroSocio);
                 dgvActividades.DataSource = actividades;
-
-               
             }
         }
 
         private void CargarActividades(int numeroSocio)
         {
-            DataTable actividades = socioService.traerActividadPorNumeroSocio(numeroSocio); 
+            DataTable actividades = socioService.TraerActividadPorNumeroSocio(numeroSocio);
             dgvActividades.DataSource = actividades;
 
             dgvActividades.Columns["IdActividad"].Visible = false;
@@ -134,7 +115,10 @@ namespace CentroDeportivo1E.Forms
             dgvActividades.Columns["Precio"].Visible = false;
             dgvActividades.Columns["Nombre"].Width = 290;
             dgvActividades.RowHeadersVisible = false;
-            
+        }
+
+        private void lblSocio_Click(object sender, EventArgs e)
+        {
         }
     }
 }

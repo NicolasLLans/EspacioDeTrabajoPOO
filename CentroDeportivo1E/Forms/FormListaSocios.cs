@@ -14,13 +14,13 @@ namespace CentroDeportivo1E.Forms
 {
     public partial class FormListaSocios : Form
     {
-        SocioService socioService = new SocioService();
+      
         public FormListaSocios()
         {
             InitializeComponent();
         }
 
-       
-      
+
+
     }
 }

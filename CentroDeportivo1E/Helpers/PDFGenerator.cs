@@ -4,7 +4,7 @@ using Font = iTextSharp.text.Font;
 using Image = iTextSharp.text.Image;
 using Rectangle = iTextSharp.text.Rectangle;
 
-namespace CentroDeportivo1E.Models
+namespace CentroDeportivo1E.Helpers
 {
     internal class PDFGenerator
     {
