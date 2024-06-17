@@ -2,32 +2,32 @@
 using CentroDeportivo1E.Models;
 using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CentroDeportivo1E.Services
 {
     internal class NoSocioService
-    {      
-        private readonly ConexionMysql conexionMysql = new ConexionMysql();
+    {
+        private readonly ConexionMysql conexionMysql;
 
+        // Constructor que recibe las credenciales de conexión
+        public NoSocioService(string servidor, string puerto, string baseDatos, string usuario, string contrasena)
+        {
+            this.conexionMysql = new ConexionMysql(servidor, puerto, baseDatos, usuario, contrasena);
+        }
 
         public void InsertarNoSocio(NoSocio noSocio)
         {
             MySqlConnection conexion = null;
             try
             {
-                conexion = conexionMysql.abrirConexion();
+                conexion = conexionMysql.AbrirConexion();
                 string procedimiento = "InsertarNoSocio";
 
                 using (conexion)
                 {
                     MySqlCommand comando = new MySqlCommand(procedimiento, conexion);
-                
-                    comando.CommandType = CommandType.StoredProcedure;                  
+                    comando.CommandType = CommandType.StoredProcedure;
 
                     comando.Parameters.AddWithValue("@p_nombre", noSocio.Nombre);
                     comando.Parameters.AddWithValue("@p_apellido", noSocio.Apellido);
@@ -45,17 +45,15 @@ namespace CentroDeportivo1E.Services
             }
             catch (MySqlException ex)
             {
-               
                 Console.WriteLine("Error al cargar socio: " + ex.Message);
             }
             catch (Exception ex)
             {
-               
                 Console.WriteLine("Error general al nuevo socio: " + ex.Message);
             }
             finally
             {
-                conexionMysql.cerrarConexion(conexion);
+                conexionMysql.CerrarConexion(conexion);
             }
         }
 
@@ -66,13 +64,13 @@ namespace CentroDeportivo1E.Services
 
             try
             {
-                conexion = conexionMysql.abrirConexion();
+                conexion = conexionMysql.AbrirConexion();
                 string procedimiento = "ExisteNoSocio";
-                
-                using (conexion) {
 
-                  MySqlCommand comando = new MySqlCommand(procedimiento, conexion);
-                  comando.CommandType = CommandType.StoredProcedure;
+                using (conexion)
+                {
+                    MySqlCommand comando = new MySqlCommand(procedimiento, conexion);
+                    comando.CommandType = CommandType.StoredProcedure;
                     comando.Parameters.AddWithValue("@p_dni", dni);
 
                     using (MySqlDataReader reader = comando.ExecuteReader())
@@ -94,11 +92,10 @@ namespace CentroDeportivo1E.Services
             }
             finally
             {
-                conexionMysql.cerrarConexion(conexion);
+                conexionMysql.CerrarConexion(conexion);
             }
 
             return existe;
         }
-
     }
 }

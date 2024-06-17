@@ -16,6 +16,9 @@
     <Compile Update="Forms\FormAltaSocio.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\FormConexion.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\FormImpresiones.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -1,23 +1,33 @@
-﻿using System;
-using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 
 namespace CentroDeportivo1E.Services
 {
     internal class ConexionMysql
     {
-        string cadenaConexion = @"Server=localhost; 
-                          Port=3306; 
-                          Database=centrodeportivo1e; 
-                          Uid=root; 
-                          Pwd=";
-        public MySqlConnection abrirConexion()
+        private string servidor;
+        private string puerto;
+        private string baseDatos;
+        private string usuario;
+        private string contrasena;
+
+        public ConexionMysql(string servidor, string puerto, string baseDatos, string usuario, string contrasena)
         {
-            MySqlConnection conectarMySql = new MySqlConnection(); 
+            this.servidor = servidor;
+            this.puerto = puerto;
+            this.baseDatos = baseDatos;
+            this.usuario = usuario;
+            this.contrasena = contrasena;
+        }
+
+        private string CadenaConexion => $"Server={servidor}; Port={puerto}; Database={baseDatos}; Uid={usuario}; Pwd={contrasena};";
+
+        public MySqlConnection AbrirConexion()
+        {
+            MySqlConnection conectarMySql = new MySqlConnection();
 
             try
             {
-                conectarMySql.ConnectionString = cadenaConexion;
+                conectarMySql.ConnectionString = CadenaConexion;
                 conectarMySql.Open();
             }
             catch (MySqlException e)
@@ -28,7 +38,7 @@ namespace CentroDeportivo1E.Services
             return conectarMySql;
         }
 
-        public void cerrarConexion(MySqlConnection conexion)
+        public void CerrarConexion(MySqlConnection conexion)
         {
             try
             {

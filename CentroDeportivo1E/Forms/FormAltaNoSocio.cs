@@ -2,24 +2,20 @@
 using CentroDeportivo1E.Services;
 using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CentroDeportivo1E.Forms
 {
     public partial class FormAltaNoSocio : Form
     {
+        private readonly NoSocioService noSocioService;
 
-        NoSocioService noSocioService = new NoSocioService();
-        public FormAltaNoSocio()
+        // Modifica el constructor para recibir las credenciales de conexión
+        public FormAltaNoSocio(string servidor, string puerto, string baseDatos, string usuario, string contrasena)
         {
             InitializeComponent();
+            noSocioService = new NoSocioService(servidor, puerto, baseDatos, usuario, contrasena);
         }
 
         private void btnAltaSocio_Click(object sender, EventArgs e)
@@ -55,13 +51,13 @@ namespace CentroDeportivo1E.Forms
                         Telefono = Convert.ToInt64(txtTelefono.Text),
                         Email = txtEmail.Text.Trim(),
                         Dni = Convert.ToInt64(txtDNI.Text.Trim()),
-                        AptoFisico = cmbAptoFisico.SelectedItem.ToString().ToUpper() == "SI" ? true : false,
+                        AptoFisico = cmbAptoFisico.SelectedItem.ToString().ToUpper() == "SI",
                         FechaAlta = DateTime.Now,
                     };
 
                     noSocioService.InsertarNoSocio(nuevoNoSocio);
 
-                    DialogResult resultado = MessageBox.Show(" No Socio creado correctamente", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult resultado = MessageBox.Show("No Socio creado correctamente.", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (resultado == DialogResult.Yes)
                     {

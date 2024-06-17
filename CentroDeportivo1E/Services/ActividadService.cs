@@ -8,7 +8,13 @@ namespace CentroDeportivo1E.Services
 {
     internal class ActividadService
     {
-        private readonly ConexionMysql conexionMysql = new ConexionMysql();
+        private readonly ConexionMysql conexionMysql;
+
+        // Constructor que recibe las credenciales de conexión
+        public ActividadService(string servidor, string puerto, string baseDatos, string usuario, string contrasena)
+        {
+            this.conexionMysql = new ConexionMysql(servidor, puerto, baseDatos, usuario, contrasena);
+        }
 
         public void InsertarActividad(Actividad actividad)
         {
@@ -16,7 +22,7 @@ namespace CentroDeportivo1E.Services
 
             try
             {
-                conexion = conexionMysql.abrirConexion();
+                conexion = conexionMysql.AbrirConexion();
                 string procedimiento = "InsertarActividad";
 
                 using (conexion)
@@ -27,7 +33,7 @@ namespace CentroDeportivo1E.Services
                     comando.Parameters.AddWithValue("@p_nombre", actividad.Nombre);
                     comando.Parameters.AddWithValue("@p_precio", actividad.Precio);
 
-                    if (conexion.State != ConnectionState.Open) 
+                    if (conexion.State != ConnectionState.Open)
                     {
                         conexion.Open();
                     }
@@ -42,12 +48,11 @@ namespace CentroDeportivo1E.Services
             }
             finally
             {
-                conexionMysql.cerrarConexion(conexion);
+                conexionMysql.CerrarConexion(conexion);
             }
         }
 
-
-        public DataTable traerTodasActividades()
+        public DataTable TraerTodasActividades()
         {
             MySqlConnection conexion = null;
             DataTable dataTable = new DataTable();
@@ -55,7 +60,7 @@ namespace CentroDeportivo1E.Services
 
             try
             {
-                conexion = conexionMysql.abrirConexion();
+                conexion = conexionMysql.AbrirConexion();
 
                 MySqlDataAdapter dataAdapter = new MySqlDataAdapter(procedimiento, conexion);
                 dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
@@ -70,14 +75,11 @@ namespace CentroDeportivo1E.Services
             {
                 if (conexion != null)
                 {
-                    conexionMysql.cerrarConexion(conexion);
+                    conexionMysql.CerrarConexion(conexion);
                 }
             }
 
             return dataTable;
         }
-
-
-
     }
 }

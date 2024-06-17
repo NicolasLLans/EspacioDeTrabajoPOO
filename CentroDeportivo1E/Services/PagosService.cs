@@ -1,13 +1,18 @@
 ﻿using MySql.Data.MySqlClient;
+using System;
 using System.Data;
-
 
 namespace CentroDeportivo1E.Services
 {
     internal class PagosService
     {
-        private readonly ConexionMysql conexionMysql = new ConexionMysql();
+        private readonly ConexionMysql conexionMysql;
 
+        // Constructor que recibe las credenciales de conexión
+        public PagosService(string servidor, string puerto, string baseDatos, string usuario, string contrasena)
+        {
+            this.conexionMysql = new ConexionMysql(servidor, puerto, baseDatos, usuario, contrasena);
+        }
 
         public DataTable ListadoPagos(int IdPersona)
         {
@@ -17,16 +22,13 @@ namespace CentroDeportivo1E.Services
 
             try
             {
-                conexion = conexionMysql.abrirConexion();
+                conexion = conexionMysql.AbrirConexion();
 
                 MySqlCommand comando = new MySqlCommand(procedimiento, conexion);
                 comando.CommandType = CommandType.StoredProcedure;
-
-                // Agregar parámetro de entrada
                 comando.Parameters.AddWithValue("@p_IdPersona", IdPersona);
 
                 MySqlDataAdapter dataAdapter = new MySqlDataAdapter(comando);
-
                 dataAdapter.Fill(dataTable);
             }
             catch (Exception ex)
@@ -37,13 +39,12 @@ namespace CentroDeportivo1E.Services
             {
                 if (conexion != null)
                 {
-                    conexionMysql.cerrarConexion(conexion);
+                    conexionMysql.CerrarConexion(conexion);
                 }
             }
 
             return dataTable;
         }
-
 
         public DataTable TraerTipoPago(int IdPersona)
         {
@@ -53,16 +54,13 @@ namespace CentroDeportivo1E.Services
 
             try
             {
-                conexion = conexionMysql.abrirConexion();
+                conexion = conexionMysql.AbrirConexion();
 
                 MySqlCommand comando = new MySqlCommand(procedimiento, conexion);
                 comando.CommandType = CommandType.StoredProcedure;
-
-                // Agregar parámetro de entrada
                 comando.Parameters.AddWithValue("@p_IdPersona", IdPersona);
 
                 MySqlDataAdapter dataAdapter = new MySqlDataAdapter(comando);
-
                 dataAdapter.Fill(dataTable);
             }
             catch (Exception ex)
@@ -73,7 +71,7 @@ namespace CentroDeportivo1E.Services
             {
                 if (conexion != null)
                 {
-                    conexionMysql.cerrarConexion(conexion);
+                    conexionMysql.CerrarConexion(conexion);
                 }
             }
 
@@ -87,12 +85,11 @@ namespace CentroDeportivo1E.Services
 
             try
             {
-                conexion = conexionMysql.abrirConexion();
+                conexion = conexionMysql.AbrirConexion();
 
                 MySqlCommand comando = new MySqlCommand(procedimiento, conexion);
                 comando.CommandType = CommandType.StoredProcedure;
 
-             
                 comando.Parameters.AddWithValue("@p_IdPersona", idPersona);
                 comando.Parameters.AddWithValue("@p_FechaVencimiento", fechaVencimiento);
                 comando.Parameters.AddWithValue("@p_FkTipo", fkTipo);
@@ -108,11 +105,10 @@ namespace CentroDeportivo1E.Services
             {
                 if (conexion != null)
                 {
-                    conexionMysql.cerrarConexion(conexion);
+                    conexionMysql.CerrarConexion(conexion);
                 }
             }
         }
-
 
         public DataTable ListadoSociosFechaVencimiento(DateTime fechaInicio, DateTime fechaFin)
         {
@@ -122,21 +118,15 @@ namespace CentroDeportivo1E.Services
 
             try
             {
-                conexion = conexionMysql.abrirConexion();
+                conexion = conexionMysql.AbrirConexion();
 
                 MySqlCommand comando = new MySqlCommand(procedimiento, conexion);
                 comando.CommandType = CommandType.StoredProcedure;
 
-                // Convertir las fechas a formato 'yyyy-MM-dd'
-                string fechaInicioStr = fechaInicio.ToString("yyyy-MM-dd");
-                string fechaFinStr = fechaFin.ToString("yyyy-MM-dd");
-
-                // Agregar parámetros de entrada
-                comando.Parameters.AddWithValue("@p_FechaInicio", fechaInicioStr);
-                comando.Parameters.AddWithValue("@p_FechaFin", fechaFinStr);
+                comando.Parameters.AddWithValue("@p_FechaInicio", fechaInicio.ToString("yyyy-MM-dd"));
+                comando.Parameters.AddWithValue("@p_FechaFin", fechaFin.ToString("yyyy-MM-dd"));
 
                 MySqlDataAdapter dataAdapter = new MySqlDataAdapter(comando);
-
                 dataAdapter.Fill(dataTable);
             }
             catch (Exception ex)
@@ -147,13 +137,11 @@ namespace CentroDeportivo1E.Services
             {
                 if (conexion != null)
                 {
-                    conexionMysql.cerrarConexion(conexion);
+                    conexionMysql.CerrarConexion(conexion);
                 }
             }
 
             return dataTable;
         }
-
-
     }
 }

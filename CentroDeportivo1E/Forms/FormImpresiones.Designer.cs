@@ -85,7 +85,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(470, 338);
+            ClientSize = new Size(454, 279);
             Controls.Add(btnCancelar);
             Controls.Add(btnImprimir);
             Controls.Add(cmbSocio);

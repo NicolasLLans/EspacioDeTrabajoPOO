@@ -8,17 +8,18 @@ namespace CentroDeportivo1E.Forms
 {
     public partial class FormVencimientoDiarioSocios : Form
     {
-        PagosService pagosService = new PagosService();
-        DataTable dtSociosConCuotaVencida;
+        private readonly PagosService pagosService;
+        private DataTable dtSociosConCuotaVencida;
 
-        public FormVencimientoDiarioSocios()
+        // Modifica el constructor para recibir las credenciales de conexión
+        public FormVencimientoDiarioSocios(string servidor, string puerto, string baseDatos, string usuario, string contrasena)
         {
             InitializeComponent();
+            pagosService = new PagosService(servidor, puerto, baseDatos, usuario, contrasena);
         }
 
         private void FormVencimientoDiarioSocios_Load(object sender, EventArgs e)
         {
-
             DateTime fechaActual = DateTime.Today;
             dtpDesde.Value = fechaActual;
             dtpHasta.Value = fechaActual;
@@ -58,7 +59,6 @@ namespace CentroDeportivo1E.Forms
                 Console.WriteLine(column.ColumnName);
             }
 
-
             dgvListaVencimientos.Columns["IdPersona"].Visible = false;
             dgvListaVencimientos.Columns["FechaVencimiento"].Width = 150;
             dgvListaVencimientos.Columns["Nombre"].Width = 200;
@@ -79,12 +79,9 @@ namespace CentroDeportivo1E.Forms
                 string nombre = selectedRow.Cells["Nombre"].Value.ToString();
                 DateTime fechaVencimiento = Convert.ToDateTime(selectedRow.Cells["FechaVencimiento"].Value);
 
-
                 string mensaje = $"Hola {nombre}, tu cuota del club vence el {fechaVencimiento.ToString("dd/MM/yyyy")}.";
 
-
                 string url = $"https://wa.me/+54{telefono}?text={Uri.EscapeDataString(mensaje)}";
-
 
                 try
                 {
@@ -104,11 +101,6 @@ namespace CentroDeportivo1E.Forms
             {
                 MessageBox.Show("Seleccione una fila de la lista.");
             }
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

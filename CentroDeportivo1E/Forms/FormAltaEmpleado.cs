@@ -1,19 +1,21 @@
 ﻿using CentroDeportivo1E.Helpers;
 using CentroDeportivo1E.Models;
 using CentroDeportivo1E.Services;
-
+using System;
+using System.Windows.Forms;
 
 namespace CentroDeportivo1E.Forms
 {
     public partial class FormAltaEmpleado : Form
     {
+        private readonly EmpleadoHelper empleadoHelper = new EmpleadoHelper();
+        private readonly EmpleadoService empleadoService;
 
-        EmpleadoHelper empleadoHelper = new EmpleadoHelper();
-        EmpleadoService empleadoService = new EmpleadoService();
-
-        public FormAltaEmpleado()
+        // Modifica el constructor para recibir las credenciales de conexión
+        public FormAltaEmpleado(string servidor, string puerto, string baseDatos, string usuario, string contrasena)
         {
             InitializeComponent();
+            empleadoService = new EmpleadoService(servidor, puerto, baseDatos, usuario, contrasena);
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
@@ -49,9 +51,9 @@ namespace CentroDeportivo1E.Forms
                     Puesto = cmbPuesto.Text.ToUpper().Trim(),
                     Telefono = Convert.ToInt64(txtTelefono.Text.Trim()),
                     Usuario = txtUsuario.Text.ToUpper().Trim(),
-                    Dni= Convert.ToInt64(txtDNI.Text.Trim()),
-                    Direccion= txtDireccion.Text.ToUpper().Trim(),
-                    Email= txtEmail.Text.ToUpper().Trim(),
+                    Dni = Convert.ToInt64(txtDNI.Text.Trim()),
+                    Direccion = txtDireccion.Text.ToUpper().Trim(),
+                    Email = txtEmail.Text.ToUpper().Trim(),
                     Contrasena = empleadoHelper.encriptarContrasena(txtContrasena.Text),
                     FechaAlta = DateTime.Now,
                 };

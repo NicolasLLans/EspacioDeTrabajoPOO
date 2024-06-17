@@ -1,31 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using CentroDeportivo1E.Helpers;
+﻿using CentroDeportivo1E.Helpers;
 using CentroDeportivo1E.Models;
 using CentroDeportivo1E.Services;
 using MySql.Data.MySqlClient;
-
-
+using System;
+using System.Data;
+using System.IO;
+using System.Windows.Forms;
 
 namespace CentroDeportivo1E.Forms
 {
     public partial class FormAltaSocio : Form
     {
-        SocioService socioService = new SocioService();
-        public FormAltaSocio()
+        private readonly SocioService socioService;
+        private readonly string servidor;
+        private readonly string puerto;
+        private readonly string baseDatos;
+        private readonly string usuario;
+        private readonly string contrasena;
+
+        // Modifica el constructor para recibir las credenciales de conexión
+        public FormAltaSocio(string servidor, string puerto, string baseDatos, string usuario, string contrasena)
         {
             InitializeComponent();
+            socioService = new SocioService(servidor, puerto, baseDatos, usuario, contrasena);
+            this.servidor = servidor;
+            this.puerto = puerto;
+            this.baseDatos = baseDatos;
+            this.usuario = usuario;
+            this.contrasena = contrasena;
         }
-
-
 
         private void btnAltaSocio_Click(object sender, EventArgs e)
         {
@@ -52,7 +55,7 @@ namespace CentroDeportivo1E.Forms
                         return;
                     }
 
-                    Socio nuevoSocio = new Socio
+                    Socio nuevoSocio = new Socio(servidor, puerto, baseDatos, usuario, contrasena)
                     {
                         Nombre = txtNombre.Text.ToUpper().Trim(),
                         Apellido = txtApellido.Text.ToUpper().Trim(),
@@ -60,7 +63,7 @@ namespace CentroDeportivo1E.Forms
                         Telefono = Convert.ToInt64(txtTelefono.Text),
                         Email = txtEmail.Text.Trim(),
                         Dni = Convert.ToInt64(txtDNI.Text.Trim()),
-                        AptoFisico = cmbAptoFisico.SelectedItem.ToString().ToUpper() == "SI" ? true : false,
+                        AptoFisico = cmbAptoFisico.SelectedItem.ToString().ToUpper() == "SI",
                         FechaAlta = DateTime.Now,
                     };
 
@@ -97,15 +100,10 @@ namespace CentroDeportivo1E.Forms
             }
         }
 
-
-
-
         private void btnCancelarAlta_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
-
 
         private void txtDNI_KeyPress(object sender, KeyPressEventArgs e)
         {
