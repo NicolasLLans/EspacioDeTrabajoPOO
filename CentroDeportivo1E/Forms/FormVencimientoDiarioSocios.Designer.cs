@@ -175,7 +175,7 @@
             label1.Size = new Size(145, 18);
             label1.TabIndex = 41;
             label1.Text = "BUSCAR SOCIO";
-            label1.Click += label1_Click;
+          
             // 
             // FormVencimientoDiarioSocios
             // 

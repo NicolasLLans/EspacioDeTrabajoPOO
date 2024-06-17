@@ -1,24 +1,24 @@
 ﻿using CentroDeportivo1E.Models;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text.Json;
-using CentroDeportivo1E.Helpers;
-using MySql.Data.MySqlClient;
 using System.Data;
+using MySql.Data.MySqlClient;
 
 namespace CentroDeportivo1E.Services
 {
     internal class EmpleadoService
-    {        
+    {
+        private readonly ConexionMysql conexionMysql;
 
-        private readonly ConexionMysql conexionMysql = new ConexionMysql();
-
+        // Constructor que recibe las credenciales de conexión
+        public EmpleadoService(string servidor, string puerto, string baseDatos, string usuario, string contrasena)
+        {
+            this.conexionMysql = new ConexionMysql(servidor, puerto, baseDatos, usuario, contrasena);
+        }
 
         public Empleado BuscarUsuarioInicioSesion(string usuario, string contrasena)
         {
             Empleado empleado = null;
-            MySqlConnection conexion = conexionMysql.abrirConexion();
+            MySqlConnection conexion = conexionMysql.AbrirConexion();
 
             try
             {
@@ -53,22 +53,20 @@ namespace CentroDeportivo1E.Services
             }
             finally
             {
-                conexionMysql.cerrarConexion(conexion);
+                conexionMysql.CerrarConexion(conexion);
             }
 
             return empleado;
         }
-
-
 
         public void InsertarEmpleado(Empleado empleado)
         {
             MySqlConnection conexion = null;
             try
             {
-                conexion = conexionMysql.abrirConexion();
+                conexion = conexionMysql.AbrirConexion();
                 string procedimiento = "InsertarEmpleado";
-                
+
                 using (MySqlCommand comando = new MySqlCommand(procedimiento, conexion))
                 {
                     comando.CommandType = CommandType.StoredProcedure;
@@ -91,29 +89,26 @@ namespace CentroDeportivo1E.Services
                 Console.WriteLine("Empleado insertado correctamente.");
             }
             catch (MySqlException ex)
-            {              
+            {
                 Console.WriteLine("Error al insertar empleado: " + ex.Message);
             }
             catch (Exception ex)
-            {              
+            {
                 Console.WriteLine("Error general al insertar empleado: " + ex.Message);
             }
             finally
             {
-                conexionMysql.cerrarConexion(conexion);
+                conexionMysql.CerrarConexion(conexion);
             }
         }
 
-
-
         public bool ExisteUsuario(string usuario)
         {
-            MySqlConnection conexion = conexionMysql.abrirConexion();
+            MySqlConnection conexion = conexionMysql.AbrirConexion();
             try
             {
-                string procedimiento = "BuscarUsuario";              
+                string procedimiento = "BuscarUsuario";
 
-              
                 using (MySqlCommand comando = new MySqlCommand(procedimiento, conexion))
                 {
                     comando.CommandType = CommandType.StoredProcedure;
@@ -121,7 +116,6 @@ namespace CentroDeportivo1E.Services
 
                     using (MySqlDataReader reader = comando.ExecuteReader())
                     {
-                     
                         return reader.HasRows;
                     }
                 }
@@ -132,12 +126,10 @@ namespace CentroDeportivo1E.Services
             }
             finally
             {
-                conexionMysql.cerrarConexion(conexion);
+                conexionMysql.CerrarConexion(conexion);
             }
-            
+
             return false;
         }
-
     }
 }
-

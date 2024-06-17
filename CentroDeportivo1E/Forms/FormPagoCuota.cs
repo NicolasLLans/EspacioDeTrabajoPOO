@@ -1,38 +1,36 @@
 ﻿using CentroDeportivo1E.Models;
 using CentroDeportivo1E.Services;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace CentroDeportivo1E.Forms
 {
     public partial class FormPagoCuota : Form
     {
-        SocioService socioService = new SocioService();
-        PagosService pagosService = new PagosService();
-        DataTable dtSociosYNoSocios;
-        DataTable dtPagos;
-        DataTable dtTipoPago;
-        public FormPagoCuota()
+        private readonly SocioService socioService;
+        private readonly PagosService pagosService;
+        private DataTable dtSociosYNoSocios;
+        private DataTable dtPagos;
+        private DataTable dtTipoPago;
+
+        // Modifica el constructor para recibir las credenciales de conexión
+        public FormPagoCuota(string servidor, string puerto, string baseDatos, string usuario, string contrasena)
         {
             InitializeComponent();
+            socioService = new SocioService(servidor, puerto, baseDatos, usuario, contrasena);
+            pagosService = new PagosService(servidor, puerto, baseDatos, usuario, contrasena);
         }
 
         private void FormPagoCuota_Load(object sender, EventArgs e)
         {
             cargarListadoSociosYNoSocios();
-
         }
 
         private void cargarListadoSociosYNoSocios()
         {
-            dtSociosYNoSocios = socioService.traerListadoSociosYNoSocios();
+            dtSociosYNoSocios = socioService.TraerListadoSociosYNoSocios();
             dgvListaClientes.DataSource = dtSociosYNoSocios;
 
             foreach (DataColumn column in dtSociosYNoSocios.Columns)
@@ -42,7 +40,6 @@ namespace CentroDeportivo1E.Forms
 
             dgvListaClientes.Columns["Nombre"].Width = 210;
             dgvListaClientes.Columns["Apellido"].Width = 210;
-
             dgvListaClientes.Columns["IdPersona"].Visible = false;
             dgvListaClientes.Columns["Direccion"].Visible = false;
             dgvListaClientes.Columns["Telefono"].Visible = false;
@@ -53,7 +50,6 @@ namespace CentroDeportivo1E.Forms
             dgvListaClientes.Columns["NumeroSocio"].Visible = false;
             dgvListaClientes.Columns["Baja"].Visible = false;
             dgvListaClientes.RowHeadersVisible = false;
-
         }
 
         private void txtBusquedaClientes_TextChanged(object sender, EventArgs e)
@@ -63,23 +59,17 @@ namespace CentroDeportivo1E.Forms
             dgvListaClientes.DataSource = dv.ToTable();
         }
 
-
-
         private void dgvListaClientes_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvListaClientes.SelectedRows.Count > 0)
             {
                 DataGridViewRow selectedRow = dgvListaClientes.SelectedRows[0];
 
-                // obtenemos el IdPersona y cargar los pagos
                 int idPersona = Convert.ToInt32(selectedRow.Cells["IdPersona"].Value);
                 cargarPagos(idPersona);
-
                 MostrarMonto(idPersona);
 
-                // obtenemos el tipo de cliente y actualizar el DateTimePicker
                 string tipo = selectedRow.Cells["Tipo"].Value.ToString();
-
                 AjustarFechaHasta(tipo);
             }
         }
@@ -108,15 +98,11 @@ namespace CentroDeportivo1E.Forms
                 Console.WriteLine(column.ColumnName);
             }
 
-
             dgvHistorialPagos.Columns["FechaPago"].Width = 150;
             dgvHistorialPagos.Columns["FechaVencimiento"].Width = 150;
-
             dgvHistorialPagos.Columns["IdPersona"].Visible = false;
             dgvHistorialPagos.Columns["IdPago"].Visible = false;
-            dgvHistorialPagos.Columns["IdPago"].Visible = false;
             dgvHistorialPagos.RowHeadersVisible = false;
-
         }
 
         private void MostrarMonto(int idPersona)
@@ -125,7 +111,6 @@ namespace CentroDeportivo1E.Forms
 
             if (dtTipoPago.Rows.Count > 0)
             {
-
                 txtMonto.Text = dtTipoPago.Rows[0]["Monto"].ToString();
             }
             else
@@ -133,19 +118,13 @@ namespace CentroDeportivo1E.Forms
                 txtMonto.Text = "0";
             }
         }
-      
 
         private void dtpDesde_ValueChanged(object sender, EventArgs e)
         {
-
             if (dgvListaClientes.SelectedRows.Count > 0)
             {
                 DataGridViewRow selectedRow = dgvListaClientes.SelectedRows[0];
-
-
                 string tipo = selectedRow.Cells["Tipo"].Value.ToString();
-
-
                 AjustarFechaHasta(tipo);
             }
         }
@@ -155,26 +134,21 @@ namespace CentroDeportivo1E.Forms
             if (dgvListaClientes.SelectedRows.Count > 0)
             {
                 DataGridViewRow selectedRow = dgvListaClientes.SelectedRows[0];
-                              
                 int idPersona = Convert.ToInt32(selectedRow.Cells["IdPersona"].Value);
-               
                 int fkTipo = Convert.ToInt32(dtTipoPago.Rows[0]["IdTipoPago"]);
-               
                 DateTime fechaVencimiento = dtpHasta.Value;
                 DateTime fechaPago = dtpDesde.Value;
-               
+
                 pagosService.InsertarCuotaYPago(idPersona, fechaVencimiento, fkTipo, fechaPago);
 
                 MessageBox.Show("Cuota y Pago insertados correctamente.");
                 cargarPagos(idPersona);
-
             }
             else
             {
                 MessageBox.Show("Seleccione un cliente de la lista.");
             }
         }
-
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {

@@ -2,11 +2,7 @@
   "profiles": {
     "CentroDeportivo1E": {
       "commandName": "Project",
-<<<<<<< HEAD
-      "workingDirectory": "C:\\Users\\nicol\\Documents\\1.Tecnicatura\\0007.DesarrolloDeSistemasOrientadosAObjetos\\EspacioDeTrabajoPOO"
-=======
-      "workingDirectory": "C:\\Users\\ayees\\source\\repos\\EspacioDeTrabajoPOO"
->>>>>>> 5d24be0103c275c4d16e6202f3de0e480082bbc1
+      "workingDirectory": "D:\\CURSOS\\TECNICACTURA  PROYECTO\\PROYECTO\\ACTUALIZADO\\EspacioDeTrabajoPOO"
     }
   }
 }

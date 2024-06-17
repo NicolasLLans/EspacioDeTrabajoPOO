@@ -2,40 +2,37 @@ using CentroDeportivo1E.Forms;
 using CentroDeportivo1E.Models;
 using CentroDeportivo1E.Services;
 
-
 namespace CentroDeportivo1E
 {
     internal static class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
         [STAThread]
-
-
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-
-            bool modDebug = false;
-
-            if (modDebug == false)
+            FormConexion formConexion = new FormConexion();
+            if (formConexion.ShowDialog() == DialogResult.OK)
             {
-                FormLogin login = new FormLogin();
-                EmpleadoService empleadoService = new EmpleadoService();
+                string servidor = formConexion.Servidor;
+                string puerto = formConexion.Puerto;
+                string baseDatos = formConexion.BaseDatos;
+                string usuario = formConexion.Usuario;
+                string contrasena = formConexion.Contrasena;
 
+             
+                EmpleadoService empleadoService = new EmpleadoService(servidor, puerto, baseDatos, usuario, contrasena);
+               
+
+                FormLogin login = new FormLogin(empleadoService);
 
                 if (login.ShowDialog() == DialogResult.OK)
                 {
-
                     Empleado empleado = empleadoService.BuscarUsuarioInicioSesion(login.Usuario, login.Contrasena);
 
                     if (empleado != null)
                     {
-                        Application.Run(new FormInicio(empleado.Nombre, empleado.Apellido));
+                        Application.Run(new FormInicio(empleado.Nombre, empleado.Apellido, servidor, puerto, baseDatos, usuario, contrasena));
                     }
                     else
                     {
@@ -43,6 +40,10 @@ namespace CentroDeportivo1E
                         Application.Exit();
                     }
                 }
+            }
+            else
+            {
+                Application.Exit();
             }
         }
     }

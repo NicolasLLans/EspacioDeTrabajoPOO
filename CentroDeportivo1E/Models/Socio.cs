@@ -1,7 +1,5 @@
-
-﻿using System;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.IO;
 using DinkToPdf;
@@ -22,33 +20,50 @@ namespace CentroDeportivo1E.Models
 
         public Persona Persona { get; set; }
 
+        // Agrega propiedades para las credenciales de conexión
+        private string Servidor { get; set; }
+        private string Puerto { get; set; }
+        private string BaseDatos { get; set; }
+        private string Usuario { get; set; }
+        private string Contrasena { get; set; }
+
+        // Constructor que recibe las credenciales de conexión
+        public Socio(string servidor, string puerto, string baseDatos, string usuario, string contrasena)
+        {
+            Servidor = servidor;
+            Puerto = puerto;
+            BaseDatos = baseDatos;
+            Usuario = usuario;
+            Contrasena = contrasena;
+        }
 
         // Método para generar el carnet en formato PDF
         public void GenerarCarnetPdf(string templatePath, string outputPath, long dni)
         {
             string htmlTemplate = File.ReadAllText(templatePath);
-            // Ruta relativa a la imagen
             string imagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "img", "logo-bn.png");
 
+            // Usar las credenciales para crear una instancia de SocioService
+            SocioService socioService = new SocioService(Servidor, Puerto, BaseDatos, Usuario, Contrasena);
+            DataTable dataTable = socioService.TraerSocioPorDni(dni);
 
-            System.Data.DataTable dataTable = new SocioService().TraerSocioPorDni(dni);
-            string id="";
-            string nombre="";
-            string apellido="";
-            string fechaAlta="";
-            foreach (DataRow fila in dataTable.Rows) {
-                id = (fila["NumeroSocio"]).ToString();
-                nombre = (fila["Nombre"]).ToString();
+            string id = "";
+            string nombre = "";
+            string apellido = "";
+            string fechaAlta = "";
+            foreach (DataRow fila in dataTable.Rows)
+            {
+                id = fila["NumeroSocio"].ToString();
+                nombre = fila["Nombre"].ToString();
                 apellido = fila["Apellido"].ToString();
                 fechaAlta = fila["FechaAlta"].ToString();
-
-
             }
+
             string htmlContent = htmlTemplate
                 .Replace("{Nombre}", nombre + " " + apellido)
                 .Replace("{DNI}", dni.ToString())
                 .Replace("{NumeroSocio}", id)
-                .Replace("{FechaAlta}", fechaAlta.ToString())
+                .Replace("{FechaAlta}", fechaAlta)
                 .Replace("{ImagePath}", imagePath);
 
             // Assuming you have a method to convert HTML to PDF
@@ -85,9 +100,5 @@ namespace CentroDeportivo1E.Models
             byte[] pdf = converter.Convert(doc);
             File.WriteAllBytes(outputPath, pdf);
         }
-
-
     }
 }
-
-
