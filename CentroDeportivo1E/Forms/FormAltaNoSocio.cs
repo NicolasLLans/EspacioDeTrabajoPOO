@@ -1,21 +1,16 @@
 ﻿using CentroDeportivo1E.Models;
 using CentroDeportivo1E.Services;
 using MySql.Data.MySqlClient;
-using System;
-using System.Data;
-using System.Windows.Forms;
 
 namespace CentroDeportivo1E.Forms
 {
     public partial class FormAltaNoSocio : Form
     {
         private readonly NoSocioService noSocioService;
-
-        // Modifica el constructor para recibir las credenciales de conexión
-        public FormAltaNoSocio(string servidor, string puerto, string baseDatos, string usuario, string contrasena)
+        public FormAltaNoSocio()
         {
             InitializeComponent();
-            noSocioService = new NoSocioService(servidor, puerto, baseDatos, usuario, contrasena);
+            noSocioService = new NoSocioService();
         }
 
         private void btnAltaSocio_Click(object sender, EventArgs e)

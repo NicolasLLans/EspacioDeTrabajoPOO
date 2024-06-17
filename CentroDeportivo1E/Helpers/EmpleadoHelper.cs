@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
-using System.Security.Cryptography;
 
 namespace CentroDeportivo1E.Helpers
 {
     internal class EmpleadoHelper
-    {              
-
+    {
         //metodo para encriptarContraseña
         internal string encriptarContrasena(string contrasena)
         {

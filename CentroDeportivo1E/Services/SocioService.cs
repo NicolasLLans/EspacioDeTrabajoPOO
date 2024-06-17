@@ -1,26 +1,18 @@
 ﻿using CentroDeportivo1E.Models;
 using MySql.Data.MySqlClient;
-using System;
 using System.Data;
 
 namespace CentroDeportivo1E.Services
 {
     internal class SocioService
     {
-        private readonly ConexionMysql conexionMysql;
-
-        // Constructor que recibe las credenciales de conexión
-        public SocioService(string servidor, string puerto, string baseDatos, string usuario, string contrasena)
-        {
-            this.conexionMysql = new ConexionMysql(servidor, puerto, baseDatos, usuario, contrasena);
-        }
+        private readonly ConexionMysql conexionMysql = ConexionMysql.getInstance();
 
         public void InsertarSocio(Socio socio)
         {
-            MySqlConnection conexion = null;
             try
             {
-                conexion = conexionMysql.AbrirConexion();
+                MySqlConnection conexion = conexionMysql.AbrirConexion();
                 string procedimiento = "InsertarSocio";
 
                 using (conexion)
@@ -52,18 +44,16 @@ namespace CentroDeportivo1E.Services
             }
             finally
             {
-                conexionMysql.CerrarConexion(conexion);
+                conexionMysql.CerrarConexion();
             }
         }
 
         public bool ExisteSocio(long dni)
         {
             bool existe = false;
-            MySqlConnection conexion = null;
-
             try
             {
-                conexion = conexionMysql.AbrirConexion();
+                MySqlConnection conexion = conexionMysql.AbrirConexion();
                 string procedimiento = "ExisteSocio";
 
                 using (conexion)
@@ -91,7 +81,7 @@ namespace CentroDeportivo1E.Services
             }
             finally
             {
-                conexionMysql.CerrarConexion(conexion);
+                conexionMysql.CerrarConexion();
             }
 
             return existe;
@@ -99,12 +89,11 @@ namespace CentroDeportivo1E.Services
 
         public DataTable TraerSocioPorDni(long dni)
         {
-            MySqlConnection conexion = null;
             DataTable dataTable = new DataTable();
 
             try
             {
-                conexion = conexionMysql.AbrirConexion();
+                MySqlConnection conexion = conexionMysql.AbrirConexion();
                 string procedimiento = "TraerSocioPorDni";
 
                 using (conexion)
@@ -123,10 +112,8 @@ namespace CentroDeportivo1E.Services
             }
             finally
             {
-                if (conexion != null)
-                {
-                    conexionMysql.CerrarConexion(conexion);
-                }
+                conexionMysql.CerrarConexion();
+
             }
 
             return dataTable;
@@ -134,13 +121,12 @@ namespace CentroDeportivo1E.Services
 
         public DataTable TraerSociosActivos()
         {
-            MySqlConnection conexion = null;
             DataTable dataTable = new DataTable();
             string procedimiento = "TraerSociosActivos";
 
             try
             {
-                conexion = conexionMysql.AbrirConexion();
+                MySqlConnection conexion = conexionMysql.AbrirConexion();
 
                 MySqlDataAdapter dataAdapter = new MySqlDataAdapter(procedimiento, conexion);
                 dataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
@@ -153,10 +139,8 @@ namespace CentroDeportivo1E.Services
             }
             finally
             {
-                if (conexion != null)
-                {
-                    conexionMysql.CerrarConexion(conexion);
-                }
+                conexionMysql.CerrarConexion();
+
             }
 
             return dataTable;
@@ -164,10 +148,9 @@ namespace CentroDeportivo1E.Services
 
         public void InsertarSocioActividad(int idSocio, int idActividad)
         {
-            MySqlConnection conexion = null;
             try
             {
-                conexion = conexionMysql.AbrirConexion();
+                MySqlConnection conexion = conexionMysql.AbrirConexion();
                 string procedimiento = "InsertarSocioActividad";
 
                 using (conexion)
@@ -193,18 +176,17 @@ namespace CentroDeportivo1E.Services
             }
             finally
             {
-                conexionMysql.CerrarConexion(conexion);
+                conexionMysql.CerrarConexion();
             }
         }
 
         public int VerificarLimiteActividades(int idSocio)
         {
-            MySqlConnection conexion = null;
             int numeroActividades = 0;
 
             try
             {
-                conexion = conexionMysql.AbrirConexion();
+                MySqlConnection conexion = conexionMysql.AbrirConexion();
                 string procedimiento = "VerificarLimiteActividades";
 
                 using (conexion)
@@ -235,7 +217,7 @@ namespace CentroDeportivo1E.Services
             }
             finally
             {
-                conexionMysql.CerrarConexion(conexion);
+                conexionMysql.CerrarConexion();
             }
 
             return numeroActividades;
@@ -243,12 +225,11 @@ namespace CentroDeportivo1E.Services
 
         public bool VerificarInscripcionExistente(int idSocio, int idActividad)
         {
-            MySqlConnection conexion = null;
             bool existeInscripcion = false;
 
             try
             {
-                conexion = conexionMysql.AbrirConexion();
+                MySqlConnection conexion = conexionMysql.AbrirConexion();
                 string procedimiento = "VerificarActividadSocio";
 
                 using (conexion)
@@ -280,7 +261,7 @@ namespace CentroDeportivo1E.Services
             }
             finally
             {
-                conexionMysql.CerrarConexion(conexion);
+                conexionMysql.CerrarConexion();
             }
 
             return existeInscripcion;
@@ -288,13 +269,12 @@ namespace CentroDeportivo1E.Services
 
         public DataTable TraerActividadPorNumeroSocio(int NumeroSocio)
         {
-            MySqlConnection conexion = null;
             DataTable dataTable = new DataTable();
             string procedimiento = "TraerActividadesPorNumeroSocio";
 
             try
             {
-                conexion = conexionMysql.AbrirConexion();
+                MySqlConnection conexion = conexionMysql.AbrirConexion();
 
                 MySqlCommand comando = new MySqlCommand(procedimiento, conexion);
                 comando.CommandType = CommandType.StoredProcedure;
@@ -309,10 +289,8 @@ namespace CentroDeportivo1E.Services
             }
             finally
             {
-                if (conexion != null)
-                {
-                    conexionMysql.CerrarConexion(conexion);
-                }
+                conexionMysql.CerrarConexion();
+
             }
 
             return dataTable;
@@ -320,13 +298,12 @@ namespace CentroDeportivo1E.Services
 
         public DataTable TraerListadoSociosYNoSocios()
         {
-            MySqlConnection conexion = null;
             DataTable dataTable = new DataTable();
             string procedimiento = "ListadoSociosYNoSocios";
 
             try
             {
-                conexion = conexionMysql.AbrirConexion();
+                MySqlConnection conexion = conexionMysql.AbrirConexion();
 
                 MySqlCommand comando = new MySqlCommand(procedimiento, conexion);
                 comando.CommandType = CommandType.StoredProcedure;
@@ -340,10 +317,8 @@ namespace CentroDeportivo1E.Services
             }
             finally
             {
-                if (conexion != null)
-                {
-                    conexionMysql.CerrarConexion(conexion);
-                }
+                conexionMysql.CerrarConexion();
+
             }
 
             return dataTable;

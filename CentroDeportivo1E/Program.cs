@@ -14,15 +14,7 @@ namespace CentroDeportivo1E
             FormConexion formConexion = new FormConexion();
             if (formConexion.ShowDialog() == DialogResult.OK)
             {
-                string servidor = formConexion.Servidor;
-                string puerto = formConexion.Puerto;
-                string baseDatos = formConexion.BaseDatos;
-                string usuario = formConexion.Usuario;
-                string contrasena = formConexion.Contrasena;
-
-             
-                EmpleadoService empleadoService = new EmpleadoService(servidor, puerto, baseDatos, usuario, contrasena);
-               
+                EmpleadoService empleadoService = new EmpleadoService();
 
                 FormLogin login = new FormLogin(empleadoService);
 
@@ -32,7 +24,7 @@ namespace CentroDeportivo1E
 
                     if (empleado != null)
                     {
-                        Application.Run(new FormInicio(empleado.Nombre, empleado.Apellido, servidor, puerto, baseDatos, usuario, contrasena));
+                        Application.Run(new FormInicio(empleado.Nombre, empleado.Apellido));
                     }
                     else
                     {

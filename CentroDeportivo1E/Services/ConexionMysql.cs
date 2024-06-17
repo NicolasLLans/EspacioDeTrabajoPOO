@@ -4,49 +4,61 @@ namespace CentroDeportivo1E.Services
 {
     internal class ConexionMysql
     {
-        private string servidor;
-        private string puerto;
-        private string baseDatos;
-        private string usuario;
-        private string contrasena;
+        private static string connectionString = "";
+        private MySqlConnection? connection = null;
+        private static ConexionMysql? instance = null;
 
         public ConexionMysql(string servidor, string puerto, string baseDatos, string usuario, string contrasena)
         {
-            this.servidor = servidor;
-            this.puerto = puerto;
-            this.baseDatos = baseDatos;
-            this.usuario = usuario;
-            this.contrasena = contrasena;
+            connectionString = $"Server ={servidor}; Port ={puerto}; Database ={baseDatos}; Uid ={usuario}; Pwd ={contrasena};";
         }
-
-        private string CadenaConexion => $"Server={servidor}; Port={puerto}; Database={baseDatos}; Uid={usuario}; Pwd={contrasena};";
+        public ConexionMysql() { }
 
         public MySqlConnection AbrirConexion()
         {
-            MySqlConnection conectarMySql = new MySqlConnection();
-
-            try
+            if (connection == null)
             {
-                conectarMySql.ConnectionString = CadenaConexion;
-                conectarMySql.Open();
+                connection = new MySqlConnection(getStringConnection());
+                try
+                {
+                    connection.Open();
+                }
+                catch (MySqlException e)
+                {
+                    MessageBox.Show("No se pudo conectar a la Base de datos, Error: " + e.ToString());
+                    throw;
+                }
             }
-            catch (MySqlException e)
-            {
-                MessageBox.Show("No se pudo conectar a la Base de datos, Error: " + e.ToString());
-            }
-
-            return conectarMySql;
+            return connection;
         }
 
-        public void CerrarConexion(MySqlConnection conexion)
+        public static ConexionMysql getInstance()
         {
-            try
+            if (instance == null)
             {
-                conexion.Close();
+                instance = new ConexionMysql();
             }
-            catch (MySqlException e)
+            return instance;
+        }
+
+        public static string getStringConnection()
+        {
+            return connectionString;
+        }
+
+        public void CerrarConexion()
+        {
+            if (connection != null)
             {
-                MessageBox.Show("Error al cerrar la conexión: " + e.ToString());
+                try
+                {
+                    this.connection.Close();
+                    connection = null;
+                }
+                catch (MySqlException e)
+                {
+                    MessageBox.Show("Error al cerrar la conexión: " + e.ToString());
+                }
             }
         }
     }

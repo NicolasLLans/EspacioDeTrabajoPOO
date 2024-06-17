@@ -1,28 +1,20 @@
 ﻿using MySql.Data.MySqlClient;
-using System;
 using System.Data;
 
 namespace CentroDeportivo1E.Services
 {
     internal class PagosService
     {
-        private readonly ConexionMysql conexionMysql;
-
-        // Constructor que recibe las credenciales de conexión
-        public PagosService(string servidor, string puerto, string baseDatos, string usuario, string contrasena)
-        {
-            this.conexionMysql = new ConexionMysql(servidor, puerto, baseDatos, usuario, contrasena);
-        }
+        private readonly ConexionMysql conexionMysql = ConexionMysql.getInstance();
 
         public DataTable ListadoPagos(int IdPersona)
         {
-            MySqlConnection conexion = null;
             DataTable dataTable = new DataTable();
             string procedimiento = "ListadoPagos";
 
             try
             {
-                conexion = conexionMysql.AbrirConexion();
+                MySqlConnection conexion = conexionMysql.AbrirConexion();
 
                 MySqlCommand comando = new MySqlCommand(procedimiento, conexion);
                 comando.CommandType = CommandType.StoredProcedure;
@@ -37,10 +29,7 @@ namespace CentroDeportivo1E.Services
             }
             finally
             {
-                if (conexion != null)
-                {
-                    conexionMysql.CerrarConexion(conexion);
-                }
+                conexionMysql.CerrarConexion();
             }
 
             return dataTable;
@@ -48,13 +37,12 @@ namespace CentroDeportivo1E.Services
 
         public DataTable TraerTipoPago(int IdPersona)
         {
-            MySqlConnection conexion = null;
             DataTable dataTable = new DataTable();
             string procedimiento = "TraerTipoPago";
 
             try
             {
-                conexion = conexionMysql.AbrirConexion();
+                MySqlConnection conexion = conexionMysql.AbrirConexion();
 
                 MySqlCommand comando = new MySqlCommand(procedimiento, conexion);
                 comando.CommandType = CommandType.StoredProcedure;
@@ -69,10 +57,7 @@ namespace CentroDeportivo1E.Services
             }
             finally
             {
-                if (conexion != null)
-                {
-                    conexionMysql.CerrarConexion(conexion);
-                }
+                conexionMysql.CerrarConexion();
             }
 
             return dataTable;
@@ -80,12 +65,10 @@ namespace CentroDeportivo1E.Services
 
         public void InsertarCuotaYPago(int idPersona, DateTime fechaVencimiento, int fkTipo, DateTime fechaPago)
         {
-            MySqlConnection conexion = null;
-            string procedimiento = "InsertarCuotaYPago";
-
             try
             {
-                conexion = conexionMysql.AbrirConexion();
+                MySqlConnection conexion = conexionMysql.AbrirConexion();
+                string procedimiento = "InsertarCuotaYPago";
 
                 MySqlCommand comando = new MySqlCommand(procedimiento, conexion);
                 comando.CommandType = CommandType.StoredProcedure;
@@ -103,22 +86,18 @@ namespace CentroDeportivo1E.Services
             }
             finally
             {
-                if (conexion != null)
-                {
-                    conexionMysql.CerrarConexion(conexion);
-                }
+                conexionMysql.CerrarConexion();
             }
         }
 
         public DataTable ListadoSociosFechaVencimiento(DateTime fechaInicio, DateTime fechaFin)
         {
-            MySqlConnection conexion = null;
             DataTable dataTable = new DataTable();
-            string procedimiento = "ListadoSociosFechaVencimiento";
 
             try
             {
-                conexion = conexionMysql.AbrirConexion();
+                MySqlConnection conexion = conexionMysql.AbrirConexion();
+                string procedimiento = "ListadoSociosFechaVencimiento";
 
                 MySqlCommand comando = new MySqlCommand(procedimiento, conexion);
                 comando.CommandType = CommandType.StoredProcedure;
@@ -135,10 +114,7 @@ namespace CentroDeportivo1E.Services
             }
             finally
             {
-                if (conexion != null)
-                {
-                    conexionMysql.CerrarConexion(conexion);
-                }
+                conexionMysql.CerrarConexion();
             }
 
             return dataTable;

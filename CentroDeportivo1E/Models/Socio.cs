@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.IO;
-using DinkToPdf;
-using DinkToPdf.Contracts;
 using CentroDeportivo1E.Services;
+using DinkToPdf;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
 
 namespace CentroDeportivo1E.Models
@@ -20,21 +16,9 @@ namespace CentroDeportivo1E.Models
 
         public Persona Persona { get; set; }
 
-        // Agrega propiedades para las credenciales de conexión
-        private string Servidor { get; set; }
-        private string Puerto { get; set; }
-        private string BaseDatos { get; set; }
-        private string Usuario { get; set; }
-        private string Contrasena { get; set; }
-
         // Constructor que recibe las credenciales de conexión
-        public Socio(string servidor, string puerto, string baseDatos, string usuario, string contrasena)
+        public Socio()
         {
-            Servidor = servidor;
-            Puerto = puerto;
-            BaseDatos = baseDatos;
-            Usuario = usuario;
-            Contrasena = contrasena;
         }
 
         // Método para generar el carnet en formato PDF
@@ -44,7 +28,7 @@ namespace CentroDeportivo1E.Models
             string imagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "img", "logo-bn.png");
 
             // Usar las credenciales para crear una instancia de SocioService
-            SocioService socioService = new SocioService(Servidor, Puerto, BaseDatos, Usuario, Contrasena);
+            SocioService socioService = new SocioService();
             DataTable dataTable = socioService.TraerSocioPorDni(dni);
 
             string id = "";

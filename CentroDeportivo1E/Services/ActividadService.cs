@@ -1,30 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using CentroDeportivo1E.Models;
+﻿using CentroDeportivo1E.Models;
 using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace CentroDeportivo1E.Services
 {
     internal class ActividadService
     {
-        private readonly ConexionMysql conexionMysql;
-
-        // Constructor que recibe las credenciales de conexión
-        public ActividadService(string servidor, string puerto, string baseDatos, string usuario, string contrasena)
-        {
-            this.conexionMysql = new ConexionMysql(servidor, puerto, baseDatos, usuario, contrasena);
-        }
+        private readonly ConexionMysql conexionMysql = ConexionMysql.getInstance();
 
         public void InsertarActividad(Actividad actividad)
         {
-            MySqlConnection conexion = null;
-
             try
             {
-                conexion = conexionMysql.AbrirConexion();
+                MySqlConnection conexion = conexionMysql.AbrirConexion();
                 string procedimiento = "InsertarActividad";
-
                 using (conexion)
                 {
                     MySqlCommand comando = new MySqlCommand(procedimiento, conexion);
@@ -48,18 +37,18 @@ namespace CentroDeportivo1E.Services
             }
             finally
             {
-                conexionMysql.CerrarConexion(conexion);
+                conexionMysql.CerrarConexion();
             }
         }
 
         public DataTable TraerTodasActividades()
         {
-            MySqlConnection conexion = null;
             DataTable dataTable = new DataTable();
             string procedimiento = "TraerActividadesActivas";
 
             try
             {
+                MySqlConnection conexion = conexionMysql.AbrirConexion();
                 conexion = conexionMysql.AbrirConexion();
 
                 MySqlDataAdapter dataAdapter = new MySqlDataAdapter(procedimiento, conexion);
@@ -73,10 +62,7 @@ namespace CentroDeportivo1E.Services
             }
             finally
             {
-                if (conexion != null)
-                {
-                    conexionMysql.CerrarConexion(conexion);
-                }
+                conexionMysql.CerrarConexion();
             }
 
             return dataTable;

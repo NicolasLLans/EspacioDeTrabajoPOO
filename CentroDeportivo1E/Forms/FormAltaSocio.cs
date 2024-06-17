@@ -1,33 +1,16 @@
-﻿using CentroDeportivo1E.Helpers;
-using CentroDeportivo1E.Models;
+﻿using CentroDeportivo1E.Models;
 using CentroDeportivo1E.Services;
 using MySql.Data.MySqlClient;
-using System;
-using System.Data;
-using System.IO;
-using System.Windows.Forms;
 
 namespace CentroDeportivo1E.Forms
 {
     public partial class FormAltaSocio : Form
     {
         private readonly SocioService socioService;
-        private readonly string servidor;
-        private readonly string puerto;
-        private readonly string baseDatos;
-        private readonly string usuario;
-        private readonly string contrasena;
-
-        // Modifica el constructor para recibir las credenciales de conexión
-        public FormAltaSocio(string servidor, string puerto, string baseDatos, string usuario, string contrasena)
+        public FormAltaSocio()
         {
             InitializeComponent();
-            socioService = new SocioService(servidor, puerto, baseDatos, usuario, contrasena);
-            this.servidor = servidor;
-            this.puerto = puerto;
-            this.baseDatos = baseDatos;
-            this.usuario = usuario;
-            this.contrasena = contrasena;
+            socioService = new SocioService();
         }
 
         private void btnAltaSocio_Click(object sender, EventArgs e)
@@ -55,7 +38,7 @@ namespace CentroDeportivo1E.Forms
                         return;
                     }
 
-                    Socio nuevoSocio = new Socio(servidor, puerto, baseDatos, usuario, contrasena)
+                    Socio nuevoSocio = new Socio()
                     {
                         Nombre = txtNombre.Text.ToUpper().Trim(),
                         Apellido = txtApellido.Text.ToUpper().Trim(),

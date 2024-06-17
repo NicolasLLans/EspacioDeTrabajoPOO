@@ -1,8 +1,6 @@
 ﻿using CentroDeportivo1E.Helpers;
 using CentroDeportivo1E.Models;
 using CentroDeportivo1E.Services;
-using System;
-using System.Windows.Forms;
 
 namespace CentroDeportivo1E.Forms
 {
@@ -11,11 +9,10 @@ namespace CentroDeportivo1E.Forms
         private readonly EmpleadoHelper empleadoHelper = new EmpleadoHelper();
         private readonly EmpleadoService empleadoService;
 
-        // Modifica el constructor para recibir las credenciales de conexión
-        public FormAltaEmpleado(string servidor, string puerto, string baseDatos, string usuario, string contrasena)
+        public FormAltaEmpleado()
         {
             InitializeComponent();
-            empleadoService = new EmpleadoService(servidor, puerto, baseDatos, usuario, contrasena);
+            empleadoService = new EmpleadoService();
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
