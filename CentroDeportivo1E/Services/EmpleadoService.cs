@@ -1,27 +1,19 @@
 ﻿using CentroDeportivo1E.Models;
-using System;
-using System.Data;
 using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace CentroDeportivo1E.Services
 {
     internal class EmpleadoService
     {
-        private readonly ConexionMysql conexionMysql;
-
-        // Constructor que recibe las credenciales de conexión
-        public EmpleadoService(string servidor, string puerto, string baseDatos, string usuario, string contrasena)
-        {
-            this.conexionMysql = new ConexionMysql(servidor, puerto, baseDatos, usuario, contrasena);
-        }
+        private readonly ConexionMysql conexionMysql = ConexionMysql.getInstance();
 
         public Empleado BuscarUsuarioInicioSesion(string usuario, string contrasena)
         {
             Empleado empleado = null;
-            MySqlConnection conexion = conexionMysql.AbrirConexion();
-
             try
             {
+                MySqlConnection conexion = conexionMysql.AbrirConexion();
                 using (conexion)
                 {
                     string procedimiento = "BuscarUsuarioInicioSesion";
@@ -53,7 +45,7 @@ namespace CentroDeportivo1E.Services
             }
             finally
             {
-                conexionMysql.CerrarConexion(conexion);
+                conexionMysql.CerrarConexion();
             }
 
             return empleado;
@@ -61,10 +53,9 @@ namespace CentroDeportivo1E.Services
 
         public void InsertarEmpleado(Empleado empleado)
         {
-            MySqlConnection conexion = null;
             try
             {
-                conexion = conexionMysql.AbrirConexion();
+                MySqlConnection conexion = conexionMysql.AbrirConexion();
                 string procedimiento = "InsertarEmpleado";
 
                 using (MySqlCommand comando = new MySqlCommand(procedimiento, conexion))
@@ -98,15 +89,15 @@ namespace CentroDeportivo1E.Services
             }
             finally
             {
-                conexionMysql.CerrarConexion(conexion);
+                conexionMysql.CerrarConexion();
             }
         }
 
         public bool ExisteUsuario(string usuario)
         {
-            MySqlConnection conexion = conexionMysql.AbrirConexion();
             try
             {
+                MySqlConnection conexion = conexionMysql.AbrirConexion();
                 string procedimiento = "BuscarUsuario";
 
                 using (MySqlCommand comando = new MySqlCommand(procedimiento, conexion))
@@ -126,7 +117,7 @@ namespace CentroDeportivo1E.Services
             }
             finally
             {
-                conexionMysql.CerrarConexion(conexion);
+                conexionMysql.CerrarConexion();
             }
 
             return false;

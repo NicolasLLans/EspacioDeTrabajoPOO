@@ -1,9 +1,5 @@
-﻿using CentroDeportivo1E.Models;
-using CentroDeportivo1E.Services;
-using System;
+﻿using CentroDeportivo1E.Services;
 using System.Data;
-using System.Diagnostics;
-using System.Windows.Forms;
 
 namespace CentroDeportivo1E.Forms
 {
@@ -15,12 +11,11 @@ namespace CentroDeportivo1E.Forms
         private DataTable dtPagos;
         private DataTable dtTipoPago;
 
-        // Modifica el constructor para recibir las credenciales de conexión
-        public FormPagoCuota(string servidor, string puerto, string baseDatos, string usuario, string contrasena)
+        public FormPagoCuota()
         {
             InitializeComponent();
-            socioService = new SocioService(servidor, puerto, baseDatos, usuario, contrasena);
-            pagosService = new PagosService(servidor, puerto, baseDatos, usuario, contrasena);
+            socioService = new SocioService();
+            pagosService = new PagosService();
         }
 
         private void FormPagoCuota_Load(object sender, EventArgs e)

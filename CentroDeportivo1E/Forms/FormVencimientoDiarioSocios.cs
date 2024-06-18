@@ -1,8 +1,6 @@
 ﻿using CentroDeportivo1E.Services;
-using System;
 using System.Data;
 using System.Diagnostics;
-using System.Windows.Forms;
 
 namespace CentroDeportivo1E.Forms
 {
@@ -11,11 +9,10 @@ namespace CentroDeportivo1E.Forms
         private readonly PagosService pagosService;
         private DataTable dtSociosConCuotaVencida;
 
-        // Modifica el constructor para recibir las credenciales de conexión
-        public FormVencimientoDiarioSocios(string servidor, string puerto, string baseDatos, string usuario, string contrasena)
+        public FormVencimientoDiarioSocios()
         {
             InitializeComponent();
-            pagosService = new PagosService(servidor, puerto, baseDatos, usuario, contrasena);
+            pagosService = new PagosService();
         }
 
         private void FormVencimientoDiarioSocios_Load(object sender, EventArgs e)

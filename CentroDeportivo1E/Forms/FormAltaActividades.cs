@@ -1,8 +1,5 @@
 ﻿using CentroDeportivo1E.Models;
 using CentroDeportivo1E.Services;
-using System;
-using System.Data;
-using System.Windows.Forms;
 
 namespace CentroDeportivo1E.Forms
 {
@@ -10,11 +7,10 @@ namespace CentroDeportivo1E.Forms
     {
         private readonly ActividadService actividadService;
 
-        // Modifica el constructor para recibir las credenciales de conexión
-        public FormAltaActividades(string servidor, string puerto, string baseDatos, string usuario, string contrasena)
+        public FormAltaActividades()
         {
             InitializeComponent();
-            actividadService = new ActividadService(servidor, puerto, baseDatos, usuario, contrasena);
+            actividadService = new ActividadService();
         }
 
         private void FormAltaActividades_Load(object sender, EventArgs e)

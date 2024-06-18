@@ -1,7 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace CentroDeportivo1E.Models
+﻿namespace CentroDeportivo1E.Models
 {
     internal class Actividad
     {

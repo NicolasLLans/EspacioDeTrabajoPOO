@@ -1,27 +1,17 @@
-﻿using CentroDeportivo1E.Helpers;
-using CentroDeportivo1E.Models;
+﻿using CentroDeportivo1E.Models;
 using MySql.Data.MySqlClient;
-using System;
 using System.Data;
 
 namespace CentroDeportivo1E.Services
 {
     internal class NoSocioService
     {
-        private readonly ConexionMysql conexionMysql;
-
-        // Constructor que recibe las credenciales de conexión
-        public NoSocioService(string servidor, string puerto, string baseDatos, string usuario, string contrasena)
-        {
-            this.conexionMysql = new ConexionMysql(servidor, puerto, baseDatos, usuario, contrasena);
-        }
-
+        private readonly ConexionMysql conexionMysql = ConexionMysql.getInstance();
         public void InsertarNoSocio(NoSocio noSocio)
         {
-            MySqlConnection conexion = null;
             try
             {
-                conexion = conexionMysql.AbrirConexion();
+                MySqlConnection conexion = conexionMysql.AbrirConexion();
                 string procedimiento = "InsertarNoSocio";
 
                 using (conexion)
@@ -53,18 +43,16 @@ namespace CentroDeportivo1E.Services
             }
             finally
             {
-                conexionMysql.CerrarConexion(conexion);
+                conexionMysql.CerrarConexion();
             }
         }
 
         public bool ExisteNoSocio(long dni)
         {
             bool existe = false;
-            MySqlConnection conexion = null;
-
             try
             {
-                conexion = conexionMysql.AbrirConexion();
+                MySqlConnection conexion = conexionMysql.AbrirConexion();
                 string procedimiento = "ExisteNoSocio";
 
                 using (conexion)
@@ -92,7 +80,7 @@ namespace CentroDeportivo1E.Services
             }
             finally
             {
-                conexionMysql.CerrarConexion(conexion);
+                conexionMysql.CerrarConexion();
             }
 
             return existe;
