@@ -1,6 +1,8 @@
 ﻿using CentroDeportivo1E.Models;
 using CentroDeportivo1E.Services;
 using MySql.Data.MySqlClient;
+using System.Data;
+using System.Net;
 
 namespace CentroDeportivo1E.Forms
 {
@@ -56,13 +58,29 @@ namespace CentroDeportivo1E.Forms
 
                     if (resultado == DialogResult.Yes)
                     {
+                        // Usar las credenciales para crear una instancia de SocioService
+                        SocioService socioService = new SocioService();
+                        DataTable dataTable = socioService.TraerSocioPorDni(nuevoSocio.Dni);
+
+                        string id = "";
+                        string nombre = "";
+                        string apellido = "";
+                        string fechaAlta = "";
+                        foreach (DataRow fila in dataTable.Rows)
+                        {
+                            id = fila["NumeroSocio"].ToString();
+                            nombre = fila["Nombre"].ToString();
+                            apellido = fila["Apellido"].ToString();
+                            fechaAlta = fila["FechaAlta"].ToString();
+                        }
+
                         // Obtener la ruta del archivo HTML de la plantilla
                         string templateFileName = "member-card.html";
                         string templatePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", templateFileName);
-                        string outputPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"Carnet_{nuevoSocio.NumeroSocio}.pdf");
+                        string outputPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"Carnet_{id}.pdf");
 
                         // Generar el PDF del carnet
-                        nuevoSocio.GenerarCarnetPdf(templatePath, outputPath, Convert.ToInt64(txtDNI.Text));
+                        nuevoSocio.GenerarCarnetPdf(templatePath, outputPath, nuevoSocio.Dni);
 
                         MessageBox.Show("Carnet generado exitosamente.", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Close();

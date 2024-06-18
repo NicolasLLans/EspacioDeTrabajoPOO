@@ -25,7 +25,7 @@ namespace CentroDeportivo1E.Forms
                 // Obtener la ruta del archivo HTML de la plantilla
                 string templateFileName = "member-card.html";
                 string templatePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", templateFileName);
-                string outputPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"Carnet_{socio.NumeroSocio}.pdf");
+                string outputPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"Carnet_{dni}.pdf");
 
                 socio.GenerarCarnetPdf(templatePath, outputPath, dni);
             }
