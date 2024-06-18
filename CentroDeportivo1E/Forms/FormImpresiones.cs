@@ -60,5 +60,10 @@ namespace CentroDeportivo1E.Forms
         {
             cargarComboBoxes();
         }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

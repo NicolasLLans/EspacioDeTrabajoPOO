@@ -47,6 +47,7 @@
             textBoxServidor.Name = "textBoxServidor";
             textBoxServidor.Size = new Size(298, 23);
             textBoxServidor.TabIndex = 0;
+            textBoxServidor.Text = "localhost";
             // 
             // textBoxPuerto
             // 
@@ -54,6 +55,7 @@
             textBoxPuerto.Name = "textBoxPuerto";
             textBoxPuerto.Size = new Size(298, 23);
             textBoxPuerto.TabIndex = 1;
+            textBoxPuerto.Text = "3306";
             // 
             // textBoxBaseDatos
             // 

@@ -38,17 +38,17 @@
             // 
             cmbSocio.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             cmbSocio.FormattingEnabled = true;
-            cmbSocio.Location = new Point(51, 68);
+            cmbSocio.Location = new Point(43, 68);
             cmbSocio.Name = "cmbSocio";
             cmbSocio.Size = new Size(355, 26);
-            cmbSocio.TabIndex = 10;
+            cmbSocio.TabIndex = 1;
             // 
             // lblSocio
             // 
             lblSocio.AutoEllipsis = true;
             lblSocio.AutoSize = true;
             lblSocio.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lblSocio.Location = new Point(51, 47);
+            lblSocio.Location = new Point(43, 47);
             lblSocio.Name = "lblSocio";
             lblSocio.Size = new Size(67, 18);
             lblSocio.TabIndex = 11;
@@ -59,11 +59,11 @@
             btnImprimir.BackColor = Color.FromArgb(58, 152, 146);
             btnImprimir.Font = new Font("Verdana", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
             btnImprimir.ForeColor = Color.White;
-            btnImprimir.Location = new Point(288, 201);
+            btnImprimir.Location = new Point(280, 148);
             btnImprimir.Margin = new Padding(3, 2, 3, 2);
             btnImprimir.Name = "btnImprimir";
             btnImprimir.Size = new Size(117, 37);
-            btnImprimir.TabIndex = 12;
+            btnImprimir.TabIndex = 2;
             btnImprimir.Text = "IMPRIMIR";
             btnImprimir.UseVisualStyleBackColor = false;
             btnImprimir.Click += btnImprimir_Click;
@@ -73,19 +73,20 @@
             btnCancelar.BackColor = Color.FromArgb(168, 105, 53);
             btnCancelar.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnCancelar.ForeColor = Color.White;
-            btnCancelar.Location = new Point(37, 200);
+            btnCancelar.Location = new Point(29, 147);
             btnCancelar.Margin = new Padding(3, 2, 3, 2);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(133, 37);
-            btnCancelar.TabIndex = 13;
+            btnCancelar.TabIndex = 3;
             btnCancelar.Text = "CANCELAR";
             btnCancelar.UseVisualStyleBackColor = false;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // FormImpresiones
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(454, 279);
+            ClientSize = new Size(449, 220);
             Controls.Add(btnCancelar);
             Controls.Add(btnImprimir);
             Controls.Add(cmbSocio);
@@ -93,7 +94,7 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "FormImpresiones";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "FormImpresiones";
+            Text = "Imprimir carnet de socio";
             Load += FormImpresiones_Load;
             ResumeLayout(false);
             PerformLayout();
