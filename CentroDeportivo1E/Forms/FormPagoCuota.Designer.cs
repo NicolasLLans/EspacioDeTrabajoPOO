@@ -69,8 +69,8 @@
             btnCancelar.Margin = new Padding(3, 2, 3, 2);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(121, 37);
-            btnCancelar.TabIndex = 15;
-            btnCancelar.Text = "CANCELAR";
+            btnCancelar.TabIndex = 5;
+            btnCancelar.Text = "VOLVER";
             btnCancelar.UseVisualStyleBackColor = false;
             btnCancelar.Click += btnCancelar_Click;
             // 
@@ -79,11 +79,11 @@
             btnPagar.BackColor = Color.FromArgb(58, 152, 146);
             btnPagar.Font = new Font("Verdana", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
             btnPagar.ForeColor = Color.White;
-            btnPagar.Location = new Point(482, 479);
+            btnPagar.Location = new Point(386, 479);
             btnPagar.Margin = new Padding(3, 2, 3, 2);
             btnPagar.Name = "btnPagar";
             btnPagar.Size = new Size(149, 37);
-            btnPagar.TabIndex = 14;
+            btnPagar.TabIndex = 4;
             btnPagar.Text = "PAGAR";
             btnPagar.UseVisualStyleBackColor = false;
             btnPagar.Click += btnPagar_Click;
@@ -103,7 +103,7 @@
             dgvListaClientes.RowTemplate.Height = 25;
             dgvListaClientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvListaClientes.Size = new Size(632, 221);
-            dgvListaClientes.TabIndex = 16;
+            dgvListaClientes.TabIndex = 7;
             dgvListaClientes.SelectionChanged += dgvListaClientes_SelectionChanged;
             // 
             // txtBusquedaClientes
@@ -112,7 +112,7 @@
             txtBusquedaClientes.Location = new Point(48, 57);
             txtBusquedaClientes.Name = "txtBusquedaClientes";
             txtBusquedaClientes.Size = new Size(632, 27);
-            txtBusquedaClientes.TabIndex = 17;
+            txtBusquedaClientes.TabIndex = 1;
             txtBusquedaClientes.TextChanged += txtBusquedaClientes_TextChanged;
             // 
             // label1
@@ -154,9 +154,9 @@
             label3.ForeColor = Color.FromArgb(6, 18, 30);
             label3.Location = new Point(700, 87);
             label3.Name = "label3";
-            label3.Size = new Size(156, 18);
+            label3.Size = new Size(205, 18);
             label3.TabIndex = 32;
-            label3.Text = "Historial de Pago";
+            label3.Text = "HISTORIAL DE PAGOS";
             // 
             // label4
             // 
@@ -187,7 +187,7 @@
             dtpDesde.Location = new Point(130, 356);
             dtpDesde.Name = "dtpDesde";
             dtpDesde.Size = new Size(154, 27);
-            dtpDesde.TabIndex = 35;
+            dtpDesde.TabIndex = 2;
             dtpDesde.ValueChanged += dtpDesde_ValueChanged;
             // 
             // dtpHasta
@@ -198,7 +198,7 @@
             dtpHasta.Location = new Point(130, 399);
             dtpHasta.Name = "dtpHasta";
             dtpHasta.Size = new Size(154, 27);
-            dtpHasta.TabIndex = 36;
+            dtpHasta.TabIndex = 3;
             // 
             // FormPagoCuota
             // 
@@ -222,7 +222,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FormPagoCuota";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "PAGO CUOTA";
+            Text = "Ingresar pago";
             Load += FormPagoCuota_Load;
             ((System.ComponentModel.ISupportInitialize)dgvHistorialPagos).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvListaClientes).EndInit();

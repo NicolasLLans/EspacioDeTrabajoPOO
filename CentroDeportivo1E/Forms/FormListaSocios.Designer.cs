@@ -35,6 +35,7 @@
             label1 = new Label();
             label2 = new Label();
             txtApellido = new TextBox();
+            btnCancelarAlta = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvListaSocios).BeginInit();
             SuspendLayout();
             // 
@@ -56,51 +57,63 @@
             btnBuscar.BackColor = Color.FromArgb(58, 152, 146);
             btnBuscar.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnBuscar.ForeColor = Color.White;
-            btnBuscar.Location = new Point(764, 84);
+            btnBuscar.Location = new Point(765, 90);
             btnBuscar.Name = "btnBuscar";
             btnBuscar.Size = new Size(125, 37);
-            btnBuscar.TabIndex = 27;
+            btnBuscar.TabIndex = 3;
             btnBuscar.Text = "BUSCAR";
             btnBuscar.UseVisualStyleBackColor = false;
-        
             // 
             // txtNombre
             // 
             txtNombre.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            txtNombre.Location = new Point(115, 39);
+            txtNombre.Location = new Point(180, 32);
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(300, 27);
-            txtNombre.TabIndex = 31;
+            txtNombre.Size = new Size(505, 27);
+            txtNombre.TabIndex = 1;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.FromArgb(6, 18, 30);
-            label1.Location = new Point(25, 48);
+            label1.Location = new Point(64, 35);
             label1.Name = "label1";
-            label1.Size = new Size(84, 18);
+            label1.Size = new Size(86, 18);
             label1.TabIndex = 30;
-            label1.Text = "Nombre:";
+            label1.Text = "NOMBRE";
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = Color.FromArgb(6, 18, 30);
-            label2.Location = new Point(458, 48);
+            label2.Location = new Point(64, 99);
             label2.Name = "label2";
-            label2.Size = new Size(82, 18);
+            label2.Size = new Size(98, 18);
             label2.TabIndex = 34;
-            label2.Text = "Apellido:";
+            label2.Text = "APELLIDO";
             // 
             // txtApellido
             // 
             txtApellido.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            txtApellido.Location = new Point(589, 39);
+            txtApellido.Location = new Point(180, 95);
             txtApellido.Name = "txtApellido";
-            txtApellido.Size = new Size(300, 27);
-            txtApellido.TabIndex = 33;
+            txtApellido.Size = new Size(505, 27);
+            txtApellido.TabIndex = 2;
+            // 
+            // btnCancelarAlta
+            // 
+            btnCancelarAlta.BackColor = Color.FromArgb(168, 105, 53);
+            btnCancelarAlta.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnCancelarAlta.ForeColor = Color.White;
+            btnCancelarAlta.Location = new Point(765, 26);
+            btnCancelarAlta.Name = "btnCancelarAlta";
+            btnCancelarAlta.Size = new Size(125, 37);
+            btnCancelarAlta.TabIndex = 4;
+            btnCancelarAlta.Text = "VOLVER";
+            btnCancelarAlta.UseVisualStyleBackColor = false;
+            btnCancelarAlta.Click += btnCancelarAlta_Click;
             // 
             // FormListaSocios
             // 
@@ -108,6 +121,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.InactiveBorder;
             ClientSize = new Size(979, 482);
+            Controls.Add(btnCancelarAlta);
             Controls.Add(label2);
             Controls.Add(txtApellido);
             Controls.Add(txtNombre);
@@ -131,5 +145,6 @@
         private Label label1;
         private Label label2;
         private TextBox txtApellido;
+        private Button btnCancelarAlta;
     }
 }

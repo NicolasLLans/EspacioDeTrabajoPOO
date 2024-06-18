@@ -40,11 +40,12 @@
             PagoToolStripMenuItem = new ToolStripMenuItem();
             VerToolStripMenuItem = new ToolStripMenuItem();
             VencimientosToolStripMenuItem = new ToolStripMenuItem();
+            toolStripMenuItem1 = new ToolStripMenuItem();
+            carnetSocioToolStripMenuItem = new ToolStripMenuItem();
+            formularioDeAltaToolStripMenuItem = new ToolStripMenuItem();
             pictureBox1 = new PictureBox();
             label1 = new Label();
             txtBienvenida = new TextBox();
-            toolStripMenuItem1 = new ToolStripMenuItem();
-            carnetSocioToolStripMenuItem = new ToolStripMenuItem();
             msOpciones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -140,6 +141,28 @@
             VencimientosToolStripMenuItem.Text = "VENCIMIENTOS";
             VencimientosToolStripMenuItem.Click += VencimientosToolStripMenuItem_Click_1;
             // 
+            // toolStripMenuItem1
+            // 
+            toolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { carnetSocioToolStripMenuItem, formularioDeAltaToolStripMenuItem });
+            toolStripMenuItem1.Image = Properties.Resources.printIcon;
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new Size(227, 54);
+            toolStripMenuItem1.Text = "IMPRESIONES";
+            // 
+            // carnetSocioToolStripMenuItem
+            // 
+            carnetSocioToolStripMenuItem.Name = "carnetSocioToolStripMenuItem";
+            carnetSocioToolStripMenuItem.Size = new Size(338, 36);
+            carnetSocioToolStripMenuItem.Text = "CARNET SOCIO";
+            carnetSocioToolStripMenuItem.Click += carnetSocioToolStripMenuItem_Click;
+            // 
+            // formularioDeAltaToolStripMenuItem
+            // 
+            formularioDeAltaToolStripMenuItem.Name = "formularioDeAltaToolStripMenuItem";
+            formularioDeAltaToolStripMenuItem.Size = new Size(338, 36);
+            formularioDeAltaToolStripMenuItem.Text = "FORMULARIO DE ALTA";
+            formularioDeAltaToolStripMenuItem.Click += formularioDeAltaToolStripMenuItem_Click;
+            // 
             // pictureBox1
             // 
             pictureBox1.BackgroundImage = Properties.Resources.LogoClub;
@@ -176,20 +199,6 @@
             txtBienvenida.TabIndex = 3;
             txtBienvenida.TextAlign = HorizontalAlignment.Center;
             // 
-            // toolStripMenuItem1
-            // 
-            toolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { carnetSocioToolStripMenuItem });
-            toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(157, 54);
-            toolStripMenuItem1.Text = "Impresiones";
-            // 
-            // carnetSocioToolStripMenuItem
-            // 
-            carnetSocioToolStripMenuItem.Name = "carnetSocioToolStripMenuItem";
-            carnetSocioToolStripMenuItem.Size = new Size(226, 36);
-            carnetSocioToolStripMenuItem.Text = "Carnet Socio";
-            carnetSocioToolStripMenuItem.Click += carnetSocioToolStripMenuItem_Click;
-            // 
             // FormInicio
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -206,7 +215,7 @@
             MinimizeBox = false;
             Name = "FormInicio";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "INICIO";
+            Text = "Inicio";
             Load += FormInicio_Load;
             msOpciones.ResumeLayout(false);
             msOpciones.PerformLayout();
@@ -236,5 +245,6 @@
         private ToolStripMenuItem fORMULARIOALTASOCIOToolStripMenuItem;
         private ToolStripMenuItem toolStripMenuItem1;
         private ToolStripMenuItem carnetSocioToolStripMenuItem;
+        private ToolStripMenuItem formularioDeAltaToolStripMenuItem;
     }
 }

@@ -54,7 +54,7 @@
             cmbAptoFisico.Location = new Point(173, 261);
             cmbAptoFisico.Name = "cmbAptoFisico";
             cmbAptoFisico.Size = new Size(81, 26);
-            cmbAptoFisico.TabIndex = 8;
+            cmbAptoFisico.TabIndex = 7;
             // 
             // label6
             // 
@@ -105,14 +105,14 @@
             txtEmail.Location = new Point(173, 213);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(826, 27);
-            txtEmail.TabIndex = 7;
+            txtEmail.TabIndex = 6;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label4.ForeColor = Color.FromArgb(6, 18, 30);
-            label4.Location = new Point(38, 170);
+            label4.Location = new Point(42, 170);
             label4.Name = "label4";
             label4.Size = new Size(88, 18);
             label4.TabIndex = 59;
@@ -121,7 +121,7 @@
             // txtDireccion
             // 
             txtDireccion.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            txtDireccion.Location = new Point(174, 161);
+            txtDireccion.Location = new Point(173, 161);
             txtDireccion.Name = "txtDireccion";
             txtDireccion.Size = new Size(825, 27);
             txtDireccion.TabIndex = 5;
@@ -193,7 +193,7 @@
             btnCancelarAlta.Location = new Point(296, 366);
             btnCancelarAlta.Name = "btnCancelarAlta";
             btnCancelarAlta.Size = new Size(125, 37);
-            btnCancelarAlta.TabIndex = 10;
+            btnCancelarAlta.TabIndex = 9;
             btnCancelarAlta.Text = "CANCELAR";
             btnCancelarAlta.UseVisualStyleBackColor = false;
             btnCancelarAlta.Click += btnCancelarAlta_Click;
@@ -206,7 +206,7 @@
             btnAltaSocio.Location = new Point(681, 366);
             btnAltaSocio.Name = "btnAltaSocio";
             btnAltaSocio.Size = new Size(135, 37);
-            btnAltaSocio.TabIndex = 9;
+            btnAltaSocio.TabIndex = 8;
             btnAltaSocio.Text = "DAR ALTA";
             btnAltaSocio.UseVisualStyleBackColor = false;
             btnAltaSocio.Click += btnAltaSocio_Click;
@@ -236,7 +236,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "FormAltaNoSocio";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "ALTA NO SOCIOS";
+            Text = "Nuevo cliente";
             ResumeLayout(false);
             PerformLayout();
         }

@@ -65,14 +65,14 @@
             txtEmail.Location = new Point(181, 201);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(826, 27);
-            txtEmail.TabIndex = 36;
+            txtEmail.TabIndex = 6;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label4.ForeColor = Color.FromArgb(6, 18, 30);
-            label4.Location = new Point(46, 158);
+            label4.Location = new Point(50, 158);
             label4.Name = "label4";
             label4.Size = new Size(88, 18);
             label4.TabIndex = 35;
@@ -81,10 +81,10 @@
             // txtDireccion
             // 
             txtDireccion.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            txtDireccion.Location = new Point(182, 149);
+            txtDireccion.Location = new Point(181, 149);
             txtDireccion.Name = "txtDireccion";
             txtDireccion.Size = new Size(825, 27);
-            txtDireccion.TabIndex = 34;
+            txtDireccion.TabIndex = 5;
             // 
             // label3
             // 
@@ -115,7 +115,7 @@
             txtTelefono.MaxLength = 10;
             txtTelefono.Name = "txtTelefono";
             txtTelefono.Size = new Size(300, 27);
-            txtTelefono.TabIndex = 31;
+            txtTelefono.TabIndex = 4;
             txtTelefono.KeyPress += txtTelefono_KeyPress;
             // 
             // txtApellido
@@ -124,7 +124,7 @@
             txtApellido.Location = new Point(707, 42);
             txtApellido.Name = "txtApellido";
             txtApellido.Size = new Size(300, 27);
-            txtApellido.TabIndex = 30;
+            txtApellido.TabIndex = 2;
             // 
             // txtNombre
             // 
@@ -132,7 +132,7 @@
             txtNombre.Location = new Point(181, 42);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(300, 27);
-            txtNombre.TabIndex = 29;
+            txtNombre.TabIndex = 1;
             // 
             // label1
             // 
@@ -153,7 +153,7 @@
             btnCancelarAlta.Location = new Point(304, 354);
             btnCancelarAlta.Name = "btnCancelarAlta";
             btnCancelarAlta.Size = new Size(125, 37);
-            btnCancelarAlta.TabIndex = 27;
+            btnCancelarAlta.TabIndex = 9;
             btnCancelarAlta.Text = "CANCELAR";
             btnCancelarAlta.UseVisualStyleBackColor = false;
             btnCancelarAlta.Click += btnCancelarAlta_Click;
@@ -166,7 +166,7 @@
             btnAltaSocio.Location = new Point(689, 354);
             btnAltaSocio.Name = "btnAltaSocio";
             btnAltaSocio.Size = new Size(125, 37);
-            btnAltaSocio.TabIndex = 26;
+            btnAltaSocio.TabIndex = 8;
             btnAltaSocio.Text = "DAR ALTA";
             btnAltaSocio.UseVisualStyleBackColor = false;
             btnAltaSocio.Click += btnAltaSocio_Click;
@@ -189,7 +189,7 @@
             txtDNI.MaxLength = 10;
             txtDNI.Name = "txtDNI";
             txtDNI.Size = new Size(300, 27);
-            txtDNI.TabIndex = 46;
+            txtDNI.TabIndex = 3;
             txtDNI.KeyPress += txtDNI_KeyPress;
             // 
             // cmbAptoFisico
@@ -200,7 +200,7 @@
             cmbAptoFisico.Location = new Point(181, 249);
             cmbAptoFisico.Name = "cmbAptoFisico";
             cmbAptoFisico.Size = new Size(81, 26);
-            cmbAptoFisico.TabIndex = 49;
+            cmbAptoFisico.TabIndex = 7;
             // 
             // label6
             // 
@@ -239,7 +239,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FormAltaSocio";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "ALTA SOCIO";
+            Text = "Nuevo socio";
             ResumeLayout(false);
             PerformLayout();
         }

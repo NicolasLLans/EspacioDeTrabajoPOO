@@ -8,9 +8,11 @@ namespace CentroDeportivo1E.Helpers
 {
     internal class PDFGenerator
     {
-        public static void GenerateRegistrationForm(string path)
+        public static void GenerateRegistrationForm()
         {
-            string logoPath = "./CentroDeportivo1E/Resources/img/logo-bn.png";
+            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string path = $"{desktopPath}/RegistrationForm.pdf";
+            string logoPath = "./Resources/img/logo-bn.png";
             Document doc = new Document(PageSize.A4);
             try
             {
