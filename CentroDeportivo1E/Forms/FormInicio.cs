@@ -1,4 +1,6 @@
-﻿namespace CentroDeportivo1E.Forms
+﻿using CentroDeportivo1E.Helpers;
+
+namespace CentroDeportivo1E.Forms
 {
     public partial class FormInicio : Form
     {
@@ -62,6 +64,11 @@
             //Para imprimir el carnet de socio
             FormImpresiones formImpresiones = new FormImpresiones();
             formImpresiones.ShowDialog();
+        }
+
+        private void formularioDeAltaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PDFGenerator.GenerateRegistrationForm();
         }
     }
 }

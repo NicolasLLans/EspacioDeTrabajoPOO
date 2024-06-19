@@ -8,7 +8,9 @@
             InitializeComponent();
         }
 
-
-
+        private void btnCancelarAlta_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

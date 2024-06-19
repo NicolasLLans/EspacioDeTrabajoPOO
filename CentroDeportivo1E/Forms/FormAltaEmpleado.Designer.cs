@@ -286,7 +286,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FormAltaEmpleado";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "ALTA PERSONAL";
+            Text = "Alta personal";
             Load += FormAltaEmpleado_Load;
             ResumeLayout(false);
             PerformLayout();

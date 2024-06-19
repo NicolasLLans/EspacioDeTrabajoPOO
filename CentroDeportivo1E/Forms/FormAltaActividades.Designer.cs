@@ -153,7 +153,7 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "FormAltaActividades";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "ALTA DE ACTIVIDADES";
+            Text = "Alta de actividades";
             Load += FormAltaActividades_Load;
             ((System.ComponentModel.ISupportInitialize)dgvActividades).EndInit();
             ResumeLayout(false);
