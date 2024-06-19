@@ -7,6 +7,7 @@ namespace CentroDeportivo1E.Models
 {
     internal class Socio : Persona
     {
+        private static readonly SynchronizedConverter converter = new SynchronizedConverter(new PdfTools());
         public int NumeroSocio { get; set; }
         public bool Activo { get; set; }
         public decimal CuotaMensual { get; set; }
@@ -24,65 +25,79 @@ namespace CentroDeportivo1E.Models
         // Método para generar el carnet en formato PDF
         public void GenerarCarnetPdf(string templatePath, string outputPath, long dni)
         {
-            string htmlTemplate = File.ReadAllText(templatePath);
-            string imagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "img", "logo-bn.png");
-
-            // Usar las credenciales para crear una instancia de SocioService
-            SocioService socioService = new SocioService();
-            DataTable dataTable = socioService.TraerSocioPorDni(dni);
-
-            string id = "";
-            string nombre = "";
-            string apellido = "";
-            string fechaAlta = "";
-            foreach (DataRow fila in dataTable.Rows)
+            try
             {
-                id = fila["NumeroSocio"].ToString();
-                nombre = fila["Nombre"].ToString();
-                apellido = fila["Apellido"].ToString();
-                fechaAlta = fila["FechaAlta"].ToString();
+                string htmlTemplate = File.ReadAllText(templatePath);
+                string imagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", "img", "logo-bn.png");
+
+                // Usar las credenciales para crear una instancia de SocioService
+                SocioService socioService = new SocioService();
+                DataTable dataTable = socioService.TraerSocioPorDni(dni);
+
+                string id = "";
+                string nombre = "";
+                string apellido = "";
+                string fechaAlta = "";
+                foreach (DataRow fila in dataTable.Rows)
+                {
+                    id = fila["NumeroSocio"].ToString();
+                    nombre = fila["Nombre"].ToString();
+                    apellido = fila["Apellido"].ToString();
+                    fechaAlta = fila["FechaAlta"].ToString();
+                }
+
+                string htmlContent = htmlTemplate
+                    .Replace("{Nombre}", nombre + " " + apellido)
+                    .Replace("{DNI}", dni.ToString())
+                    .Replace("{NumeroSocio}", id)
+                    .Replace("{FechaAlta}", fechaAlta)
+                    .Replace("{ImagePath}", imagePath);
+
+                // Assuming you have a method to convert HTML to PDF
+                ConvertHtmlToPdf(htmlContent, outputPath);
+
+                // Automatically open the PDF file after creation
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo()
+                {
+                    FileName = outputPath,
+                    UseShellExecute = true,
+                    Verb = "open"
+                });
             }
-
-            string htmlContent = htmlTemplate
-                .Replace("{Nombre}", nombre + " " + apellido)
-                .Replace("{DNI}", dni.ToString())
-                .Replace("{NumeroSocio}", id)
-                .Replace("{FechaAlta}", fechaAlta)
-                .Replace("{ImagePath}", imagePath);
-
-            // Assuming you have a method to convert HTML to PDF
-            ConvertHtmlToPdf(htmlContent, outputPath);
-
-            // Automatically open the PDF file after creation
-            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo()
+            catch (Exception ex)
             {
-                FileName = outputPath,
-                UseShellExecute = true,
-                Verb = "open"
-            });
+                MessageBox.Show($"Error al generar el carnet: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void ConvertHtmlToPdf(string htmlContent, string outputPath)
         {
-            var converter = new SynchronizedConverter(new PdfTools());
-            var doc = new HtmlToPdfDocument()
+            try
             {
-                GlobalSettings = {
-                    ColorMode = ColorMode.Color,
-                    Orientation = DinkToPdf.Orientation.Portrait,
-                    PaperSize = PaperKind.A4
-                },
-                Objects = {
-                    new ObjectSettings() {
-                        PagesCount = true,
-                        HtmlContent = htmlContent,
-                        WebSettings = { DefaultEncoding = "utf-8" }
+                var doc = new HtmlToPdfDocument()
+                {
+                    GlobalSettings = {
+                        ColorMode = ColorMode.Color,
+                        Orientation = DinkToPdf.Orientation.Portrait,
+                        PaperSize = PaperKind.A4
+                    },
+                    Objects = {
+                        new ObjectSettings() {
+                            PagesCount = true,
+                            HtmlContent = htmlContent,
+                            WebSettings = { DefaultEncoding = "utf-8" }
+                        }
                     }
-                }
-            };
+                };
 
-            byte[] pdf = converter.Convert(doc);
-            File.WriteAllBytes(outputPath, pdf);
+                byte[] pdf = converter.Convert(doc);
+                File.WriteAllBytes(outputPath, pdf);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al convertir HTML a PDF: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
+
