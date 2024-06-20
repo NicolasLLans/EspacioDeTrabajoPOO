@@ -55,7 +55,7 @@
             msOpciones.BackColor = Color.FromArgb(205, 210, 188);
             msOpciones.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point);
             msOpciones.ImageScalingSize = new Size(50, 50);
-            msOpciones.Items.AddRange(new ToolStripItem[] { AltaToolStripMenuItem, iNSCRIBIRToolStripMenuItem, PagoToolStripMenuItem, VerToolStripMenuItem, VencimientosToolStripMenuItem, toolStripMenuItem1 });
+            msOpciones.Items.AddRange(new ToolStripItem[] { AltaToolStripMenuItem, toolStripMenuItem1, iNSCRIBIRToolStripMenuItem, PagoToolStripMenuItem, VerToolStripMenuItem, VencimientosToolStripMenuItem });
             msOpciones.Location = new Point(0, 0);
             msOpciones.Name = "msOpciones";
             msOpciones.RenderMode = ToolStripRenderMode.System;
@@ -131,6 +131,7 @@
             VerToolStripMenuItem.Name = "VerToolStripMenuItem";
             VerToolStripMenuItem.Size = new Size(118, 54);
             VerToolStripMenuItem.Text = "VER";
+            VerToolStripMenuItem.Visible = false;
             // 
             // VencimientosToolStripMenuItem
             // 
@@ -178,7 +179,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe Fluent Icons", 36F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(427, 154);
+            label1.Location = new Point(318, 154);
             label1.Name = "label1";
             label1.Size = new Size(250, 48);
             label1.TabIndex = 2;
@@ -191,11 +192,11 @@
             txtBienvenida.Enabled = false;
             txtBienvenida.Font = new Font("Palatino Linotype", 27.75F, FontStyle.Bold, GraphicsUnit.Point);
             txtBienvenida.ForeColor = Color.White;
-            txtBienvenida.Location = new Point(339, 234);
+            txtBienvenida.Location = new Point(72, 234);
             txtBienvenida.Multiline = true;
             txtBienvenida.Name = "txtBienvenida";
             txtBienvenida.ReadOnly = true;
-            txtBienvenida.Size = new Size(455, 243);
+            txtBienvenida.Size = new Size(737, 243);
             txtBienvenida.TabIndex = 3;
             txtBienvenida.TextAlign = HorizontalAlignment.Center;
             // 

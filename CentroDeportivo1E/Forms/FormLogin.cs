@@ -8,9 +8,8 @@ namespace CentroDeportivo1E.Forms
     {
         private readonly EmpleadoService empleadoService;
         private EmpleadoHelper empleadoHelper = new EmpleadoHelper();
-
-        public string Usuario { get; private set; }
-        public string Contrasena { get; private set; }
+        public string NombreUsuario { get; private set; }
+        public string ApellidoUsuario { get; private set; }
 
         internal FormLogin()
         {
@@ -35,11 +34,11 @@ namespace CentroDeportivo1E.Forms
                 if (empleado == null) throw new Exception();
                 if (usuario != empleado.Usuario || contrasena != empleado.Contrasena) throw new Exception();
 
-                Usuario = txtUsuario.Text;
-                Contrasena = empleadoHelper.encriptarContrasena(txtContrasena.Text);
+                NombreUsuario = empleado.Nombre;
+                ApellidoUsuario = empleado.Apellido;
 
                 DialogResult = DialogResult.OK;
-                Close();
+                this.Close();
             }
             catch (Exception ex)
             {

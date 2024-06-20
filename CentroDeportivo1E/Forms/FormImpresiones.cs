@@ -21,12 +21,6 @@ namespace CentroDeportivo1E.Forms
             {
                 long dni = (long)cmbSocio.SelectedValue;
                 Socio socio = new Socio();
-
-                // Obtener la ruta del archivo HTML de la plantilla
-                string templateFileName = "member-card.html";
-                string templatePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", templateFileName);
-                string outputPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"Carnet_{dni}.pdf");
-
                 socio.GenerarCarnetPdf(dni);
             }
             catch (Exception ex)

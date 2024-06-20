@@ -12,7 +12,6 @@ namespace CentroDeportivo1E
             //FormConexion formConexion = new FormConexion();
             try
             {
-
                 var frmConexion = new FormConexion();
 
                 if (frmConexion.ShowDialog() != DialogResult.OK) throw new Exception();
@@ -20,9 +19,8 @@ namespace CentroDeportivo1E
                 var frmLogin = new FormLogin();
                 if (frmLogin.ShowDialog() != DialogResult.OK) throw new Exception();
 
-                var frmInicio = new FormInicio("lcuiano", "madroñal");
+                var frmInicio = new FormInicio(frmLogin.NombreUsuario, frmLogin.ApellidoUsuario);
                 if (frmInicio.ShowDialog() != DialogResult.OK) throw new Exception();
-
             }
             catch (Exception ex)
             {

@@ -10,11 +10,13 @@ namespace CentroDeportivo1E.Forms
         public FormInicio(string nombre, string apellido)
         {
             InitializeComponent();
+            this.nombre = nombre;
+            this.apellido = apellido;
         }
 
         private void FormInicio_Load(object sender, EventArgs e)
         {
-            txtBienvenida.Text = $"{nombre}{Environment.NewLine}{apellido}";
+            txtBienvenida.Text = nombre + apellido;
         }
 
         private void PersonalToolStripMenuItem_Click(object sender, EventArgs e)

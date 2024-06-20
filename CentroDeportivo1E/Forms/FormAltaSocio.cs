@@ -59,7 +59,6 @@ namespace CentroDeportivo1E.Forms
                 if (resultado == DialogResult.Yes)
                 {
                     nuevoSocio.GenerarCarnetPdf(nuevoSocio.Dni);
-
                     MessageBox.Show("Carnet generado exitosamente.", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                 }
