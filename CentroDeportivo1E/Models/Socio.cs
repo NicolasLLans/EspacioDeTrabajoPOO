@@ -23,8 +23,12 @@ namespace CentroDeportivo1E.Models
         }
 
         // Método para generar el carnet en formato PDF
-        public void GenerarCarnetPdf(string templatePath, string outputPath, long dni)
+        public void GenerarCarnetPdf(long dni)
         {
+            string templateFileName = "member-card.html";
+            string templatePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", templateFileName);
+            string outputPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"Carnet_{dni}.pdf");
+
             try
             {
                 string htmlTemplate = File.ReadAllText(templatePath);
@@ -67,6 +71,7 @@ namespace CentroDeportivo1E.Models
             catch (Exception ex)
             {
                 MessageBox.Show($"Error al generar el carnet: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw ex;
             }
         }
 

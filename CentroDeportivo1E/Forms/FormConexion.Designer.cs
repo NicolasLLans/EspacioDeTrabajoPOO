@@ -76,6 +76,7 @@
             // 
             textBoxContrasena.Location = new Point(43, 339);
             textBoxContrasena.Name = "textBoxContrasena";
+            textBoxContrasena.PasswordChar = '*';
             textBoxContrasena.Size = new Size(298, 23);
             textBoxContrasena.TabIndex = 4;
             // 

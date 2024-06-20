@@ -9,8 +9,6 @@ namespace CentroDeportivo1E.Forms
             InitializeComponent();
         }
 
-
-
         private void btnGuardar_Click_1(object sender, EventArgs e)
         {
             string servidor = textBoxServidor.Text;
@@ -26,10 +24,13 @@ namespace CentroDeportivo1E.Forms
                 con.AbrirConexion();
                 con.CerrarConexion();
                 DialogResult = DialogResult.OK;
-                this.Close();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se pudo conectar a la Base de datos.  \nError:\n" + ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
-            catch (Exception ex) { }
 
         }
     }

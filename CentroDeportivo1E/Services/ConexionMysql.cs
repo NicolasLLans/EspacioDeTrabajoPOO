@@ -23,10 +23,9 @@ namespace CentroDeportivo1E.Services
                 {
                     connection.Open();
                 }
-                catch (MySqlException e)
+                catch (MySqlException ex)
                 {
-                    MessageBox.Show("No se pudo conectar a la Base de datos, Error: " + e.ToString());
-                    throw;
+                    throw ex;
                 }
             }
             return connection;

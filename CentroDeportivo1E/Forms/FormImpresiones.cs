@@ -27,7 +27,7 @@ namespace CentroDeportivo1E.Forms
                 string templatePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", templateFileName);
                 string outputPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"Carnet_{dni}.pdf");
 
-                socio.GenerarCarnetPdf(templatePath, outputPath, dni);
+                socio.GenerarCarnetPdf(dni);
             }
             catch (Exception ex)
             {

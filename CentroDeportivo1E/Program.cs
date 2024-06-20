@@ -1,6 +1,4 @@
 using CentroDeportivo1E.Forms;
-using CentroDeportivo1E.Models;
-using CentroDeportivo1E.Services;
 
 namespace CentroDeportivo1E
 {
@@ -11,29 +9,22 @@ namespace CentroDeportivo1E
         {
             ApplicationConfiguration.Initialize();
 
-            FormConexion formConexion = new FormConexion();
-            if (formConexion.ShowDialog() == DialogResult.OK)
+            //FormConexion formConexion = new FormConexion();
+            try
             {
-                EmpleadoService empleadoService = new EmpleadoService();
 
-                FormLogin login = new FormLogin(empleadoService);
+                var frmConexion = new FormConexion();
 
-                if (login.ShowDialog() == DialogResult.OK)
-                {
-                    Empleado empleado = empleadoService.BuscarUsuarioInicioSesion(login.Usuario, login.Contrasena);
+                if (frmConexion.ShowDialog() != DialogResult.OK) throw new Exception();
 
-                    if (empleado != null)
-                    {
-                        Application.Run(new FormInicio(empleado.Nombre, empleado.Apellido));
-                    }
-                    else
-                    {
-                        MessageBox.Show("Usuario no encontrado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        Application.Exit();
-                    }
-                }
+                var frmLogin = new FormLogin();
+                if (frmLogin.ShowDialog() != DialogResult.OK) throw new Exception();
+
+                var frmInicio = new FormInicio("lcuiano", "madroñal");
+                if (frmInicio.ShowDialog() != DialogResult.OK) throw new Exception();
+
             }
-            else
+            catch (Exception ex)
             {
                 Application.Exit();
             }
