@@ -28,9 +28,6 @@
     <Compile Update="Forms\FormInscribirEnUnaActividad.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\FormListaSocios.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="Forms\FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>

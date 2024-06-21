@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAltaNoSocio));
             cmbAptoFisico = new ComboBox();
             label6 = new Label();
             label9 = new Label();
@@ -234,6 +235,7 @@
             Controls.Add(btnCancelarAlta);
             Controls.Add(btnAltaSocio);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FormAltaNoSocio";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Nuevo cliente";

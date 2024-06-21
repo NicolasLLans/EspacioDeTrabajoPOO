@@ -19,7 +19,9 @@ namespace CentroDeportivo1E.Forms
                 string.IsNullOrWhiteSpace(txtTelefono.Text) ||
                 string.IsNullOrWhiteSpace(txtDireccion.Text) ||
                 string.IsNullOrWhiteSpace(txtDNI.Text) ||
-                string.IsNullOrWhiteSpace(txtEmail.Text))
+                string.IsNullOrWhiteSpace(txtEmail.Text) ||
+                string.IsNullOrEmpty(cmbAptoFisico.Text))
+
             {
                 return false;
             }
@@ -31,6 +33,7 @@ namespace CentroDeportivo1E.Forms
             try
             {
                 if (!validarDatosForm()) throw new Exception("Por favor, complete todos los campos.");
+                if (cmbAptoFisico.SelectedIndex == 1) throw new Exception("El Apto fisico es obligatorio.");
 
                 // Verifica si se encontró un socio con el mismo DNI
                 bool socioExistente = socioService.ExisteSocio(Convert.ToInt64(txtDNI.Text.Trim()));
@@ -59,8 +62,8 @@ namespace CentroDeportivo1E.Forms
                 {
                     nuevoSocio.GenerarCarnetPdf(nuevoSocio.Dni);
                     MessageBox.Show("Carnet generado exitosamente.", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
                 }
+                this.Close();
             }
             catch (Exception ex)
             {
