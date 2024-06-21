@@ -1,6 +1,5 @@
 ﻿using CentroDeportivo1E.Models;
 using CentroDeportivo1E.Services;
-using MySql.Data.MySqlClient;
 
 namespace CentroDeportivo1E.Forms
 {
@@ -12,65 +11,48 @@ namespace CentroDeportivo1E.Forms
             InitializeComponent();
             noSocioService = new NoSocioService();
         }
-
+        private bool validarDatosForm()
+        {
+            if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
+                string.IsNullOrWhiteSpace(txtApellido.Text) ||
+                string.IsNullOrWhiteSpace(txtTelefono.Text) ||
+                string.IsNullOrWhiteSpace(txtDireccion.Text) ||
+                string.IsNullOrWhiteSpace(txtDNI.Text) ||
+                string.IsNullOrWhiteSpace(txtEmail.Text))
+            {
+                return false;
+            }
+            return true;
+        }
         private void btnAltaSocio_Click(object sender, EventArgs e)
         {
             try
             {
-                bool socioExistente = noSocioService.ExisteNoSocio(Convert.ToInt64(txtDNI.Text.Trim()));
+
+                if (!validarDatosForm()) throw new Exception("Por favor, complete todos los campos.");
 
                 // Verifica si se encontró un socio con el mismo DNI
-                if (socioExistente)
+                bool socioExistente = noSocioService.ExisteNoSocio(Convert.ToInt64(txtDNI.Text.Trim()));
+                if (socioExistente) throw new Exception("Ya existe un socio activo con el DNI: " + txtDNI.Text.Trim());
+
+                NoSocio nuevoNoSocio = new NoSocio
                 {
-                    MessageBox.Show("Ya existe un socio activo con el DNI: " + txtDNI.Text.Trim(), "Socio Existente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-                else
-                {
-                    if (string.IsNullOrWhiteSpace(txtNombre.Text) ||
-                        string.IsNullOrWhiteSpace(txtApellido.Text) ||
-                        string.IsNullOrWhiteSpace(txtTelefono.Text) ||
-                        string.IsNullOrWhiteSpace(txtDireccion.Text) ||
-                        string.IsNullOrWhiteSpace(txtDNI.Text) ||
-                        string.IsNullOrWhiteSpace(txtEmail.Text))
-                    {
-                        MessageBox.Show("Por favor, complete todos los campos.", "Campos Incompletos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
+                    Nombre = txtNombre.Text.ToUpper().Trim(),
+                    Apellido = txtApellido.Text.ToUpper().Trim(),
+                    Direccion = txtDireccion.Text.ToUpper().Trim(),
+                    Telefono = Convert.ToInt64(txtTelefono.Text),
+                    Email = txtEmail.Text.Trim(),
+                    Dni = Convert.ToInt64(txtDNI.Text.Trim()),
+                    AptoFisico = cmbAptoFisico.SelectedItem.ToString().ToUpper() == "SI",
+                    FechaAlta = DateTime.Now,
+                };
 
-                    NoSocio nuevoNoSocio = new NoSocio
-                    {
-                        Nombre = txtNombre.Text.ToUpper().Trim(),
-                        Apellido = txtApellido.Text.ToUpper().Trim(),
-                        Direccion = txtDireccion.Text.ToUpper().Trim(),
-                        Telefono = Convert.ToInt64(txtTelefono.Text),
-                        Email = txtEmail.Text.Trim(),
-                        Dni = Convert.ToInt64(txtDNI.Text.Trim()),
-                        AptoFisico = cmbAptoFisico.SelectedItem.ToString().ToUpper() == "SI",
-                        FechaAlta = DateTime.Now,
-                    };
-
-                    noSocioService.InsertarNoSocio(nuevoNoSocio);
-
-                    DialogResult resultado = MessageBox.Show("No Socio creado correctamente.", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                    if (resultado == DialogResult.Yes)
-                    {
-                        this.Close();
-                    }
-                }
-            }
-            catch (FormatException ex)
-            {
-                MessageBox.Show("Formato de entrada no válido: " + ex.Message, "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show("Error en la base de datos: " + ex.Message, "Error de Base de Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                noSocioService.InsertarNoSocio(nuevoNoSocio);
+                MessageBox.Show("No Socio creado correctamente.", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Question);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocurrió un error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

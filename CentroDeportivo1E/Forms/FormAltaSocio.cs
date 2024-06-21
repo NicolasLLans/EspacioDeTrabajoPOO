@@ -34,7 +34,6 @@ namespace CentroDeportivo1E.Forms
 
                 // Verifica si se encontró un socio con el mismo DNI
                 bool socioExistente = socioService.ExisteSocio(Convert.ToInt64(txtDNI.Text.Trim()));
-
                 if (socioExistente) throw new Exception("Ya existe un socio activo con el DNI: " + txtDNI.Text.Trim());
 
                 Socio nuevoSocio = new Socio()
