@@ -106,9 +106,9 @@
             label3.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             label3.Location = new Point(46, 173);
             label3.Name = "label3";
-            label3.Size = new Size(64, 17);
+            label3.Size = new Size(93, 17);
             label3.TabIndex = 7;
-            label3.Text = "DataBase";
+            label3.Text = "Base de datos";
             // 
             // label4
             // 

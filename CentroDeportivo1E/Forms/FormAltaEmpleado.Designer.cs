@@ -134,14 +134,14 @@
             label3.Name = "label3";
             label3.Size = new Size(92, 18);
             label3.TabIndex = 18;
-            label3.Text = "Telefono:";
+            label3.Text = "Teléfono:";
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Verdana", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label4.ForeColor = Color.FromArgb(6, 18, 30);
-            label4.Location = new Point(37, 299);
+            label4.Location = new Point(39, 299);
             label4.Name = "label4";
             label4.Size = new Size(81, 18);
             label4.TabIndex = 20;
@@ -225,7 +225,7 @@
             label8.Name = "label8";
             label8.Size = new Size(88, 18);
             label8.TabIndex = 39;
-            label8.Text = "Direccion";
+            label8.Text = "Dirección";
             // 
             // txtDireccion
             // 

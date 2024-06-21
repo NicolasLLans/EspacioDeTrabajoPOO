@@ -76,7 +76,7 @@
             label4.Name = "label4";
             label4.Size = new Size(88, 18);
             label4.TabIndex = 35;
-            label4.Text = "Direccion";
+            label4.Text = "Dirección";
             // 
             // txtDireccion
             // 
@@ -95,7 +95,7 @@
             label3.Name = "label3";
             label3.Size = new Size(92, 18);
             label3.TabIndex = 33;
-            label3.Text = "Telefono:";
+            label3.Text = "Teléfono:";
             // 
             // label2
             // 
@@ -211,7 +211,7 @@
             label6.Name = "label6";
             label6.Size = new Size(107, 18);
             label6.TabIndex = 48;
-            label6.Text = "Apto Fisico:";
+            label6.Text = "Apto Físico:";
             // 
             // FormAltaSocio
             // 
