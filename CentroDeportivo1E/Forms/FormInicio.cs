@@ -16,7 +16,7 @@ namespace CentroDeportivo1E.Forms
 
         private void FormInicio_Load(object sender, EventArgs e)
         {
-            txtBienvenida.Text = nombre + apellido;
+            txtBienvenida.Text = $"{nombre}{Environment.NewLine}{apellido}";
         }
 
         private void PersonalToolStripMenuItem_Click(object sender, EventArgs e)
