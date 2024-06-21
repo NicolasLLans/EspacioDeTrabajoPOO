@@ -39,11 +39,11 @@ namespace CentroDeportivo1E.Forms
 
                 socioService.InsertarSocioActividad(idSocio, idActividad);
                 CargarActividades(idSocio);
-                MessageBox.Show("Inscripción realizada correctamente.");
+                MessageBox.Show("Inscripción realizada correctamente.", "Confirmacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al inscribir socio en actividad: " + ex.Message);
+                MessageBox.Show("Error al inscribir socio en actividad: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
