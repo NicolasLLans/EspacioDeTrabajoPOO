@@ -136,12 +136,12 @@ namespace CentroDeportivo1E.Forms
 
                 pagosService.InsertarCuotaYPago(idPersona, fechaVencimiento, fkTipo, fechaPago);
 
-                MessageBox.Show("Cuota y Pago insertados correctamente.");
+                MessageBox.Show("Cuota y Pago insertados correctamente.", "Confirmacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 cargarPagos(idPersona);
             }
             else
             {
-                MessageBox.Show("Seleccione un cliente de la lista.");
+                MessageBox.Show("Seleccione un cliente de la lista.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
