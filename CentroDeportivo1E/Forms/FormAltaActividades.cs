@@ -43,6 +43,9 @@ namespace CentroDeportivo1E.Forms
 
                 MessageBox.Show("Actividad agregada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 cargarDatagridActividades();
+
+                txtDescripcionActividad.Text = "";
+                txtIngresoValor.Text = "";
             }
             catch (FormatException)
             {
