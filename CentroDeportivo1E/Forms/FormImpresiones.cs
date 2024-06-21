@@ -20,13 +20,16 @@ namespace CentroDeportivo1E.Forms
             try
             {
                 long dni = (long)cmbSocio.SelectedValue;
+
+                if (dni <= 0) throw new Exception("Socio no valido, seleccione uno de la lista");
+
                 Socio socio = new Socio();
                 socio.GenerarCarnetPdf(dni);
             }
             catch (Exception ex)
             {
                 // Manejar cualquier excepción y mostrar un mensaje de error
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
