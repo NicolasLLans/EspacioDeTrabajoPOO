@@ -6,10 +6,12 @@ namespace CentroDeportivo1E.Forms
     public partial class FormAltaSocio : Form
     {
         private readonly SocioService socioService;
+        private readonly PersonaService personaService;
         public FormAltaSocio()
         {
             InitializeComponent();
             socioService = new SocioService();
+            personaService = new PersonaService();
         }
 
         private bool validarDatosForm()
@@ -33,8 +35,8 @@ namespace CentroDeportivo1E.Forms
                 if (!validarDatosForm()) throw new Exception("Por favor, complete todos los campos.");
 
                 // Verifica si se encontró un socio con el mismo DNI
-                bool socioExistente = socioService.ExisteSocio(Convert.ToInt64(txtDNI.Text.Trim()));
-                if (socioExistente) throw new Exception("Ya existe un socio activo con el DNI: " + txtDNI.Text.Trim());
+                bool socioExistente = personaService.ExistePersona(Convert.ToInt64(txtDNI.Text.Trim()));
+                if (socioExistente) throw new Exception("Ya existe un cliente (Socio/No Socio) activo con el DNI: " + txtDNI.Text.Trim());
 
                 Socio nuevoSocio = new Socio()
                 {
@@ -59,6 +61,9 @@ namespace CentroDeportivo1E.Forms
                 {
                     nuevoSocio.GenerarCarnetPdf(nuevoSocio.Dni);
                     MessageBox.Show("Carnet generado exitosamente.", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                }else
+                {
                     this.Close();
                 }
             }

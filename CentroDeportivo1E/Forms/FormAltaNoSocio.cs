@@ -5,11 +5,13 @@ namespace CentroDeportivo1E.Forms
 {
     public partial class FormAltaNoSocio : Form
     {
+        private readonly PersonaService personaService;
         private readonly NoSocioService noSocioService;
         public FormAltaNoSocio()
         {
             InitializeComponent();
             noSocioService = new NoSocioService();
+            personaService = new PersonaService();
         }
         private bool validarDatosForm()
         {
@@ -32,8 +34,8 @@ namespace CentroDeportivo1E.Forms
                 if (!validarDatosForm()) throw new Exception("Por favor, complete todos los campos.");
 
                 // Verifica si se encontró un socio con el mismo DNI
-                bool socioExistente = noSocioService.ExisteNoSocio(Convert.ToInt64(txtDNI.Text.Trim()));
-                if (socioExistente) throw new Exception("Ya existe un socio activo con el DNI: " + txtDNI.Text.Trim());
+                bool socioExistente = personaService.ExistePersona(Convert.ToInt64(txtDNI.Text.Trim()));
+                if (socioExistente) throw new Exception("Ya existe un cliente (Socio/No Socio) activo con el DNI:" + txtDNI.Text.Trim());
 
                 NoSocio nuevoNoSocio = new NoSocio
                 {
@@ -48,7 +50,11 @@ namespace CentroDeportivo1E.Forms
                 };
 
                 noSocioService.InsertarNoSocio(nuevoNoSocio);
-                MessageBox.Show("No Socio creado correctamente.", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                MessageBox.Show("No Socio creado correctamente.");
+
+                this.Close();
+               
+              
             }
             catch (Exception ex)
             {
