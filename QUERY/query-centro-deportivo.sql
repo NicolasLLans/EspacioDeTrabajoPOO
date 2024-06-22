@@ -199,19 +199,18 @@ DELIMITER ;
 
 DELIMITER //
 
-CREATE PROCEDURE ExisteSocio (
+CREATE PROCEDURE ExistePersona(
     IN p_dni BIGINT
 )
 BEGIN
-    DECLARE socioExiste INT DEFAULT 0;
+    DECLARE personaExiste INT DEFAULT 0;
 
     SELECT 
-        COUNT(*) INTO socioExiste
-    FROM Socio s
-    INNER JOIN Persona p ON s.FkPersona = p.IdPersona
+        COUNT(*) INTO personaExiste
+    FROM Persona p   
     WHERE p.Dni = p_dni AND p.Baja = FALSE;
     
-    SELECT socioExiste;
+    SELECT personaExiste;
 END //
 
 DELIMITER ;
@@ -254,22 +253,7 @@ DELIMITER ;
 
 DELIMITER //
 
-CREATE PROCEDURE ExisteNoSocio (
-    IN p_dni BIGINT
-)
-BEGIN
-    DECLARE noSocioExiste INT DEFAULT 0;
 
-    SELECT 
-        COUNT(*) INTO noSocioExiste
-    FROM nosocio s
-    INNER JOIN Persona p ON s.FkPersona = p.IdPersona
-    WHERE p.Dni = p_dni AND p.Baja = FALSE;
-    
-    SELECT noSocioExiste;
-END //
-
-DELIMITER ;
 
 
 # SP PARA INSERTAR UNA NUEVA ACTIVIDAD
