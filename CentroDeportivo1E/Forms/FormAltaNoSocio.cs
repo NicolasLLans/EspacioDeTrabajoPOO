@@ -20,7 +20,10 @@ namespace CentroDeportivo1E.Forms
                 string.IsNullOrWhiteSpace(txtTelefono.Text) ||
                 string.IsNullOrWhiteSpace(txtDireccion.Text) ||
                 string.IsNullOrWhiteSpace(txtDNI.Text) ||
-                string.IsNullOrWhiteSpace(txtEmail.Text))
+                string.IsNullOrWhiteSpace(txtEmail.Text) ||
+                string.IsNullOrEmpty(cmbAptoFisico.Text))
+
+
             {
                 return false;
             }
@@ -32,10 +35,11 @@ namespace CentroDeportivo1E.Forms
             {
 
                 if (!validarDatosForm()) throw new Exception("Por favor, complete todos los campos.");
+                if (cmbAptoFisico.SelectedIndex == 1) throw new Exception("El Apto fisico es obligatorio.");
 
-                // Verifica si se encontró un socio con el mismo DNI
                 bool socioExistente = personaService.ExistePersona(Convert.ToInt64(txtDNI.Text.Trim()));
                 if (socioExistente) throw new Exception("Ya existe un cliente (Socio/No Socio) activo con el DNI:" + txtDNI.Text.Trim());
+
 
                 NoSocio nuevoNoSocio = new NoSocio
                 {
@@ -50,11 +54,9 @@ namespace CentroDeportivo1E.Forms
                 };
 
                 noSocioService.InsertarNoSocio(nuevoNoSocio);
-                MessageBox.Show("No Socio creado correctamente.");
-
+                MessageBox.Show("No Socio creado correctamente.", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Question);
                 this.Close();
-               
-              
+
             }
             catch (Exception ex)
             {

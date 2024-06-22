@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormConexion));
             textBoxServidor = new TextBox();
             textBoxPuerto = new TextBox();
             textBoxBaseDatos = new TextBox();
@@ -158,6 +159,7 @@
             Controls.Add(textBoxPuerto);
             Controls.Add(textBoxServidor);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FormConexion";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Conexion Base de datos";

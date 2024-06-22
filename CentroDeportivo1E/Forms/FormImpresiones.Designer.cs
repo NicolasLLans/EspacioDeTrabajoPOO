@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormImpresiones));
             cmbSocio = new ComboBox();
             lblSocio = new Label();
             btnImprimir = new Button();
@@ -91,6 +92,7 @@
             Controls.Add(btnImprimir);
             Controls.Add(cmbSocio);
             Controls.Add(lblSocio);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
             Name = "FormImpresiones";
             StartPosition = FormStartPosition.CenterScreen;
