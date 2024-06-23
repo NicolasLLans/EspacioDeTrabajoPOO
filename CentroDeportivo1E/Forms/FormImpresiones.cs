@@ -20,19 +20,16 @@ namespace CentroDeportivo1E.Forms
             try
             {
                 long dni = (long)cmbSocio.SelectedValue;
+
+                if (dni <= 0) throw new Exception("Socio no valido, seleccione uno de la lista");
+
                 Socio socio = new Socio();
-
-                // Obtener la ruta del archivo HTML de la plantilla
-                string templateFileName = "member-card.html";
-                string templatePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources", templateFileName);
-                string outputPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"Carnet_{dni}.pdf");
-
-                socio.GenerarCarnetPdf(templatePath, outputPath, dni);
+                socio.GenerarCarnetPdf(dni);
             }
             catch (Exception ex)
             {
                 // Manejar cualquier excepción y mostrar un mensaje de error
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAltaNoSocio));
             cmbAptoFisico = new ComboBox();
             label6 = new Label();
             label9 = new Label();
@@ -65,7 +66,7 @@
             label6.Name = "label6";
             label6.Size = new Size(107, 18);
             label6.TabIndex = 64;
-            label6.Text = "Apto Fisico:";
+            label6.Text = "Apto Físico:";
             // 
             // label9
             // 
@@ -116,7 +117,7 @@
             label4.Name = "label4";
             label4.Size = new Size(88, 18);
             label4.TabIndex = 59;
-            label4.Text = "Direccion";
+            label4.Text = "Dirección";
             // 
             // txtDireccion
             // 
@@ -135,7 +136,7 @@
             label3.Name = "label3";
             label3.Size = new Size(92, 18);
             label3.TabIndex = 57;
-            label3.Text = "Telefono:";
+            label3.Text = "Teléfono:";
             // 
             // label2
             // 
@@ -234,6 +235,7 @@
             Controls.Add(btnCancelarAlta);
             Controls.Add(btnAltaSocio);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FormAltaNoSocio";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Nuevo cliente";

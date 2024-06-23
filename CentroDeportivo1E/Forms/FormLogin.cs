@@ -8,13 +8,13 @@ namespace CentroDeportivo1E.Forms
     {
         private readonly EmpleadoService empleadoService;
         private EmpleadoHelper empleadoHelper = new EmpleadoHelper();
-        public string Usuario { get; private set; }
-        public string Contrasena { get; private set; }
+        public string NombreUsuario { get; private set; }
+        public string ApellidoUsuario { get; private set; }
 
-        internal FormLogin(EmpleadoService empleadoService)
+        internal FormLogin()
         {
+            empleadoService = new EmpleadoService();
             InitializeComponent();
-            this.empleadoService = empleadoService;
             this.AcceptButton = btnIngresar;
         }
 
@@ -28,32 +28,27 @@ namespace CentroDeportivo1E.Forms
             string usuario = txtUsuario.Text.Trim();
             string contrasena = empleadoHelper.encriptarContrasena(txtContrasena.Text.Trim());
 
-            Empleado empleado = empleadoService.BuscarUsuarioInicioSesion(usuario, contrasena);
-
-            if (empleado != null)
+            try
             {
-                if (usuario == empleado.Usuario && contrasena == empleado.Contrasena)
-                {
-                    Usuario = txtUsuario.Text;
-                    Contrasena = empleadoHelper.encriptarContrasena(txtContrasena.Text);
-                    DialogResult = DialogResult.OK;
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Usuario o contraseña incorrectos. Por favor, inténtelo de nuevo.", "Error de inicio de sesión", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txtUsuario.Text = "";
-                    txtContrasena.Text = "";
-                    txtUsuario.Focus();
-                }
+                Empleado empleado = empleadoService.BuscarUsuarioInicioSesion(usuario, contrasena);
+                if (empleado == null) throw new Exception();
+                if (usuario != empleado.Usuario || contrasena != empleado.Contrasena) throw new Exception();
+
+                NombreUsuario = empleado.Nombre;
+                ApellidoUsuario = empleado.Apellido;
+
+                DialogResult = DialogResult.OK;
+                this.Close();
             }
-            else
+            catch (Exception ex)
             {
                 MessageBox.Show("Usuario o contraseña incorrectos. Por favor, inténtelo de nuevo.", "Error de inicio de sesión", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtUsuario.Text = "";
                 txtContrasena.Text = "";
                 txtUsuario.Focus();
             }
+
+
         }
     }
 }

@@ -46,44 +46,6 @@ namespace CentroDeportivo1E.Services
                 conexionMysql.CerrarConexion();
             }
         }
-
-        public bool ExisteNoSocio(long dni)
-        {
-            bool existe = false;
-            try
-            {
-                MySqlConnection conexion = conexionMysql.AbrirConexion();
-                string procedimiento = "ExisteNoSocio";
-
-                using (conexion)
-                {
-                    MySqlCommand comando = new MySqlCommand(procedimiento, conexion);
-                    comando.CommandType = CommandType.StoredProcedure;
-                    comando.Parameters.AddWithValue("@p_dni", dni);
-
-                    using (MySqlDataReader reader = comando.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            existe = reader.GetInt32(0) > 0;
-                        }
-                    }
-                }
-            }
-            catch (MySqlException ex)
-            {
-                Console.WriteLine("Error al verificar existencia de socio: " + ex.Message);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error general al verificar existencia de socio: " + ex.Message);
-            }
-            finally
-            {
-                conexionMysql.CerrarConexion();
-            }
-
-            return existe;
-        }
+        
     }
 }

@@ -10,6 +10,8 @@ namespace CentroDeportivo1E.Forms
         public FormInicio(string nombre, string apellido)
         {
             InitializeComponent();
+            this.nombre = nombre;
+            this.apellido = apellido;
         }
 
         private void FormInicio_Load(object sender, EventArgs e)
@@ -68,7 +70,15 @@ namespace CentroDeportivo1E.Forms
 
         private void formularioDeAltaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PDFGenerator.GenerateRegistrationForm();
+            try
+            {
+                PDFGenerator.GenerateRegistrationForm();
+                MessageBox.Show("Formulario exportado con exito al escritorio.", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al exportar formulario", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

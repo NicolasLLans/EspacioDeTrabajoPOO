@@ -94,9 +94,9 @@
             btnIngresar.BackColor = Color.FromArgb(58, 152, 146);
             btnIngresar.Font = new Font("Verdana", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             btnIngresar.ForeColor = Color.White;
-            btnIngresar.Location = new Point(366, 278);
+            btnIngresar.Location = new Point(340, 278);
             btnIngresar.Name = "btnIngresar";
-            btnIngresar.Size = new Size(156, 47);
+            btnIngresar.Size = new Size(175, 47);
             btnIngresar.TabIndex = 3;
             btnIngresar.Text = "INGRESAR";
             btnIngresar.UseVisualStyleBackColor = false;
@@ -107,9 +107,9 @@
             btnCancelar.BackColor = Color.FromArgb(168, 105, 53);
             btnCancelar.Font = new Font("Verdana", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             btnCancelar.ForeColor = Color.White;
-            btnCancelar.Location = new Point(144, 278);
+            btnCancelar.Location = new Point(99, 278);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(156, 47);
+            btnCancelar.Size = new Size(175, 47);
             btnCancelar.TabIndex = 4;
             btnCancelar.Text = "CANCELAR";
             btnCancelar.UseVisualStyleBackColor = false;
