@@ -64,10 +64,7 @@ namespace CentroDeportivo1E.Forms
                 {
                     nuevoSocio.GenerarCarnetPdf(nuevoSocio.Dni);
                     MessageBox.Show("Carnet generado exitosamente.", "Confirmación", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-        
-                {
-                    
+                }
                 this.Close();
             }
             catch (Exception ex)
