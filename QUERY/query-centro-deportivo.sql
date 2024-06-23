@@ -1,3 +1,5 @@
+DROP DATABASE IF EXISTS centrodeportivo1e;
+
 CREATE DATABASE centrodeportivo1e;
 
 USE centrodeportivo1e;
