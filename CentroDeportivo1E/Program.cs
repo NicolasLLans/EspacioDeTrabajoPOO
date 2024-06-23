@@ -8,12 +8,9 @@ namespace CentroDeportivo1E
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-
-            //FormConexion formConexion = new FormConexion();
             try
             {
                 var frmConexion = new FormConexion();
-
                 if (frmConexion.ShowDialog() != DialogResult.OK) throw new Exception();
 
                 var frmLogin = new FormLogin();

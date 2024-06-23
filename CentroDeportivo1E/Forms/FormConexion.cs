@@ -1,4 +1,5 @@
 ﻿using CentroDeportivo1E.Services;
+using MySql.Data.MySqlClient;
 
 namespace CentroDeportivo1E.Forms
 {
@@ -17,21 +18,20 @@ namespace CentroDeportivo1E.Forms
             string usuario = textBoxUsuario.Text;
             string contrasena = textBoxContrasena.Text;
 
-            ConexionMysql con = new ConexionMysql(servidor, puerto, baseDatos, usuario, contrasena);
-
+            ConexionMysql.Initialize(servidor, puerto, baseDatos, usuario, contrasena);
+            var con = ConexionMysql.getInstance();
             try
             {
                 con.AbrirConexion();
                 con.CerrarConexion();
+                MessageBox.Show("Conexión exitosa.", "Confirmacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;
                 Close();
             }
-            catch (Exception ex)
+            catch (MySqlException ex)
             {
-                MessageBox.Show("No se pudo conectar a la Base de datos.  \nError:\n" + ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                MessageBox.Show("No se pudo conectar a la Base de datos.  \nError:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
     }
 }

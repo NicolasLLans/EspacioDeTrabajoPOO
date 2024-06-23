@@ -1,4 +1,6 @@
-﻿using MySql.Data.MySqlClient;
+﻿using CentroDeportivo1E.Forms;
+using MySql.Data.MySqlClient;
+
 
 namespace CentroDeportivo1E.Services
 {
@@ -8,23 +10,30 @@ namespace CentroDeportivo1E.Services
         private MySqlConnection? connection = null;
         private static ConexionMysql? instance = null;
 
-        public ConexionMysql(string servidor, string puerto, string baseDatos, string usuario, string contrasena)
+        private ConexionMysql() { }
+        public static void Initialize(string servidor, string puerto, string baseDatos, string usuario, string contrasena)
         {
             connectionString = $"Server ={servidor}; Port ={puerto}; Database ={baseDatos}; Uid ={usuario}; Pwd ={contrasena};";
         }
-        public ConexionMysql() { }
 
         public MySqlConnection AbrirConexion()
         {
             if (connection == null)
             {
-                connection = new MySqlConnection(getStringConnection());
+                if (string.IsNullOrEmpty(connectionString))
+                {
+                    var frmConexion = new FormConexion();
+                    frmConexion.ShowDialog();
+                }
+                connection = new MySqlConnection(connectionString);
                 try
                 {
                     connection.Open();
                 }
                 catch (MySqlException ex)
                 {
+                    connectionString = "";
+                    connection = null;
                     throw ex;
                 }
             }
@@ -38,11 +47,6 @@ namespace CentroDeportivo1E.Services
                 instance = new ConexionMysql();
             }
             return instance;
-        }
-
-        public static string getStringConnection()
-        {
-            return connectionString;
         }
 
         public void CerrarConexion()
